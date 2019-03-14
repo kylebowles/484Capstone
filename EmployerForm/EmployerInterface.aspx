@@ -5,15 +5,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+
+<style type="text/css">
+    .smallBox
+    {
+        display:inline-block;
+    }
+</style>
     <link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
+     <form id="form1" runat="server">
          <div class="jumbotron container-fluid">
         <h1 class="display-4">Menu</h1>      
         <hr class="my-4" />
             <h2><a href="EmployerInterface.aspx" class="badge badge-light ">Employer Registration</a></h2>
-           <%-- <h2><a href ="SalesReasonForm.aspx" class="badge badge-light">Main Menu</a></h2>--%>
+           
     </div>
 
         <table id ="Textfields">
@@ -69,23 +76,24 @@
         <table>
             <tr>
                 <th>
-                    <asp:Label ID="Phone" runat="server" Text="Phone Number: " CssClass="form-control"></asp:Label><asp:TextBox ID="PhoneText" runat="server" placeholder="(xxx)xxx-xxxx"></asp:TextBox>
+                    <asp:Label ID="Phone" runat="server" Text="Phone Number: " CssClass="form-control"></asp:Label><asp:TextBox ID="PhoneText" runat="server" placeholder="(xxx)xxx-xxxx"></asp:TextBox>   
+                </th>
                     <asp:RequiredFieldValidator ID="RequiredPhone" runat="server" ErrorMessage="(Required)" ControlToValidate="PhoneText" ValidationGroup="Group1"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="ComparePhone" runat="server" ErrorMessage="(Characters Only)" Type="String" Operator="DataTypeCheck" ValidationGroup="Group1" ControlToValidate="PhoneText"></asp:CompareValidator>
-                </th>
 
                 <th>
                     <asp:Label ID="Address" runat="server" Text="Company Address: " CssClass="form-control"></asp:Label><asp:TextBox ID="CompanyAddressText" runat="server" placeholder="Enter company address"></asp:TextBox>
+                    
+                </th>
                     <asp:RequiredFieldValidator ID="RequiredCompAddress" runat="server" ErrorMessage="(Required)" ControlToValidate="CompanyAddressText" ValidationGroup="Group1"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareCompAddress" runat="server" ErrorMessage="(Characters Only)" Type="String" Operator="DataTypeCheck" ValidationGroup="Group1" ControlToValidate="CompanyAddressText"></asp:CompareValidator>
-                </th>
 
 
                 <th>
                     <asp:Label ID="City" runat="server" Text="City: " CssClass="form-control"></asp:Label><asp:TextBox ID="CityText" runat="server" placeholder="Enter city"></asp:TextBox>
+                </th>
                     <asp:RequiredFieldValidator ID="RequiredCity" runat="server" ErrorMessage="(Required)" ControlToValidate="CityText" ValidationGroup="Group1"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareCity" runat="server" ErrorMessage="(Characters Only)" Type="String" Operator="DataTypeCheck" ValidationGroup="Group1" ControlToValidate="CityText"></asp:CompareValidator>
-                </th>
 
                 <th>
                     <asp:Label ID="State" runat="server" Text="State: " CssClass="form-control"></asp:Label><asp:DropDownList ID="StateDropDown" runat="server" placeholder="">
@@ -141,11 +149,13 @@
 	                                            <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
 	                                            <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                             </asp:DropDownList>
-                    <asp:RequiredFieldValidator ID="RequiredState" runat="server" ErrorMessage="(Required)" ControlToValidate="StateDropDown" ValidationGroup="Group1"></asp:RequiredFieldValidator>
-                    <asp:CompareValidator ID="CompareState" runat="server" ErrorMessage="(Characters Only)" Type="String" Operator="DataTypeCheck" ValidationGroup="Group1" ControlToValidate="StateDropDown"></asp:CompareValidator>
+                    
 
 
                 </th>
+
+                    <asp:RequiredFieldValidator ID="RequiredState" runat="server" ErrorMessage="(Required)" ControlToValidate="StateDropDown" ValidationGroup="Group1"></asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="CompareState" runat="server" ErrorMessage="(Characters Only)" Type="String" Operator="DataTypeCheck" ValidationGroup="Group1" ControlToValidate="StateDropDown"></asp:CompareValidator>
             </tr>
         </table>
             
@@ -158,16 +168,18 @@
                 <asp:Label ID="ErrorDB" runat="server" Text=""></asp:Label>
                 <asp:Button ID="Clear" class="btn btn-primary" runat="server" Text="Clear Contents" OnClick="clear_Click" /> 
                 <asp:Button ID="ExitButton" class="btn btn-primary" runat="server" Text="Exit" OnClick="Exit_Page" />
-                <asp:Button ID="InsertButton" class="btn btn-primary" runat="server" Text="Insert to Database" OnClick="insert_Click" ValidationGroup="Group1"/>
+                <asp:Button ID="InsertButton" class="btn btn-primary" runat="server" Text="Create Account" OnClick="insert_Click" ValidationGroup="Group1"/>
                
 
                 <br />
                 <br />
                 <br />
                 <br />
+
             <asp:Label ID="EmailTaken" runat="server" Text=""></asp:Label>
             <asp:Label ID="PassDontMatch" runat="server" Text=""></asp:Label>
                 
     </form>
 </body>
 </html>
+

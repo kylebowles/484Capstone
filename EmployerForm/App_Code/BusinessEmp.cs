@@ -25,6 +25,7 @@ public class BusinessEmp
     private String City;
     private String State;
 
+
     public BusinessEmp()
     {
         //No-arg constructor
@@ -59,6 +60,7 @@ public class BusinessEmp
         this.City = City;
         this.State = State;
     }
+
     //Getters and Setters
     public String getFirstName()
     {
@@ -145,11 +147,10 @@ public class BusinessEmp
     {
         return this.State;
     }
-    
+
     public void setState(String State)
     {
         this.State = State;
     }
-
 
 }

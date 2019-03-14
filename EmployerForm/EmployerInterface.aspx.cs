@@ -16,9 +16,6 @@ public partial class Employer : System.Web.UI.Page
     //Create SQL connection
     System.Data.SqlClient.SqlConnection sql = new System.Data.SqlClient.SqlConnection();
 
-
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -57,19 +54,20 @@ public partial class Employer : System.Web.UI.Page
     protected void insert_Click(object sender, EventArgs e)
     {
         //Create new Employer object
-        BusinessEmp bus = new BusinessEmp(FirstNameText.Text.ToString(), LastNameText.Text.ToString(), CompanyText.Text.ToString(), EmailText.Text.ToString(), PasswordText1.Text.ToString());
+        BusinessEmp bus = new BusinessEmp(FirstNameText.Text.ToString(), LastNameText.Text.ToString(), CompanyText.Text.ToString(), EmailText.Text.ToString(), PasswordText1.Text.ToString(),
+            PhoneText.Text.ToString(), CompanyAddressText.Text.ToString(), CityText.Text.ToString(), StateDropDown.SelectedItem.ToString());
 
         //Doesn't add to the DB if the email address is taken
         checkEmail(bus);
 
         if (checkEmail(bus) == false)
         {
-            return;
+            EmailTaken.Visible = true;
         }
-        //else
-        //{
-        //    EmailTaken.Visible = false;
-        //}
+        else
+        {
+            EmailTaken.Visible = false;
+        }
 
         checkPassword(bus);
 
@@ -81,38 +79,39 @@ public partial class Employer : System.Web.UI.Page
         {
             PassDontMatch.Visible = false;
         }
-        //Insert values into database when user clicks "Insert"
-        SqlCommand dbInsert = new SqlCommand();
-        dbInsert.Connection = sql;
 
-        //Check to see if email already exists
-        
-        //RECENT UPDATES -- Need to add parameters for new fields (PhoneNumber, CompAddress, etec.) Currently at this point
-        dbInsert.CommandText = "insert into [EMPLOYER](FirstName,LastName,CompanyName,EmailAddress,empPassword) values(@FirstName,@LastName,@Company,@Email,@Password)";
-        //CREATE New DB with all these columns. Connection and insertion works.
-        dbInsert.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
-        dbInsert.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
-        dbInsert.Parameters.Add(new SqlParameter("@Company", bus.getCompany()));
-        dbInsert.Parameters.Add(new SqlParameter("@Email", bus.getEmail()));
-        dbInsert.Parameters.Add(new SqlParameter("@Password", bus.getPassword()));
-        dbInsert.Parameters.Add(new SqlParameter("@PhoneNumber", bus.getPhone()));
-        dbInsert.Parameters.Add(new SqlParameter("@CompAddress", bus.getCompAddress()));
-        dbInsert.Parameters.Add(new SqlParameter("@City", bus.getCity()));
-        dbInsert.Parameters.Add(new SqlParameter("@State", bus.getState()));
+        if(EmailTaken.Visible == false)
+        {
 
-        
-        dbInsert.ExecuteNonQuery();
+            //Insert values into database when user clicks "Insert"
+            SqlCommand dbInsert = new SqlCommand();
+            dbInsert.Connection = sql;
 
-        sql.Close();
+            dbInsert.CommandText = "insert into [EMPLOYER](FirstName,LastName,CompanyName,EmailAddress,empPassword,PhoneNumber,CompAddress,City,CompState) " +
+                "values(@FirstName,@LastName,@CompanyName,@EmailAddress,@empPassword,@PhoneNumber,@CompAddress,@City,@CompState)";
+            dbInsert.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
+            dbInsert.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
+            dbInsert.Parameters.Add(new SqlParameter("@CompanyName", bus.getCompany()));
+            dbInsert.Parameters.Add(new SqlParameter("@EmailAddress", bus.getEmail()));
+            dbInsert.Parameters.Add(new SqlParameter("@empPassword", bus.getPassword()));
+            dbInsert.Parameters.Add(new SqlParameter("@PhoneNumber", bus.getPhone()));
+            dbInsert.Parameters.Add(new SqlParameter("@CompAddress", bus.getCompAddress()));
+            dbInsert.Parameters.Add(new SqlParameter("@City", bus.getCity()));
+            dbInsert.Parameters.Add(new SqlParameter("@CompState", bus.getState()));
 
 
+            dbInsert.ExecuteNonQuery();
+
+            sql.Close();
+
+
+        }
 
     }
 
-    //Make a method to compare if email address is already inserted into DB
+
     //Can't have same registered email create two accounts
-    
-    protected Boolean checkEmail(BusinessEmp emp)
+    protected Boolean checkEmail(BusinessEmp bus)
     {
         //Checking to see if email in created object is equivalent to an email already in the DB
         //If so, don't add object to DB, and make message pop-up saying that specific email is already taken
@@ -129,38 +128,54 @@ public partial class Employer : System.Web.UI.Page
 
         String[] emailAddresses = new String[countEmails];
         //Populate String array with emailAddresses
-        for(int i = 0; i < emailAddresses.Length; i++)
+        for (int i = 0; i < emailAddresses.Length; i++)
         {
-            while(reader.Read())
-            emailAddresses[i] = reader.GetValue(0).ToString();
+            while (reader.Read())
+                emailAddresses[i] = reader.GetValue(0).ToString();
         }
 
         reader.Close();
-        
+
+
+        int counter;
+        counter = 0;
         //Loop thorugh all email addresses and check if they're equal to one another
         for (int i = 0; i < countEmails; i++)
         {
-            if(EmailText.Text.Equals(emailAddresses[i]))
+            
+            if (EmailText.Text.Equals(emailAddresses[i]))
             {
-                EmailTaken.Text = "Email already registered, please use a different address";
-                return false;
+                EmailTaken.Text = "Email already registered, please use a different address.";
+                counter++;
                 
             }
-            
+
             else
             {
-                return true;
+                //EmailTaken.Text = "";
+                //return true;
             }
+
+            
+        }
+        if(counter > 0)
+        {
+            return false;
         }
 
-        return false;
-
+        else
+        {
+            return true;
+        }
         
+
+
+
 
     }
 
     //Make a method to ensure password1 and password2 are equivalent
-    protected Boolean checkPassword(BusinessEmp emp)
+    protected Boolean checkPassword(BusinessEmp bus)
     {
         if (PasswordText1.Text != PasswordText2.Text)
         {
