@@ -1,24 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EmployerInterface.aspx.cs" Inherits="Employer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EmployerInterface.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="Employer" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-
-<style type="text/css">
-    .smallBox
-    {
-        display:inline-block;
-    }
-</style>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
-</head>
-<body>
-     <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+  
          <div class="jumbotron container-fluid">
         <h1 class="display-3">Employer Menu</h1>      
         <hr class="my-3" />
@@ -183,7 +166,6 @@
             <strong id="createdAcct">Acccount created successfully!</strong>
             </div>
                 
-    </form>
-</body>
-</html>
+    
+</asp:Content>
 
