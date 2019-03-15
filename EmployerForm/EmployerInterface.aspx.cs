@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.ServiceModel.Channels;
+
 
 public partial class Employer : System.Web.UI.Page
 {
@@ -20,7 +22,7 @@ public partial class Employer : System.Web.UI.Page
     {
         try
         {
-            //Connect to AdventureWorks2014 DB
+            //Connect to Sprint1 DB
             sql.ConnectionString = "Data Source=localhost;Initial Catalog=Sprint1;Integrated Security=True";
             sql.Open();
 
@@ -100,10 +102,18 @@ public partial class Employer : System.Web.UI.Page
             dbInsert.Parameters.Add(new SqlParameter("@CompState", bus.getState()));
 
 
+            
+
             dbInsert.ExecuteNonQuery();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "Showalert();", true);
+
+
 
             sql.Close();
 
+
+            //Make a message box appear when the account is created successfully
 
         }
 
@@ -169,9 +179,6 @@ public partial class Employer : System.Web.UI.Page
         }
         
 
-
-
-
     }
 
     //Make a method to ensure password1 and password2 are equivalent
@@ -189,5 +196,5 @@ public partial class Employer : System.Web.UI.Page
         }
     }
 
-
+    
 }
