@@ -1,17 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="EmployerInterface.aspx.cs" Inherits="Employer" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masterpage.master"CodeFile="EmployerInterface.aspx.cs" Inherits="Employer" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 
 
-
-
-
-
-
-    <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server"> 
-   
          <div class="jumbotron container-fluid">
-        <h1 class="display-4">Menu</h1>      
-        <hr class="my-4" />
+        <h1 class="display-3">Employer Menu</h1>      
+        <hr class="my-3" />
             <h2><a href="EmployerInterface.aspx" class="badge badge-light ">Employer Registration</a></h2>
            
     </div>
@@ -155,9 +150,6 @@
                
 
                 
-
-                
-
                 <asp:Label ID="ErrorDB" runat="server" Text=""></asp:Label>
                 <asp:Button ID="Clear" class="btn btn-primary" runat="server" Text="Clear Contents" OnClick="clear_Click" /> 
                 <asp:Button ID="ExitButton" class="btn btn-primary" runat="server" Text="Exit" OnClick="Exit_Page" />
@@ -171,6 +163,10 @@
 
             <asp:Label ID="EmailTaken" runat="server" Text=""></asp:Label>
             <asp:Label ID="PassDontMatch" runat="server" Text=""></asp:Label>
+            <div class="alert alert-success" id="createdSuccess">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong id="createdAcct">Acccount created successfully!</strong>
+            </div>
                 
     
         
