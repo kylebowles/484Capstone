@@ -13,12 +13,15 @@
     }
 </style>
     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
      <form id="form1" runat="server">
          <div class="jumbotron container-fluid">
-        <h1 class="display-4">Menu</h1>      
-        <hr class="my-4" />
+        <h1 class="display-3">Employer Menu</h1>      
+        <hr class="my-3" />
             <h2><a href="EmployerInterface.aspx" class="badge badge-light ">Employer Registration</a></h2>
            
     </div>
@@ -162,9 +165,6 @@
                
 
                 
-
-                
-
                 <asp:Label ID="ErrorDB" runat="server" Text=""></asp:Label>
                 <asp:Button ID="Clear" class="btn btn-primary" runat="server" Text="Clear Contents" OnClick="clear_Click" /> 
                 <asp:Button ID="ExitButton" class="btn btn-primary" runat="server" Text="Exit" OnClick="Exit_Page" />
@@ -178,6 +178,10 @@
 
             <asp:Label ID="EmailTaken" runat="server" Text=""></asp:Label>
             <asp:Label ID="PassDontMatch" runat="server" Text=""></asp:Label>
+            <div class="alert alert-success" id="createdSuccess">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong id="createdAcct">Acccount created successfully!</strong>
+            </div>
                 
     </form>
 </body>
