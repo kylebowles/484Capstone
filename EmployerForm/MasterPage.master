@@ -4,11 +4,36 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template"/>
+    <meta name="author" content="theme_xpress">
+        
+    <title>Cued-In</title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+    
     <link href="Content/bootstrap.css" rel="stylesheet" />
-     <link href="Content/bootstrap.css" rel="stylesheet" />
+   
+    <link rel="shortcut icon" href="img/favicon.png">
+    	
+    	<!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
+		
+		<!-- css libraries -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/animate.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/icofont.min.css" rel="stylesheet">
+        <link href="css/owl.carousel.css" rel="stylesheet">
+        <link href="css/lightbox.css" rel="stylesheet">
+        <link href="css/hamburgers.min.css" rel="stylesheet">
+
+        <!-- main style -->
+        <link href="style.css" rel="stylesheet">
+        <!-- responsive.css -->
+
+        <link href="css/responsive.css" rel="stylesheet"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -16,25 +41,61 @@
     {
         display:inline-block;
     }
+        
 </style>
 
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <nav class ="navbar bg-dark navbar-dark align-content-sm-center">
-                    <h2 class="navbar-brand">Employer View</h2>
-                    <div class ="container">
-                                <a class="nav-item nav-link active" href="EmployerInterface.aspx">Create Employer Account</a>
-                                <a class="nav-item nav-link active" href="TableauData.aspx">Tableau Visual</a>
-                                <a class="nav-item nav-link active" href="Login.aspx">Login</a>
-                        </div>
-                     
-                    </nav>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+    <form id="form1" method="post" runat="server">
+    <!-- page-wrapper start -->
+		<div class="page-wrapper">
+			<!-- ----------------- -->
+			<!-- main-header start -->
+			<header class="main-header">
+				<div class="container">
+					<nav class="navbar navbar-expand-lg main-nav px-0">
+					  	<a class="navbar-brand" href="#home" rel="m_PageScroll2id">
+					      <img src="img/logo.png" alt="Logo">
+					      <img src="img/logo-light.png" alt="LogoLight">
+					    </a>
+					    <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
+					      <span class="hamburger-box">
+					        <span class="hamburger-inner"></span>
+					      </span>
+					    </button>
+					    <div class="collapse navbar-collapse" id="mainMenu">
+							<ul class="navbar-nav ml-auto text-uppercase f1">
+								<li>
+									<a href="#home" rel="m_PageScroll2id">home</a>
+								</li>
+								<li>
+									<a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
+								</li>
+								<li>
+									<a href="#service" rel="m_PageScroll2id">our community</a>
+								</li>
+				
+								<li>
+									<a href="#team" rel="m_PageScroll2id">contact</a>
+								</li>
+								<li>
+									<a href="#testimony" rel="m_PageScroll2id">testimonils</a>
+								</li>
+								<li>
+									<a href="#contact" rel="m_PageScroll2id">Login/Create Account</a>
+								</li>
+							</ul>
+					    </div>
+					</nav>
+				</div><!-- /.container -->
+			</header>
+			<!-- main-header end -->
+			<!-- --------------- -->
+    </div>
+    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
-    </form>
+    
+  </form>
 </body>
 </html>

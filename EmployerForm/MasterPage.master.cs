@@ -9,11 +9,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-     //   if (Session["loggedIn"] == null || Session["loggedIn"].Equals(false))
-     //   {
-     //       Response.Redirect("EmployerInterface.aspx", false);
-     //       
-     //   }
+        if (Session["LoggedIn"] == null)
+        {
+
+        }
+       else if (Session["LoggedIn"].Equals("true"))
+        {
+            Response.Write("You logged in");
+
+        }
+
 
     }
 }
