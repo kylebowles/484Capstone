@@ -622,9 +622,9 @@ nav {
 /* main-header end */
 
 /* home start */
-[data-bg="1"] {background: url('img/bg/01.jpg') no-repeat center center;}
-[data-bg="2"] {background: url('img/bg/02.jpg') no-repeat center center;}
-[data-bg="3"] {background: url('img/bg/03.jpg') no-repeat center center;}
+[data-bg="1"] {background: url('img/logocrop.jpg') no-repeat center center;}
+[data-bg="2"] {background: url('img/logocrop.jpg') no-repeat center center;}
+[data-bg="3"] {background: url('img/logocrop.jpg') no-repeat center center;}
 
 #mainSlider .carousel-item {
     height: 960px;
