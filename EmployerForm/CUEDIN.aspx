@@ -177,7 +177,8 @@
 								<h1>the story about us</h1>
 							</header>
 						</div><!-- /.col-12 -->
-						<div class="col-xl-4">
+                        
+                        <div class="col-xl-4">
 							<section class="crop">
 								<p class="f1 fw-7 text-xl-right text-center wow fadeInRight" data-wow-duration="2s">
 									<span>Our goal is to provide</span><br>

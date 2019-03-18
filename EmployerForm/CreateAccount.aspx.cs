@@ -23,7 +23,7 @@ public partial class Employer : System.Web.UI.Page
         try
         {
             //Connect to Cued-In DB
-            sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+            sql.ConnectionString = "Data Source=.\\sqlexpress;Initial Catalog=Cued-In;Integrated Security=True";
             sql.Open();
 
         }

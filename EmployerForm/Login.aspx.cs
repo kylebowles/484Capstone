@@ -15,7 +15,7 @@ public partial class LoginPage : System.Web.UI.Page
         try
         {
 
-            sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+            sql.ConnectionString = "Data Source=.\\sqlexpress;Initial Catalog=Cued-In;Integrated Security=True";
             sql.Open();
 
         }
@@ -37,7 +37,7 @@ public partial class LoginPage : System.Web.UI.Page
         try
         {
             System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
-            sc.ConnectionString = @"Server=localhost;Initial Catalog=Cued-In;Trusted_Connection=Yes;";
+            sc.ConnectionString = @"Server=.\\sqlexpress;Initial Catalog=Cued-In;Trusted_Connection=Yes;";
             lblStatus.Text = "Database Connection Successful";
 
             sc.Open();
