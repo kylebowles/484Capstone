@@ -17,17 +17,13 @@ public class BusinessEmp
 {
     private String FirstName;
     private String LastName;
-    private String CompanyName;
-    private String EmailAdd;
+    private String Company;
+    private String Email;
     private String Password;
     private String PhoneNumber;
-    private String CompHouseNumber;
-    private String CompStreet;
+    private String CompAddress;
     private String City;
     private String State;
-    private String CompCountry;
-    private String ZipCode;
-    private String isApproved;
 
 
     public BusinessEmp()
@@ -39,8 +35,8 @@ public class BusinessEmp
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
-        this.CompanyName = Company;
-        this.EmailAdd = Email;
+        this.Company = Company;
+        this.Email = Email;
         this.Password = Password;
     }
 
@@ -48,25 +44,21 @@ public class BusinessEmp
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
-        this.CompanyName = Company;
-        this.EmailAdd = Email;
+        this.Company = Company;
+        this.Email = Email;
     }
 
-    public BusinessEmp(String FirstName, String LastName, String Company, String Email, String Password, String PhoneNumber, String CompHouseNumber,String CompStreet, String City, String CompCountry, String State, String ZipCode)
+    public BusinessEmp(String FirstName, String LastName, String Company, String Email, String Password, String PhoneNumber, String CompAddress, String City, String State)
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
-        this.CompanyName = Company;
-        this.EmailAdd = Email;
+        this.Company = Company;
+        this.Email = Email;
         this.Password = Password;
         this.PhoneNumber = PhoneNumber;
-        this.CompHouseNumber = CompHouseNumber;
-        this.CompStreet = CompStreet;
+        this.CompAddress = CompAddress;
         this.City = City;
-        this.CompCountry = CompCountry;
         this.State = State;
-        this.ZipCode = ZipCode;
-        this.isApproved = "No";
     }
 
     //Getters and Setters
@@ -92,22 +84,22 @@ public class BusinessEmp
 
     public String getCompany()
     {
-        return this.CompanyName;
+        return this.Company;
     }
 
-    public void setCompany(String CompanyName)
+    public void setCompany(String Company)
     {
-        this.CompanyName = CompanyName;
+        this.Company = Company;
     }
 
     public String getEmail()
     {
-        return this.EmailAdd;
+        return this.Email;
     }
 
-    public void setEmail(String EmailAdd)
+    public void setEmail(String Email)
     {
-        this.EmailAdd = EmailAdd;
+        this.Email = Email;
     }
 
     //Probably won't need getters and setters for a Password
@@ -131,24 +123,14 @@ public class BusinessEmp
         this.PhoneNumber = PhoneNumber;
     }
 
-    public String getCompHouseNumber()
+    public String getCompAddress()
     {
-        return this.CompHouseNumber;
+        return this.CompAddress;
     }
 
-    public void setCompAddyNumber(String CompHouseNumber)
+    public void setCompAddress(String CompAddress)
     {
-        this.CompHouseNumber = CompHouseNumber;
-    }
-
-    public String getCompStreet()
-    {
-        return this.CompStreet;
-    }
-
-    public String setCompStreet(String CompStreet)
-    {
-        return this.CompStreet;
+        this.CompAddress = CompAddress;
     }
 
     public String getCity()
@@ -169,36 +151,6 @@ public class BusinessEmp
     public void setState(String State)
     {
         this.State = State;
-
     }
 
-    public String getCountry()
-    {
-        return this.CompCountry;
-    }
-
-    public void setCountry(String CompCountry)
-    {
-        this.CompCountry = CompCountry;
-    }
-
-    public String getZipCode()
-    {
-        return this.ZipCode;
-    }
-
-    public void setZip(String ZipCode)
-    {
-        this.ZipCode = ZipCode;
-    }
-
-    public String getApproval()
-    {
-        return this.isApproved;
-    }
-
-    public void setApproval(String approval)
-    {
-        this.isApproved = approval;
-    }
 }
