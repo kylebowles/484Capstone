@@ -37,7 +37,7 @@ public partial class LoginPage : System.Web.UI.Page
         try
         {
             System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
-            sc.ConnectionString = @"Server=LOCALHOST;Database=Sprint1;Trusted_Connection=Yes;";
+            sc.ConnectionString = @"Server=localhost;Initial Catalog=Sprint1;Trusted_Connection=Yes;";
             lblStatus.Text = "Database Connection Successful";
 
             sc.Open();
