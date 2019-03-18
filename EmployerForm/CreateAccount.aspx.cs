@@ -22,7 +22,7 @@ public partial class Employer : System.Web.UI.Page
     {
         try
         {
-            //Connect to Sprint1 DB
+            //Connect to Cued-In DB
             sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
             sql.Open();
 
@@ -72,8 +72,7 @@ public partial class Employer : System.Web.UI.Page
 
         if (checkEmail(bus) == false)
         {
-            //EmailTaken.Visible = true;
-            //TESTING OTHER ALERT
+            
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowAlert", "ShowDangerAlert();", true);
             return;
             
@@ -87,7 +86,7 @@ public partial class Employer : System.Web.UI.Page
 
         if (checkPassword(bus) == false)
         {
-            //PassDontMatch.Visible = true;
+            
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPassAlert", "ShowDangerPassAlert();", true);
             return;
         }
@@ -138,8 +137,8 @@ public partial class Employer : System.Web.UI.Page
             PersonID.ExecuteNonQuery();
             int holdPersonID = (Int32)PersonID.ExecuteScalar();
 
-            dbInsertEmployer.CommandText = "insert into [Employer](CompanyName,PersonID,isApproved) values(@CompanyName,@PersonID,@isApproved)";
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@CompanyName", bus.getCompany()));
+            dbInsertEmployer.CommandText = "insert into [Employer](EmployerName,PersonID,isApproved) values(@EmployerName,@PersonID,@isApproved)";
+            dbInsertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
             dbInsertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             dbInsertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
             
@@ -148,8 +147,8 @@ public partial class Employer : System.Web.UI.Page
 
             SqlCommand dbInsertAcct = new SqlCommand();
             dbInsertAcct.Connection = sql;
-            dbInsertAcct.CommandText = "insert into [Account](PersonID,Username,PasswordHash,PasswordSalt,ModifiedDate) values(@PersonID,@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
-            dbInsertAcct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+            dbInsertAcct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
+            //dbInsertAcct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             dbInsertAcct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
             dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordHash", bus.getPassword()));
             dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));

@@ -23,23 +23,23 @@
 					    <div class="collapse navbar-collapse" id="mainMenu">
 							<ul class="navbar-nav ml-auto text-uppercase f1">
 								<li>
-									<a href="#home" rel="m_PageScroll2id">home</a>
+									<a href="CUEDIN.aspx#home" rel="m_PageScroll2id">home</a>
 								</li>
 								<li>
-									<a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
+									<a href="CUEDIN.aspx#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
 								</li>
 								<li>
-									<a href="#service" rel="m_PageScroll2id">our community</a>
+									<a href="CUEDIN.aspx#service" rel="m_PageScroll2id">our community</a>
 								</li>
 				
 								<li>
-									<a href="#team" rel="m_PageScroll2id">contact</a>
+									<a href="CUEDIN.aspx#team" rel="m_PageScroll2id">contact</a>
 								</li>
 								<li>
-									<a href="#testimony" rel="m_PageScroll2id">testimonils</a>
+									<a href="CUEDIN.aspx#testimony" rel="m_PageScroll2id">testimonials</a>
 								</li>
 								<li>
-									<a href="#contact" rel="m_PageScroll2id">Login/Create Account</a>
+									<a href="CUEDIN.aspx#contact" rel="m_PageScroll2id">Login/Create Account</a>
 								</li>
 							</ul>
 					    </div>

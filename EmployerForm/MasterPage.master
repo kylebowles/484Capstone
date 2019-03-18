@@ -51,15 +51,6 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <nav class ="navbar bg-dark navbar-dark align-content-sm-center">
-                    <h2 class="navbar-brand">Employer View</h2>
-                    <div class ="container">
-                                <a class="nav-item nav-link active" href="EmployerInterface.aspx">Create Employer Account</a>
-                                <a class="nav-item nav-link active" href="TableauData.aspx">Tableau Visual</a>
-                                <a class="nav-item nav-link active" href="Login.aspx">Login</a>
-                        </div>
-                     
-                    </nav>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>

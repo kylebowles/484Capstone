@@ -1,24 +1,7 @@
-﻿<%--Skip to content
- 
-Search or jump to…
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CUEDIN.aspx.cs" Inherits="CUEDIN" %>
 
-Pull requests
-Issues
-Marketplace
-Explore
- @boehmajp Sign out
-1
-1 0 kylebowles/484Capstone
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-484Capstone/cuedin/index.html
-@cskirby cskirby Add files via upload
-b0d776e  17 hours ago
-610 lines (574 sloc)  29.8 KB--%>
-
-    
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template"/>
@@ -43,8 +26,9 @@ b0d776e  17 hours ago
         <!-- responsive.css -->
         <link href="css/responsive.css" rel="stylesheet">
   	</head>
-
-  	<body>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <body>
 		<!-- page-wrapper start -->
 		<div class="page-wrapper">
 			<!-- ----------------- -->
@@ -626,3 +610,6 @@ b0d776e  17 hours ago
     </body>
 
 </html>
+
+</asp:Content>
+
