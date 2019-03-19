@@ -12,8 +12,7 @@
 				<div class="container">
 					<nav class="navbar navbar-expand-lg main-nav px-0">
 					  	<a class="navbar-brand" href="#home" rel="m_PageScroll2id">
-					      <img src="img/logo.png" alt="Logo">
-					      <img src="img/logo-light.png" alt="LogoLight">
+					      <img src="img/tinylogo.png" alt="Logo" width="400" height="100">
 					    </a>
 					    <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
 					      <span class="hamburger-box">
@@ -34,9 +33,6 @@
 				
 								<li>
 									<a href="CUEDIN.aspx#team" rel="m_PageScroll2id">contact</a>
-								</li>
-								<li>
-									<a href="CUEDIN.aspx#testimony" rel="m_PageScroll2id">testimonials</a>
 								</li>
 								<li>
 									<a href="CUEDIN.aspx#contact" rel="m_PageScroll2id">Login/Create Account</a>
