@@ -609,22 +609,22 @@ nav {
 }
 
 .main-header .navbar-brand > img:last-of-type {
-  display: none;
+  display: inline-block;
 }
 
 .main-header.fixed-nav .navbar-brand > img:last-of-type {
-  display: block;
+  display: inline-block;
 }
 
 .main-header.fixed-nav .navbar-brand > img:first-of-type {
-  display: none;
+  display: inline-block;
 }
 /* main-header end */
 
 /* home start */
-[data-bg="1"] {background: url('img/bg/01.jpg') no-repeat center center;}
-[data-bg="2"] {background: url('img/bg/02.jpg') no-repeat center center;}
-[data-bg="3"] {background: url('img/bg/03.jpg') no-repeat center center;}
+[data-bg="1"] {background: url('img/tinylogo.jpeg') no-repeat center center;}
+[data-bg="2"] {background: url('img/tinylogo.jpeg') no-repeat center center;}
+[data-bg="3"] {background: url('img/tinylogo.jpeg') no-repeat center center;}
 
 #mainSlider .carousel-item {
     height: 960px;
