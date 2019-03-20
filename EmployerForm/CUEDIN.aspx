@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-    <meta charset="utf-8">
+    <%--<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template" />
-    <meta name="author" content="theme_xpress">
+    <meta name="Cued-In" content="CUED-IN Website" />
+    <meta name="author" content="Signature Systems">
     <title>CUED-IN</title>
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Futura:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
@@ -24,7 +24,7 @@
     <!-- main style -->
     <link href="style.css" rel="stylesheet">
     <!-- responsive.css -->
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -214,9 +214,10 @@
                             <p class="text-center text-sm-left">CUED-In Inc. was founded in 2015 by talking with counselors, parents, teachers, and students. We saw that there was no platform out there that connects the student to local opportunities (jobs, internships, shadowing). Also, other platforms point students to just college bound careers. We want to bring everything together because all careers are needed no matter if it takes you to college or a technical school. So CUED-In was formed and is an app and web-based platform that promotes a career focused, community connected future by showing students various pathways to a career. We bring all the key players—students, parents, counselors, career coaches, teachers, and businesses—onto one platform, enhancing communication and eliminating the need for multiple websites. Having everyone on the same page promotes seamless, informed, and financially savvy decisions while helping students keep an eye on the ultimate goal that a college or technical school degree provides—a career.</p>
 
                             <ul>
-                                <li>Founded in 2015</li>
+                                <li>Career Focused/li>
                                 <li>500+ Students connected</li>
                                 <li>Getting students ahead of the game early</li>
+                                <li>Community Connected</li>
                             </ul>
                         </article>
                     </div>
@@ -584,20 +585,23 @@
                                         <div class="card text-dark">
                                             <div class="card-body">
                                                 <h5 class="card-title">LOGIN</h5>
-                                                <p class="card-text">Welcome Back!</p>
-
+                                                <p id="PreLogin" class="card-text" runat="server" visible="true">Welcome Back!</p>
+                                                <p id="LoginSuccess" class="card-text" runat="server" visible="false">You Logged In</p>
+                                                <p id="LoginFail" class="card-text" runat="server" visible="false">Login Failure</p>
                                                 <!-- login credentials/inputs (email and password?) -->
                                                 <div class="form-group row">
-                                                    <label for="InputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                    <label for="InputEmail2">Email address</label>
+                                                    <input type="email" class="form-control" id="InputEmail2" runat="server" aria-describedby="emailHelp" placeholder="Enter email"/>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="InputPassword1">Password</label>
-                                                    <input type="password" class="form-control" id="InputPassword1" name="psw" required placeholder="Password">
+                                                    <input type="password" class="form-control" id="InputPassword1" runat="server" name="psw" required placeholder="Password"/>
                                                 </div>
                                                 <!-- put in correct #href when page is made -->
+                                                <a href="#" class="f2 text-uppercase" id="A1" runat="server" onclick="LoginButton"/>
                                                 <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
-                                                    <a href="TableauData.aspx" class="f2 text-uppercase">login</a>
+                                                    <asp:LinkButton ID="LoginClick" runat="server" PostBackUrl="~/CUEDIN.aspx#contact" onClick="LoginButton" class="thm-btn text-grey f2 fw-7 text-left" 
+                                                     data-animation="animated fadeInUp" rel="m_PageScroll2id">Login</asp:LinkButton>
                                                 </div>
                                             </div>
                                         </div>

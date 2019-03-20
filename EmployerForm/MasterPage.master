@@ -9,8 +9,7 @@
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link href="Content/bootstrap.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet"
+    <link href="style.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style type="text/css">
@@ -24,29 +23,30 @@
     }
 
 </style>
+    
     <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template"/>
-        <meta name="author" content="theme_xpress">
-        <title>CUED-IN</title>
-        <link rel="shortcut icon" href="img/favicon.ico">
-    	
-    	<!-- google fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
-		
-		<!-- css libraries -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/animate.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/icofont.min.css" rel="stylesheet">
-        <link href="css/owl.carousel.css" rel="stylesheet">
-        <link href="css/lightbox.css" rel="stylesheet">
-        <link href="css/hamburgers.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Cued-In" content="CUED-IN Website" />
+    <meta name="author" content="Signature Systems">
+    <title>CUED-IN</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
 
-        <!-- main style -->
-        <link href="style.css" rel="stylesheet">
-        <!-- responsive.css -->
-        <link href="css/responsive.css" rel="stylesheet">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Futura:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
+
+    <!-- css libraries -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/icofont.min.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/lightbox.css" rel="stylesheet">
+    <link href="css/hamburgers.min.css" rel="stylesheet">
+
+    <!-- main style -->
+    <link href="style.css" rel="stylesheet">
+    <!-- responsive.css -->
+    <link href="css/responsive.css" rel="stylesheet">
             
 
 </head>

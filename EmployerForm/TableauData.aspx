@@ -3,8 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         body{
-            background-color= gray;
+            background-color: gray;
         }
+       
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -12,7 +13,7 @@
     <div class="page-wrapper">
         <!-- ----------------- -->
         <!-- main-header start -->
-        <header class="main-header" style="background-color: lightslategray">
+        <header class="main-header">
             <div class="container">
                 <nav class="navbar navbar-expand-lg main-nav px-0">
                     <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
@@ -26,19 +27,16 @@
                     <div class="collapse navbar-collapse" id="mainMenu">
                         <ul class="navbar-nav ml-auto text-uppercase f1">
                             <li>
-                                <a href="CUEDIN.aspx#home" rel="m_PageScroll2id">Home</a>
+                                <a href="EmployerLanding.aspx" rel="m_PageScroll2id" style="color: black">Home</a>
                             </li>
                             <li>
-                                <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">Business Center</a>
+                                <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50" style="color: black">Business Center</a>
                             </li>
                             <li>
-                                <a href="#service" rel="m_PageScroll2id">The Community</a>
+                                <a href="#service" rel="m_PageScroll2id" style="color: black">The Community</a>
                             </li>
                             <li>
-                                <a href="#contact" rel="m_PageScroll2id">Account Settings</a>
-                            </li>
-                            <li>
-                                <a href="TableauData.aspx" rel="m_PageScroll2id">Community Insights</a>
+                                <a href="#contact" rel="m_PageScroll2id" style="color: black">Account Settings</a>
                             </li>
                         </ul>
                     </div>
@@ -79,8 +77,11 @@
     </div>
     </div>
     </div>
-        
-    <script type='text/javascript'>                    var divElement = document.getElementById('viz1552958666651'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '1000px'; vizElement.style.height = '827px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+         <div class="back2Top bg-dark wave">
+        <i class="fa fa-sort-asc text-white"></i>
+    </div>
+    <script type='text/javascript'>                   
+        var divElement = document.getElementById('viz1552958666651'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '1000px'; vizElement.style.height = '827px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
         <script src="js/jquery-1.12.4.min.js"></script>
         <script src="js/queryloader2.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>

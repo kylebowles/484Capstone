@@ -150,7 +150,7 @@ public partial class Employer : System.Web.UI.Page
             dbInsertAcct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
             //dbInsertAcct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             dbInsertAcct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordHash", bus.getPassword()));
+            dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
             dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
             dbInsertAcct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
             dbInsertAcct.ExecuteNonQuery();

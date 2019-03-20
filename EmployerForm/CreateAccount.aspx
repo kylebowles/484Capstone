@@ -225,7 +225,7 @@
                                            <%-- <asp:Button ID="Submit" runat="server" Text="Submit" onClick="insert_Click" class="thm-btn text-white f2 fw-7 text-left"
                                                 data-animation="animated fadeInUp" rel="m_PageScroll2id"/>--%>
                                        
-                                        <asp:LinkButton ID="SubmitClick" runat="server" onClick="insert_Click" class="thm-btn text-white f2 fw-7 text-left" 
+                                        <asp:LinkButton ID="SubmitClick" runat="server"  onClick="insert_Click" class="thm-btn text-white f2 fw-7 text-left" 
                                             data-animation="animated fadeInUp" rel="m_PageScroll2id">Submit</asp:LinkButton>
                                           </div>
                                         </center> 
