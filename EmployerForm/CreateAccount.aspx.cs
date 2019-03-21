@@ -35,7 +35,7 @@ public partial class Employer : System.Web.UI.Page
     }
 
     //Clear contents button
-    protected void clear_Click(object sender, EventArgs e)
+    protected void Clear_Click(object sender, EventArgs e)
     {
         FirstName.Value = String.Empty;
         LastName.Value = String.Empty;
@@ -50,6 +50,23 @@ public partial class Employer : System.Web.UI.Page
         State.Value = String.Empty;
         CompCountry.Value = String.Empty;
         CompZip.Value = String.Empty;
+    }
+
+    protected void Populate_Click(object sender, EventArgs e)
+    {
+        FirstName.Value = "James";
+        LastName.Value = "Madison";
+        CompanyName.Value = "JMU";
+        EmailAdd.Value = "James@Madison.edu";
+        Password1.Value = "Madison";
+        Password2.Value = "Madison";
+        PhoneNumber.Value = "123-456-7890";
+        CompHouseNumber.Value = "8715";
+        CompStreet.Value = "Constitution Hwy";
+        City.Value = "Montpelier";
+        State.Value = "VA";
+        CompCountry.Value = "United States";
+        CompZip.Value = "22801";
     }
 
     //Exit Button
@@ -154,6 +171,8 @@ public partial class Employer : System.Web.UI.Page
         dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
         dbInsertAcct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
         dbInsertAcct.ExecuteNonQuery();
+            SqlCommand dbInsertAcct = new SqlCommand();
+            dbInsertAcct.ExecuteNonQuery();
 
 
 
