@@ -12,16 +12,15 @@ using System.Data;
 using System.ServiceModel.Channels;
 public partial class EmployerLanding : System.Web.UI.Page
 {
-    //Create SQL connection
-    System.Data.SqlClient.SqlConnection sql = new System.Data.SqlClient.SqlConnection();
+
+    //SQL Connection
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
         try
         {
-            //Connect to Cued-In DB
-            sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-            sql.Open();
+
 
         }
 
@@ -36,42 +35,47 @@ public partial class EmployerLanding : System.Web.UI.Page
 
     protected void ShowPopup(object sender, EventArgs e)
     {
-        
+
         ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup();", true);
     }
 
     protected void SubmitPost(object sender, EventArgs e)
     {
+
         //Insert into Opportunity table
         Opportunity opp = new Opportunity(JobNameText.Value.ToString(), JobTypeText.Value.ToString(), ApprenText.Value.ToString());
+        sc.Open();
+        System.Data.SqlClient.SqlCommand insertOpp = new System.Data.SqlClient.SqlCommand();
+        insertOpp.Connection = sc;
+        insertOpp.CommandText = "insert into Opportunity(OpportunityName, OpportunityType, isApprenticeship) values(@OpportunityName,@OpportunityType,@isApprenticeship)";
+        insertOpp.Parameters.Add(new SqlParameter("@OpportunityName", opp.getOpportunityName()));
+        insertOpp.Parameters.Add(new SqlParameter("@OpportunityType", opp.getOpportunityType()));
+        insertOpp.Parameters.Add(new SqlParameter("@isApprenticeship", opp.getApprenticeship()));
 
-        SqlCommand insertOpportunity = new SqlCommand();
-        insertOpportunity.Connection = sql;
-        insertOpportunity.CommandText = "insert into Opportunity(OpportunityName,OpportunityType,isApprenticeship) values(@OpportunityName,@OpportunityType,@isApprenticeship)";
-        insertOpportunity.Parameters.Add(new SqlParameter("@OpportunityName", opp.getOpportunityName()));
-        insertOpportunity.Parameters.Add(new SqlParameter("@OpportunityType", opp.getOpportunityType()));
-        insertOpportunity.Parameters.Add(new SqlParameter("@isApprenticeship", opp.getApprenticeship()));
-
-        insertOpportunity.ExecuteNonQuery();
+        insertOpp.ExecuteNonQuery();
+        sc.Close();
 
         //Insert into Post table
         Post post = new Post(JobTypeText.Value.ToString() + " Post", DateTime.Now, DateTime.Parse(DeadlineText.Value), DateTime.Now);
 
-        //Selecting a PersonID to insert with a Posting --> CHECK THIS
-        SqlCommand matchPersonID = new SqlCommand();
-        matchPersonID.Connection = sql;
+        sc.Open();
+        System.Data.SqlClient.SqlCommand matchPersonID = new System.Data.SqlClient.SqlCommand();
+        matchPersonID.Connection = sc;
         matchPersonID.CommandText = "SELECT MAX(PersonID) FROM PERSON";
         matchPersonID.ExecuteNonQuery();
         int holdPostPersonID = (Int32)matchPersonID.ExecuteScalar();
 
+        matchPersonID.ExecuteNonQuery();
+        sc.Close();
 
+        sc.Open();
         SqlCommand matchOppID = new SqlCommand();
-        matchOppID.Connection = sql;
+        matchOppID.Connection = sc;
         matchOppID.CommandText = "SELECT MAX(OpportunityID) from OPPORTUNITY";
         int holdPostOppID = (Int32)matchOppID.ExecuteScalar();
 
         SqlCommand insertPost = new SqlCommand();
-        insertPost.Connection = sql;
+        insertPost.Connection = sc;
         insertPost.CommandText = "insert into Post(PostDescription,DateCreated,Deadline,ModifiedDate,PersonID,OpportunityID) " +
             "values(@PostDescription,@DateCreated,@Deadline,@ModifiedDate,@PersonID,@OpportunityID)";
         insertPost.Parameters.Add(new SqlParameter("@PostDescription", post.getPostDesc()));
@@ -85,6 +89,10 @@ public partial class EmployerLanding : System.Web.UI.Page
 
         ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPost", "ShowPostAlert();", true);
 
+
+
+
+        sc.Close();
 
 
     }
