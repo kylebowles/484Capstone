@@ -596,7 +596,11 @@
                                                     <input type="password" class="form-control" id="InputPassword1" runat="server" name="psw" required placeholder="Password"/>
                                                 </div>
                                                 <!-- put in correct #href when page is made -->
-                                                <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
+                                                
+                                                    <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
+                                                    <asp:LinkButton ID="LoginClick" runat="server" PostBackUrl="~/CUEDIN.aspx#contact" onClick="LoginButton" class="thm-btn text-grey f2 fw-7 text-left" 
+                                                     data-animation="animated fadeInUp" rel="m_PageScroll2id">Login</asp:LinkButton>
+                                                
                                                 </div>
                                             </div>
                                         </div>

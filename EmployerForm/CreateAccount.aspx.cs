@@ -171,8 +171,7 @@ public partial class Employer : System.Web.UI.Page
         dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
         dbInsertAcct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
         dbInsertAcct.ExecuteNonQuery();
-            SqlCommand dbInsertAcct = new SqlCommand();
-            dbInsertAcct.ExecuteNonQuery();
+         
 
 
 
