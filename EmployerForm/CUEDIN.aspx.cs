@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class CUEDIN : System.Web.UI.Page
 {
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -55,13 +57,14 @@ public partial class CUEDIN : System.Web.UI.Page
                     LoginFail.Visible = true;
                     PreLogin.Visible = false;
                     Response.Redirect("EmployerLanding.aspx");
+                    
                 }
                 else
                 {
                     Session["loggedIn"] = "false";
                     LoginSuccess.Visible = false;
                     LoginFail.Visible = true;
-                    PreLogin.Visible = false;
+                        PreLogin.Visible = false;
                 }
 
             }
@@ -73,6 +76,7 @@ public partial class CUEDIN : System.Web.UI.Page
             PreLogin.Visible = false;
             Session["loggedIn"] = "false";
         }
+        
         sc.Close();
         }
         catch
