@@ -131,29 +131,29 @@ public partial class Employer : System.Web.UI.Page
         dbPersonInsert.ExecuteNonQuery();
 
       
-            SqlCommand dbInsertEmployer = new SqlCommand();
-            dbInsertEmployer.Connection = sql;
-            SqlCommand PersonID = new SqlCommand("SELECT MAX(PERSONID) from PERSON", sql);
-            PersonID.ExecuteNonQuery();
-            int holdPersonID = (Int32)PersonID.ExecuteScalar();
+        SqlCommand dbInsertEmployer = new SqlCommand();
+        dbInsertEmployer.Connection = sql;
+        SqlCommand PersonID = new SqlCommand("SELECT MAX(PERSONID) from PERSON", sql);
+        PersonID.ExecuteNonQuery();
+        int holdPersonID = (Int32)PersonID.ExecuteScalar();
 
-            dbInsertEmployer.CommandText = "insert into [Employer](EmployerName,PersonID,isApproved) values(@EmployerName,@PersonID,@isApproved)";
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
+        dbInsertEmployer.CommandText = "insert into [Employer](EmployerName,PersonID,isApproved) values(@EmployerName,@PersonID,@isApproved)";
+        dbInsertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
+        dbInsertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+        dbInsertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
             
 
-            dbInsertEmployer.ExecuteNonQuery();
+        dbInsertEmployer.ExecuteNonQuery();
 
-            SqlCommand dbInsertAcct = new SqlCommand();
-            dbInsertAcct.Connection = sql;
-            dbInsertAcct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
-            //dbInsertAcct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
-            dbInsertAcct.ExecuteNonQuery();
+        SqlCommand dbInsertAcct = new SqlCommand();
+        dbInsertAcct.Connection = sql;
+        dbInsertAcct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
+        //dbInsertAcct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+        dbInsertAcct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
+        dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
+        dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
+        dbInsertAcct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
+        dbInsertAcct.ExecuteNonQuery();
 
 
 
