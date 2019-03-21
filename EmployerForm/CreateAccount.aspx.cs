@@ -17,7 +17,7 @@ public partial class Employer : System.Web.UI.Page
 
 
     //SQL Connection
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -185,7 +185,7 @@ public partial class Employer : System.Web.UI.Page
             insertAct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
             insertAct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             insertAct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
-            insertAct.Parameters.Add(new SqlParameter("@PasswordHash", bus.getPassword()));
+            insertAct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
             insertAct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
             insertAct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
             insertAct.ExecuteNonQuery();
