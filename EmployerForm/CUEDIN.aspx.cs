@@ -30,7 +30,7 @@ public partial class CUEDIN : System.Web.UI.Page
         // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
         findPass.CommandText = "select PasswordHash from Account where Username = @Username";
         findPass.Parameters.Add(new SqlParameter("@Username", InputEmail2.Value));
-        
+
         SqlDataReader reader = findPass.ExecuteReader(); // create a reader
 
         if (reader.HasRows) // if the username exists, it will continue
@@ -48,18 +48,27 @@ public partial class CUEDIN : System.Web.UI.Page
                     scloop.Open();
                     // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
                     getUserID.CommandText = "select PersonID from Account where Username = @Username";
+                    
                     getUserID.Parameters.Add(new SqlParameter("@Username", InputEmail2.Value));
-                    Session["loginID"] = getUserID.ExecuteScalar();
+                    Session["loginID"] = getUserID.ExecuteScalar(); //gets personid from account
+                    Session["loginUser"] = InputEmail2.Value; //gets username
                     scloop.Close();
+
+                    //scloop.Open();                  
+                    //getUserID.CommandText = "select FirstName, LastName from Account where Username = @Username";
+                    //Session["LoginName"] = getUserID.ExecuteScalar(); //gets person name from account
+                    //scloop.Close();
                     
                     Session["loggedIn"] = "true";
                     LoginSuccess.Visible = false;
                     LoginFail.Visible = true;
                     PreLogin.Visible = false;
                     Response.Redirect("EmployerLanding.aspx");
-                    
+
+
+
                 }
-                else
+                    else
                 {
                     Session["loggedIn"] = "false";
                     LoginSuccess.Visible = false;
@@ -69,6 +78,8 @@ public partial class CUEDIN : System.Web.UI.Page
 
             }
         }
+
+
         else
         { // if the username doesn't exist, it will show failure
             LoginSuccess.Visible = false;

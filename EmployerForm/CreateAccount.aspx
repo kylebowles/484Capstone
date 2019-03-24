@@ -218,11 +218,12 @@
                                      </form>
                                 <br />
                                 <br />
-                                
+                                <center>
                                 <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
                                      <asp:LinkButton ID="PopulateButton" runat="server" class="thm-btn text-white f2 fw-7 text-left"
                                           data-animation="animated fadeInUp" rel="m_PageScroll2id" OnClick="Populate_Click">Populate</asp:LinkButton>
                                     </div>
+                                    </center>
                                         
                                     <!-- CREATE ACCOUNT/SUBMIT ... not sure where to link this --> 
                                     <center>   
