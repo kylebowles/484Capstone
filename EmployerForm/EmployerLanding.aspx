@@ -57,7 +57,7 @@
                         <div class="collapse navbar-collapse" id="mainMenu">
                             <ul class="navbar-nav ml-auto text-uppercase f1">
                                 <li>
-                                    <a href="CUEDIN.aspx#home" rel="m_PageScroll2id">home</a>
+                                    <a href="#home" rel="m_PageScroll2id">home</a>
                                 </li>
                                 <li>
                                     <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
@@ -72,6 +72,10 @@
 
                                 <li>
                                     <a href="The Community.aspx" rel="m_PageScroll2id">Community Insights</a>
+                                </li>
+
+                                <li>
+                                    <asp:linkbutton runat="server"  OnClick="LogOutUser"  rel="m_PageScroll2id">Logout</asp:linkbutton>
                                 </li>
                             </ul>
                         </div>
