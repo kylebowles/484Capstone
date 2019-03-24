@@ -14,22 +14,51 @@ public partial class EmployerLanding : System.Web.UI.Page
 {
 
     //SQL Connection
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
 
 
-        }
+        //}
 
-        catch
-        {
-            //ErrorDB.Text = "Error connecting to database.";
-        }
+        //catch
+        //{
+        //    //ErrorDB.Text = "Error connecting to database.";
+        //}
 
+        //Display current employer name from database
+        //lblDisplayName.Text = "Test";
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+        getdbPersonID.Connection = sc;
+        //Gets the personid for the username
+        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] +"'";
+        int accountID = (int)getdbPersonID.ExecuteScalar();
+        sc.Close();
+        //lblDisplayName.Text = accountID.ToString();
 
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getFName = new System.Data.SqlClient.SqlCommand();
+        getFName.Connection = sc;
+        //gets the firstname for the user
+        getFName.CommandText = "select Person.FirstName  FROM Account INNER JOIN Person ON Account.PersonID = Person.PersonID where Account.PersonID = " + accountID;
+       // getdbPersonID.ExecuteNonQuery();
+        string accountFName = (string)getFName.ExecuteScalar();
+        sc.Close();
+
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getLName = new System.Data.SqlClient.SqlCommand();
+        getLName.Connection = sc;
+        //gets the lastname for the user
+        getLName.CommandText = "Select Person.LastName FROM Person where PersonID = " + accountID;
+        string accountLName = (string)getLName.ExecuteScalar();
+        sc.Close();
+
+        //Displays the use'rs name
+        lblDisplayName.Text = accountFName + " " + accountLName;
 
     }
 
@@ -56,7 +85,7 @@ public partial class EmployerLanding : System.Web.UI.Page
         sc.Close();
 
         //Insert into Post table
-        Post post = new Post(JobTypeText.Value.ToString() + " Post", DateTime.Now, DateTime.Parse(DeadlineText.Value), DateTime.Now);
+        Post post = new Post(JobTypeText.Value.ToString() + " Post", DateTime.Now.ToString(), DateTime.Parse(DeadlineText.Value), DateTime.Now);
 
         sc.Open();
         System.Data.SqlClient.SqlCommand matchPersonID = new System.Data.SqlClient.SqlCommand();
@@ -88,8 +117,6 @@ public partial class EmployerLanding : System.Web.UI.Page
         insertPost.ExecuteNonQuery();
 
         ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPost", "ShowPostAlert();", true);
-
-
 
 
         sc.Close();

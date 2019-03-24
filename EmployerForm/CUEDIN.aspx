@@ -27,7 +27,7 @@
     <link href="css/responsive.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+    <body style="background-color:#FFF;">
     <!-- page-wrapper start -->
     <div class="page-wrapper">
         <!-- ----------------- -->
@@ -709,6 +709,6 @@
     <script src="js/SmoothScroll.js"></script>
     <script src="js/main.js"></script>
 
-
+    </body>
 </asp:Content>
 

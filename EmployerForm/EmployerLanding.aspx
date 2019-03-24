@@ -27,9 +27,12 @@
     <link href="style.css" rel="stylesheet" />
     <!-- responsive.css -->
     <link href="css/responsive.css" rel="stylesheet" />
-
-    
-
+    <style>
+        body 
+        {
+        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+    </style>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -37,7 +40,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 </head>
-<body style="background-color:#FF0000;">
+<body style="background-color:#FFF;">
     <form id="form1" runat="server">
         <div>
             <header class="main-header">
@@ -64,11 +67,11 @@
                                 </li>
 
                                 <li>
-                                    <a href="#team" rel="m_PageScroll2id">Create Post</a>
+                                    <a href="CreatePost.aspx" rel="m_PageScroll2id">Create Post</a>
                                 </li>
 
                                 <li>
-                                    <a href="TableauData.aspx" rel="m_PageScroll2id">Community Insights</a>
+                                    <a href="The Community.aspx" rel="m_PageScroll2id">Community Insights</a>
                                 </li>
                             </ul>
                         </div>
@@ -189,7 +192,7 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        Kshiti Ghelani
+                                        <asp:Label ID="lblDisplayName" runat="server"></asp:Label>
                                     </h5>
                                     <h6>
                                         Web Developer and Designer
