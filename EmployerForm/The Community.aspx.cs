@@ -42,7 +42,7 @@ public partial class The_Community : System.Web.UI.Page
         cmd.Parameters.Add(new SqlParameter("@Description", newPost.getPostDesc() ));
         cmd.Parameters.Add(new SqlParameter("@DateCreated", DateTime.Now));
         cmd.Parameters.Add(new SqlParameter("@Deadline", DateTime.Now));
-        cmd.Parameters.Add(new SqlParameter("@PersonID", 14));
+        cmd.Parameters.Add(new SqlParameter("@PersonID", Session["loginID"]));
         cmd.Parameters.Add(new SqlParameter("@OpportunityID", 1));
         cmd.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
         sc.Open();

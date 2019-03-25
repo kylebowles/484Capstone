@@ -1281,6 +1281,15 @@ nav {
   position: relative;
   z-index: 1;
 }
+.contact1 {
+    padding: 100px 0;
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+   
+    -webkit-background-size: cover;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
 
 .contact::before {
   position: absolute;
