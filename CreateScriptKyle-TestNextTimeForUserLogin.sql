@@ -214,6 +214,7 @@ CREATE TABLE [dbo].[Employer](
 	[PersonID] [int] NOT NULL,
 	[isApproved] [nvarchar](5) NOT NULL,
 	[EmployerName] [nvarchar](100) NOT NULL,
+ 	[EmployerSummary] [nvarchar](1000),
  CONSTRAINT [PK_Employer] PRIMARY KEY CLUSTERED 
 (
 	[EmployerID] ASC
