@@ -98,7 +98,8 @@
                                                 <div class="form-group">
                                                     <asp:label for="FirstName" runat="server">First Name</asp:label>
                                                     <input type="text" class="form-control" id="FirstName" name="firstname" placeholder="Your name.." runat="server" />
-                                                    
+                                                    <%--<asp:Label ID="FirstName" runat="server" Text="" CssClass="form-control"></asp:Label>
+                                                    <asp:TextBox type="text" ID="FirstNameText" runat="server" placeholder="Your first name"></asp:TextBox>--%>
                                                 </div>
                                              </div>
                                           <div class="col-sm-6 float-right">   
@@ -216,29 +217,16 @@
                                             </div>
                                         </div>
                                      </form>
-                                <br />
-                                <br />
-                                <center>
-                                <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
-                                     <asp:LinkButton ID="PopulateButton" runat="server" class="thm-btn text-white f2 fw-7 text-left"
-                                          data-animation="animated fadeInUp" rel="m_PageScroll2id" OnClick="Populate_Click">Populate</asp:LinkButton>
-                                    </div>
-                                    </center>
                                         
                                     <!-- CREATE ACCOUNT/SUBMIT ... not sure where to link this --> 
                                     <center>   
                                     <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
+                                           
+                                       
                                         <asp:LinkButton ID="SubmitClick" runat="server" onClick="insert_Click" class="thm-btn text-white f2 fw-7 text-left" 
                                             data-animation="animated fadeInUp" rel="m_PageScroll2id">Submit</asp:LinkButton>
                                           </div>
-                                     </center>
-
-                                <%--<div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
-                                     <asp:LinkButton ID="ClearButton" runat="server" class="thm-btn text-white f2 fw-7 text-left"
-                                          data-animation="animated fadeInUp" rel="m_PageScroll2id" OnClick="Clear_Click"</asp:LinkButton>
-                                    </div>--%>
-
-                                     
+                                        </center> 
 
                         <asp:Label ID="EmailTaken" runat="server" Text=""></asp:Label>
                         <asp:Label ID="PassDontMatch" runat="server" Text=""></asp:Label>

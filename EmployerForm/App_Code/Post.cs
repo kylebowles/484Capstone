@@ -20,6 +20,15 @@ public class Post
     public int PersonID { get; set; }
     public string EmployerName { get; set; }
     public string PersonName { get; set; }
+
+    public List<Like> LikeList
+    {
+        get
+        {
+            return Like.GetLikes(this.PostID);
+        }
+    }
+
     public List<Comment> CommentList
     {
         get

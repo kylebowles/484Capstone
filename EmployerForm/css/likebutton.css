@@ -1,0 +1,27 @@
+﻿body {
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    font-size: 4em;
+    height: 100vh;
+}
+
+    body .content {
+        margin: 30% auto;
+        text-align: center;
+    }
+
+        body .content a {
+            color: gray;
+            text-decoration: none !important;
+        }
+
+            body .content a .glyphicon {
+                transition: all 0.5s;
+            }
+
+                body .content a .glyphicon.glyphicon-heart {
+                    color: #e74c3c;
+                }
+
+                body .content a .glyphicon.glyphicon-heart-empty:hover {
+                    transform: scale(1.1);
+                }
