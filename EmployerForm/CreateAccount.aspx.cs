@@ -15,22 +15,21 @@ using System.ServiceModel.Channels;
 public partial class Employer : System.Web.UI.Page
 {
 
-    //Create SQL connection
-    System.Data.SqlClient.SqlConnection sql = new System.Data.SqlClient.SqlConnection();
+
+    //SQL Connection
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
         try
         {
-            //Connect to Cued-In DB
-            sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-            sql.Open();
+
 
         }
 
         catch
         {
-            //ErrorDB.Text = "Error connecting to database.";
+
         }
     }
 
@@ -50,6 +49,24 @@ public partial class Employer : System.Web.UI.Page
         State.Value = String.Empty;
         CompCountry.Value = String.Empty;
         CompZip.Value = String.Empty;
+    }
+
+    //Populate button
+    protected void Populate_Click(object sender, EventArgs e)
+    {
+        FirstName.Value = "James";
+        LastName.Value = "Madison";
+        CompanyName.Value = "JMU";
+        EmailAdd.Value = "James@Madison.edu";
+        Password1.Value = "Madison";
+        Password2.Value = "Madison";
+        PhoneNumber.Value = "123-456-7890";
+        CompHouseNumber.Value = "8715";
+        CompStreet.Value = "Constitution Hwy";
+        City.Value = "Montpelier";
+        State.Value = "VA";
+        CompCountry.Value = "United States";
+        CompZip.Value = "22801";
     }
 
     //Exit Button
@@ -98,70 +115,88 @@ public partial class Employer : System.Web.UI.Page
         if (EmailTaken.Visible == false || PassDontMatch.Visible == false)
         {
 
-            //Insert values into database when user clicks "Insert"
-            SqlCommand dbInsertAddress = new SqlCommand();
-            dbInsertAddress.Connection = sql;
+         //Insert values into database when user clicks "Insert"
 
-        dbInsertAddress.CommandText = "insert into [Address](HouseNumber,Street,City,State,Country,ZipCode) " +
+            //Insert into address table
+            sc.Open();
+            System.Data.SqlClient.SqlCommand insertAddress = new System.Data.SqlClient.SqlCommand();
+            insertAddress.Connection = sc;
+            insertAddress.CommandText = "insert into[Address](HouseNumber, Street, City, State, Country, ZipCode) " + 
                 "values(@HouseNumber,@CompStreet,@City,@CompState,@Country,@ZipCode)";
-        dbInsertAddress.Parameters.Add(new SqlParameter("@HouseNumber", bus.getCompHouseNumber()));
-        dbInsertAddress.Parameters.Add(new SqlParameter("@CompStreet", bus.getCompStreet()));
-        dbInsertAddress.Parameters.Add(new SqlParameter("@City", bus.getCity()));
-        dbInsertAddress.Parameters.Add(new SqlParameter("@CompState", bus.getState()));
-        dbInsertAddress.Parameters.Add(new SqlParameter("@Country", bus.getCountry()));
-        dbInsertAddress.Parameters.Add(new SqlParameter("@ZipCode", bus.getZipCode()));
+            insertAddress.Parameters.Add(new SqlParameter("@HouseNumber", bus.getCompHouseNumber()));
+            insertAddress.Parameters.Add(new SqlParameter("@CompStreet", bus.getCompStreet()));
+            insertAddress.Parameters.Add(new SqlParameter("@City", bus.getCity()));
+            insertAddress.Parameters.Add(new SqlParameter("@CompState", bus.getState()));
+            insertAddress.Parameters.Add(new SqlParameter("@Country", bus.getCountry()));
+            insertAddress.Parameters.Add(new SqlParameter("@ZipCode", bus.getZipCode()));
 
-        dbInsertAddress.ExecuteNonQuery();
+            insertAddress.ExecuteNonQuery();
+            sc.Close();
 
-        SqlCommand dbPersonInsert = new SqlCommand();
-        dbPersonInsert.Connection = sql;
-        SqlCommand addressID = new SqlCommand("SELECT Max(AddressID) from ADDRESS", sql);
-        addressID.ExecuteNonQuery();
-        int holdAddId = (Int32)addressID.ExecuteScalar();
+            //Insert into person table
+            sc.Open();
+            System.Data.SqlClient.SqlCommand insertPerson = new System.Data.SqlClient.SqlCommand();
+            insertPerson.Connection = sc;
 
+            System.Data.SqlClient.SqlCommand getdbAddressID = new System.Data.SqlClient.SqlCommand();
+            getdbAddressID.Connection = sc;
         
-        dbPersonInsert.CommandText = "insert into [Person](FirstName,LastName,Email,personType, AddressID) values(@FirstName,@LastName,@Email,@PersonType, @AddressID)";
-        dbPersonInsert.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
-        dbPersonInsert.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
-        dbPersonInsert.Parameters.Add(new SqlParameter("@Email", bus.getEmail()));
-        dbPersonInsert.Parameters.Add(new SqlParameter("@PersonType", "Employer"));
-        dbPersonInsert.Parameters.Add(new SqlParameter("@AddressID", holdAddId));
+            getdbAddressID.CommandText = "SELECT Max(AddressID) from ADDRESS";
+            getdbAddressID.ExecuteNonQuery();
+            int holdAddID = (Int32)getdbAddressID.ExecuteScalar();
+
+            insertPerson.CommandText = "insert into [Person](FirstName,LastName,Email,personType, AddressID) values(@FirstName,@LastName,@Email,@PersonType, @AddressID)";
+            insertPerson.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
+            insertPerson.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
+            insertPerson.Parameters.Add(new SqlParameter("@Email", bus.getEmail()));
+            insertPerson.Parameters.Add(new SqlParameter("@PersonType", "Employer"));
+            insertPerson.Parameters.Add(new SqlParameter("@AddressID", holdAddID));
+
+            insertPerson.ExecuteNonQuery();
+
+            sc.Close();
 
 
-        dbPersonInsert.ExecuteNonQuery();
+            //Insert into employer table
+            sc.Open();
+            System.Data.SqlClient.SqlCommand insertEmployer = new System.Data.SqlClient.SqlCommand();
+            insertEmployer.Connection = sc;
 
-      
-            SqlCommand dbInsertEmployer = new SqlCommand();
-            dbInsertEmployer.Connection = sql;
-            SqlCommand PersonID = new SqlCommand("SELECT MAX(PERSONID) from PERSON", sql);
-            PersonID.ExecuteNonQuery();
-            int holdPersonID = (Int32)PersonID.ExecuteScalar();
+            System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+            getdbPersonID.Connection = sc;
+            getdbPersonID.CommandText = "SELECT MAX(PERSONID) from PERSON";
+            getdbPersonID.ExecuteNonQuery();
+            int holdPersonID = (Int32)getdbPersonID.ExecuteScalar();
 
-            dbInsertEmployer.CommandText = "insert into [Employer](EmployerName,PersonID,isApproved) values(@EmployerName,@PersonID,@isApproved)";
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
-            dbInsertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
-            
+            insertEmployer.CommandText = "insert into [Employer](EmployerName,PersonID,isApproved) values(@EmployerName,@PersonID,@isApproved)";
+            insertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
+            insertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+            insertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
 
-            dbInsertEmployer.ExecuteNonQuery();
+            insertEmployer.ExecuteNonQuery();
 
-            SqlCommand dbInsertAcct = new SqlCommand();
-            dbInsertAcct.Connection = sql;
-            dbInsertAcct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
-            //dbInsertAcct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordHash", bus.getPassword()));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
-            dbInsertAcct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
-            dbInsertAcct.ExecuteNonQuery();
+            sc.Close();
+
+            //Insert into activity table
+            sc.Open();
+            System.Data.SqlClient.SqlCommand insertAct = new System.Data.SqlClient.SqlCommand();
+            insertAct.Connection = sc;
+
+            insertAct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
+            insertAct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+            insertAct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
+            insertAct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
+            insertAct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
+            insertAct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
+            insertAct.ExecuteNonQuery();
 
 
+            //Make a success alert appear when the account is created successfully
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowAlert", "ShowSuccessAlert();", true);
 
+            //sql.Close();
+            sc.Close();
 
-        //Make a success alert appear when the account is created successfully
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowAlert", "ShowSuccessAlert();", true);
-
-            sql.Close();
 
         }
 
@@ -174,17 +209,25 @@ public partial class Employer : System.Web.UI.Page
         //Checking to see if email in created object is equivalent to an email already in the DB
         //If so, don't add object to DB, and make message pop-up saying that specific email is already taken
 
-        //Create SQL Command selecting all emails from DB
-        SqlCommand countCommand = new SqlCommand("SELECT COUNT(Email) from PERSON", sql);
+        sc.Open();
+        System.Data.SqlClient.SqlCommand countCommand = new System.Data.SqlClient.SqlCommand();
+        countCommand.Connection = sc;
+        countCommand.CommandText = "SELECT COUNT(Email) from PERSON";
         countCommand.ExecuteNonQuery();
-        //Make a variable that is the amount of rows inserted into the email column
+
+        //Variable that is the amount of rows inserted in the email column
         int countEmails = (Int32)countCommand.ExecuteScalar();
 
-        SqlCommand selectEmails = new SqlCommand("SELECT Email from PERSON", sql);
+        System.Data.SqlClient.SqlCommand selectEmails = new System.Data.SqlClient.SqlCommand();
+        selectEmails.Connection = sc;
+        selectEmails.CommandText = "SELECT Email from PERSON";
         selectEmails.ExecuteNonQuery();
         SqlDataReader reader = selectEmails.ExecuteReader();
 
+
+
         String[] emailAddresses = new String[countEmails];
+
         //Populate String array with emailAddresses
         for (int i = 0; i < emailAddresses.Length; i++)
         {
@@ -194,10 +237,11 @@ public partial class Employer : System.Web.UI.Page
 
         reader.Close();
 
+        sc.Close();
 
         int counter;
         counter = 0;
-        //Loop thorugh all email addresses and check if they're equal to one another
+        //Loop through all email addresses and check if they're equal to one another
         for (int i = 0; i < countEmails; i++)
         {
 
@@ -226,7 +270,7 @@ public partial class Employer : System.Web.UI.Page
             return true;
         }
 
-
+        
     }
 
     //Make a method to ensure password1 and password2 are equivalent
