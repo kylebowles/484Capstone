@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Services;
 
 public partial class The_Community : System.Web.UI.Page
 {
@@ -22,17 +23,17 @@ public partial class The_Community : System.Web.UI.Page
     }
 
     // Binds current comments from the database to the page
-    public void bindComments()
-    {
-        String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-        SqlConnection sc = new SqlConnection(connection);
-        SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Comment", sc);
-        DataSet commentSet = new DataSet();
-        sqlDA.Fill(commentSet);
-        GridViewPosts.DataSource = commentSet;
-        GridViewPosts.DataBind();
+    //public void bindComments()
+    //{
+    //    String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+    //    SqlConnection sc = new SqlConnection(connection);
+    //    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Comment", sc);
+    //    DataSet commentSet = new DataSet();
+    //    sqlDA.Fill(commentSet);
+    //    GridViewPosts.DataSource = commentSet;
+    //    GridViewPosts.DataBind();
 
-    }
+    //}
 
     // Allows user to publish posts and have them added to the timeline
     protected void btnPublishPost_Click(object sender, EventArgs e)
@@ -42,7 +43,7 @@ public partial class The_Community : System.Web.UI.Page
         cmd.Parameters.Add(new SqlParameter("@Description", newPost.getPostDesc() ));
         cmd.Parameters.Add(new SqlParameter("@DateCreated", DateTime.Now));
         cmd.Parameters.Add(new SqlParameter("@Deadline", DateTime.Now));
-        cmd.Parameters.Add(new SqlParameter("@PersonID", Session["loginID"]));
+        cmd.Parameters.Add(new SqlParameter("@PersonID", 14));
         cmd.Parameters.Add(new SqlParameter("@OpportunityID", 1));
         cmd.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
         sc.Open();
@@ -75,6 +76,17 @@ public partial class The_Community : System.Web.UI.Page
 
         
 
+    }
+
+    [WebMethod]
+    [System.Web.Script.Services.ScriptMethod()]
+    public static void btnLikePost_Click(int likeCount)
+    {
+        SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+        SqlCommand cmd = new SqlCommand("Insert into [dbo].[Like](PersonID, PostID) values (14, 3)", sc);
+        sc.Open();
+        cmd.ExecuteNonQuery();
+        sc.Close();
     }
 
 }

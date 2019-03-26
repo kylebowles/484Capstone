@@ -20,6 +20,7 @@ public class Post
     public int PersonID { get; set; }
     public string EmployerName { get; set; }
     public string PersonName { get; set; }
+    public int likeCount { get; set; }
 
     public List<Like> LikeList
     {
@@ -100,7 +101,7 @@ public class Post
         List<Post> listPosters = new List<Post>();
         using (SqlConnection sc = new SqlConnection(connection))
         {
-            SqlCommand sqlCmd = new SqlCommand("select postID, PostDescription, DateCreated, post.PersonID, OpportunityID, EmployerID, EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName] from post inner join employer on Post.PersonID = Employer.PersonID inner join Person on Person.PersonID = Employer.PersonID order by PostID desc", sc);
+            SqlCommand sqlCmd = new SqlCommand("select post.postID, PostDescription, DateCreated, post.PersonID, OpportunityID, EmployerID, EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName],count([dbo].[Like].LikeID)[LikeCount] from post full outer join [dbo].[like] on [dbo].[like].PostID = Post.PostID inner join employer on Post.PersonID = Employer.PersonID inner join Person on Person.PersonID = Employer.PersonID group by post.postid, PostDescription, DateCreated, post.PersonID, OpportunityID, EmployerID, EmployerName, Person.FirstName, Person.LastName order by PostID desc", sc);
             sc.Open();
             SqlDataReader sqlDR = sqlCmd.ExecuteReader();
             while(sqlDR.Read())
@@ -113,6 +114,7 @@ public class Post
                 string createdDate = sqlDR["DateCreated"].ToString();
                 newPost.setDateCreated(createdDate);
                 newPost.PostDescription = sqlDR["PostDescription"].ToString();
+                newPost.likeCount = Convert.ToInt32(sqlDR["LikeCount"]);
                 listPosters.Add(newPost);
             }
 

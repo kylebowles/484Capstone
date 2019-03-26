@@ -11,6 +11,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="true"/>
     <html>
     <body>
         <div>
@@ -18,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <asp:TextBox ID="txtNewPost" runat="server" CssClass="form-control" TextMode="MultiLine" Width="100%" Height="60px" Rows="15"></asp:TextBox>
-                        <%--        <asp:Image ID="Image1" runat="server" ImageUrl="~/Image/h.jpg"  Width="30px" Height="30px"  style="border:1px solid #4800ff;" />--%>
+                        <%--        <asp:Image ID="Image1" runat="server" ImageUrl='~/ImageFiles/EmptyProfilePic.jpg'  Width="30px" Height="30px"  style="border:1px solid #4800ff;" />--%>
                         <br />
                         <asp:Button ID="btnPublishPost" CssClass="btn-lg btn-default" Text="Post" runat="server" OnClick="btnPublishPost_Click" />
                         <br />
@@ -39,7 +40,7 @@
                                             <tr>
                                                 <td style="vertical-align:top;padding-top:10px" class="auto-style1"">
                                                   
-                                                    <asp:Image ID="ImageParent" runat="server" Style="width: 50px; height: 50px;" ImageUrl="~/Image/student-512.png" />
+                                                    <asp:Image ID="ImageParent" runat="server" Style="width: 50px; height: 50px;" ImageUrl='~/ImageFiles/EmptyProfilePic.jpg' />
                                                 </td>
                                                 <div class="col-sm-12 card">
                                                 <td style="padding: 0px 5px; text-align: left; vertical-align: top">
@@ -85,7 +86,7 @@
                                                             <asp:TemplateField HeaderText="EmployerName">
                                                                 <ItemTemplate>
                                                                     <br />
-                                                                    <asp:Image ID="ImageParent" runat="server" Style="width: 25px; height: 25px;" ImageUrl="~/Image/student-512.png" />
+                                                                    <asp:Image ID="ImageParent" runat="server" Style="width: 25px; height: 25px;" ImageUrl='~/ImageFiles/EmptyProfilePic.jpg' />
                                                                     <asp:Label ID="LblCommentTitle" runat="server" Font-Bold="true" ForeColor="#ff0066" Text='<%# string.Concat(Eval("PersonName"), ": ", Eval("EmployerName"))%>'></asp:Label>
                                                                     <hr />
                                                                     <br />
@@ -155,6 +156,8 @@
        $("#like-word").css("color", "#7F8C8D");
       }
       event.preventDefault();
+      PageMethods.btnLikePost_Click(like_counter);
+
    });
   
   // SHARE BUTTON CLICKED
