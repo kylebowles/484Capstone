@@ -132,9 +132,9 @@ public partial class EmployerLanding : System.Web.UI.Page
 
         Session["loggedIn"] = "false";
         Session["loggedOut"] = "true";
-        
+
         Response.Redirect("CuedIn.aspx");
-        
+
     }
 
 }

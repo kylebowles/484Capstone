@@ -1,0 +1,209 @@
+﻿
+.img-margin, .img-unsplash {
+    margin-bottom: 20px;
+}
+
+/* Normal CSS */
+body {
+    background: radial-gradient(circle, #5bc0de, #55b1fa);
+    padding-top: 5%;
+}
+
+.card {
+    background: #fff;
+    margin: 0 auto;
+    padding: 1px 0px;
+    font-family: Raleway, sans-serif;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+    /* this is how you can nest in SCSS */
+}
+
+    .card .title {
+        color: #5bc0de;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 5px 20px;
+    }
+
+    .card .user-name {
+        font-size: 14px;
+        color: #7f8c8d;
+        line-height: 10px;
+        padding-bottom: 20px;
+        padding: 0px 20px;
+        padding-bottom: 20px;
+    }
+
+.img-unsplash {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.fa {
+    margin-right: 8px;
+}
+
+.btn-like,
+.btn-like:focus {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    transition: all 0.5s;
+    color: #e74c3c;
+    border-color: #e74c3c;
+    background: transparent;
+    margin: 0px 3px;
+    padding: 7px 14px;
+    outline: 0;
+    width: 95px;
+    margin-left: 20px;
+}
+
+.btn-share,
+.btn-share:focus {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+    color: #f39c12;
+    border-color: #f39c12;
+    background: transparent;
+    margin: 0px 3px;
+    padding: 7px 14px;
+    outline: 0;
+    width: 95px;
+}
+
+.btn-comment,
+.btn-reply:focus {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+    color: #7f8c8d;
+    border-color: #7f8c8d;
+    background: transparent;
+    margin: 0px 3px;
+    padding: 7px 14px;
+    outline: 0;
+    width: 95px;
+}
+
+.btn-like:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.btn-share:hover {
+    background: #f39c12;
+    color: #fff;
+}
+
+.liked,
+.liked:focus {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.shared,
+.shared:focus {
+    background: #f39c12;
+    color: #fff;
+}
+
+hr {
+    width: 95%;
+}
+
+.button-links {
+    margin-bottom: 16px;
+    margin-left: 27px;
+    width: 414px;
+}
+
+    .button-links li {
+        display: inline;
+        list-style-type: none;
+        padding: 8px;
+        font-family: Raleway, sans-serif;
+        font-size: 16px;
+        color: #7f8c8d;
+    }
+
+#comment-list li {
+    list-style-type: none;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    color: #444;
+    padding: 10px 0px;
+}
+
+input {
+    margin: 20px 20px;
+    margin-right: 10px;
+    width: 72%;
+    padding: 12px 15px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    outline: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+    input:focus {
+        border-color: #ccc;
+    }
+
+.btn-info {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+    color: #5bc0de;
+    border-color: #5bc0de;
+    background: transparent;
+    margin: 0px 3px;
+    padding: 7px 14px;
+    outline: 0;
+    width: 95px;
+    background: #5bc0de;
+    color: #fff;
+    padding: 12px;
+    margin-top: -2px;
+}
+
+#user-name {
+    color: #fff;
+    font-size: 20px;
+    font-family: Raleway, sans-serif;
+}
+
+.name {
+    color: #5bc0de;
+}

@@ -36,7 +36,7 @@ public class Comment
         String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
             using (SqlConnection sc = new SqlConnection(connection))
             {
-                SqlCommand sqlcmd = new SqlCommand("Select Comment.PersonID, Employer.EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName], Comment.CommentDescription, Comment.DateCreated from Comment Inner join Person on Comment.PersonID = Person.PersonID inner join Employer on Employer.PersonID = person.PersonID", sc);
+                SqlCommand sqlcmd = new SqlCommand("Select Comment.PersonID, Employer.EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName], Comment.CommentDescription, Comment.DateCreated, Comment.PostID from Comment Inner join Person on Comment.PersonID = Person.PersonID inner join Employer on Employer.PersonID = person.PersonID inner join Post on Comment.PostID = Post.PostID where Comment.PostID = @PostID", sc);
                 sqlcmd.Parameters.Add(new SqlParameter("@PostID", postID));
                 sc.Open();
                 SqlDataReader sqldr = sqlcmd.ExecuteReader();
