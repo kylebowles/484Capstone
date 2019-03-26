@@ -4,6 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <body>
+        <form>
+        <div>
 		<!-- page-wrapper start -->
 		<div class="page-wrapper">
 			<!-- ----------------- -->
@@ -114,6 +116,13 @@
                                             <input type="text" class="form-control" id="CompanyName" name="companyname" placeholder="Company name.." runat="server" />
                                                 
                                             </div>
+
+                                        <div class="form-group">
+                                            <asp:label for="JobTitle" runat="server">Job Title</asp:label>
+                                            <input type="text" class="form-control" id="JobTitle" name="companyname" placeholder="Enter your job title" runat="server" />
+                                                
+                                            </div>
+
                                             <div class="form-group">
                                                 <asp:label for="EmailAdd" runat="server">Email address</asp:label>
                                                 <input type="email" class="form-control" id="EmailAdd" aria-describedby="emailHelp" placeholder="Enter email" runat="server" />
@@ -213,6 +222,12 @@
                                                     </select>
                                             </div>
                                             </div>
+
+                                            <div class="form-group">
+                                              <asp:label for="Summary" runat="server" Text="Enter an Employer Summary here! Students you're looking for, opportunities, etc."></asp:label>
+                                              <textarea class="form-control rounded-0" id="Summary" rows="5" placeholder="Enter summary here. This can be edited and updated from your profile once you account is created." runat="server"></textarea>
+                                            </div>
+
                                             </div>
                                         </div>
                                      </form>
