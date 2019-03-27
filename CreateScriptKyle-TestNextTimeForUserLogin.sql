@@ -614,7 +614,7 @@ REFERENCES [dbo].[Student] ([StudentID])
 GO
 ALTER TABLE [dbo].[StudentOpportunity] CHECK CONSTRAINT [FK_StudentOpportunity_Student]
 GO
-USE [master]
+USE [Cued-In]
 GO
 ALTER DATABASE [Cued-In] SET  READ_WRITE 
 GO
