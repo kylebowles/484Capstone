@@ -10,33 +10,27 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.ServiceModel.Channels;
-
 public partial class EmployerLanding : System.Web.UI.Page
 {
 
-    //SQL Connection
+    //SQL Connection to AWS
+    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+
+    //SQL Connection to Localhost
     System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
 
 
-        //}
-
-        //catch
-        //{
-        //    //ErrorDB.Text = "Error connecting to database.";
-        //}
 
         //Display current employer name from database
-        //lblDisplayName.Text = "Test";
+
         sc.Open();
         System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
         getdbPersonID.Connection = sc;
         //Gets the personid for the username
-        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] +"'";
+        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
         int accountID = (int)getdbPersonID.ExecuteScalar();
         sc.Close();
         //lblDisplayName.Text = accountID.ToString();
@@ -45,8 +39,9 @@ public partial class EmployerLanding : System.Web.UI.Page
         System.Data.SqlClient.SqlCommand getFName = new System.Data.SqlClient.SqlCommand();
         getFName.Connection = sc;
         //gets the firstname for the user
-        getFName.CommandText = "select Person.FirstName  FROM Account INNER JOIN Person ON Account.PersonID = Person.PersonID where Account.PersonID = " + accountID;
-       // getdbPersonID.ExecuteNonQuery();
+        getFName.CommandText = "select Person.FirstName  FROM Account INNER JOIN Person ON Account.PersonID = Person.PersonID where Account.PersonID = @AccountPersonID";
+        getFName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
+        // getdbPersonID.ExecuteNonQuery();
         string accountFName = (string)getFName.ExecuteScalar();
         sc.Close();
 
@@ -54,12 +49,64 @@ public partial class EmployerLanding : System.Web.UI.Page
         System.Data.SqlClient.SqlCommand getLName = new System.Data.SqlClient.SqlCommand();
         getLName.Connection = sc;
         //gets the lastname for the user
-        getLName.CommandText = "Select Person.LastName FROM Person where PersonID = " + accountID;
+        getLName.CommandText = "Select Person.LastName FROM Person where PersonID = @AccountPersonID";
+        getLName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
         string accountLName = (string)getLName.ExecuteScalar();
         sc.Close();
 
         //Displays the use'rs name
         lblDisplayName.Text = accountFName + " " + accountLName;
+
+        //Display current employer's username/email
+        lblUserEmail.Text = (string)(Session)["loginUser"];
+
+        //Display current employer's company
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getCoName = new System.Data.SqlClient.SqlCommand();
+        getCoName.Connection = sc;
+        getCoName.CommandText = "select Employer.EmployerName FROM Employer INNER JOIN Account ON Account.PersonID = Employer.PersonID where Account.PersonID = @AccountPersonID";
+        getCoName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
+        string coName = (string)getCoName.ExecuteScalar();
+        lblCompany.Text = coName;
+        sc.Close();
+
+        //Display current employer's location
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getAddID = new System.Data.SqlClient.SqlCommand();
+        getAddID.Connection = sc;
+        getAddID.CommandText = "select AddressID from person where PersonID = @AccountPersonID"; //gets address id
+        getAddID.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
+        int addID = (int)getAddID.ExecuteScalar();
+
+        System.Data.SqlClient.SqlCommand getLocation = new System.Data.SqlClient.SqlCommand();
+        getLocation.Connection = sc;
+        getLocation.CommandText = "select City from Address where AddressID = @AccountAddressID"; //gets city
+        getLocation.Parameters.Add(new SqlParameter("@AccountAddressID", addID));
+        string citySt = (string)getLocation.ExecuteScalar();
+        lblLocation.Text = citySt;
+        sc.Close();
+
+        //Display the current Employer's job title in their profile
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getEmpAddID = new System.Data.SqlClient.SqlCommand();
+        getEmpAddID.Connection = sc;
+        getEmpAddID.CommandText = "SELECT JobTitle from Employer where PersonID = @EmployerPersonID"; //gets EmployerID
+        getEmpAddID.Parameters.Add(new SqlParameter("@EmployerPersonID", accountID));
+        String Occupation = (String)getEmpAddID.ExecuteScalar();
+        lblJobTitle.Text = Occupation;
+        sc.Close();
+
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getPhoneNumber = new System.Data.SqlClient.SqlCommand();
+        getPhoneNumber.Connection = sc;
+        getPhoneNumber.CommandText = "Select PhoneNumber from Person where PersonID = @PhonePersonID";
+        getPhoneNumber.Parameters.Add(new SqlParameter("@PhonePersonID", accountID));
+        String PhoneNum = (String)getPhoneNumber.ExecuteScalar();
+        lblPhone.Text = PhoneNum;
+        sc.Close();
+
+        
+
 
     }
 
@@ -125,16 +172,63 @@ public partial class EmployerLanding : System.Web.UI.Page
 
     }
 
-    protected void LogOutUser(object sender, EventArgs e)
+
+    //Loads the Employer's summary onto the page with the most recent description
+    protected void ShowSummary(object sender, EventArgs e)
     {
-        Session.Abandon();
-        Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
 
-        Session["loggedIn"] = "false";
-        Session["loggedOut"] = "true";
 
-        Response.Redirect("CuedIn.aspx");
+
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+        getdbPersonID.Connection = sc;
+        //Gets the personid for the username
+        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
+        int accountID = (int)getdbPersonID.ExecuteScalar();
+
+
+        ProfileSummary.Visible = true;
+        subheader.Visible = true;
+        BtnEdit.Visible = true; 
+        
+        
+        System.Data.SqlClient.SqlCommand getEmpSummary = new System.Data.SqlClient.SqlCommand();
+        getEmpSummary.Connection = sc;
+        getEmpSummary.CommandText = "Select EmployerSummary from Employer where PersonID = @SummaryPersonID";
+        getEmpSummary.Parameters.Add(new SqlParameter("@SummaryPersonID", accountID));
+        String EmpSum = (String)getEmpSummary.ExecuteScalar();
+        ProfileSummary.InnerText = EmpSum;
+
+        sc.Close();
 
     }
+
+    //Saving contents of Desired Exp field, and updates the DB with the new description when the user clicks "Save changes"
+    protected void EditSummary(object sender, EventArgs e)
+    {
+
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+        getdbPersonID.Connection = sc;
+        //Gets the personid for the username
+        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
+        int accountID = (int)getdbPersonID.ExecuteScalar();
+       
+
+       
+        System.Data.SqlClient.SqlCommand getEmpSummary = new System.Data.SqlClient.SqlCommand();
+        getEmpSummary.Connection = sc;
+        getEmpSummary.CommandText = "UPDATE Employer set EmployerSummary = @EmployerSummary where PersonID = @SummaryPersonID";
+        getEmpSummary.Parameters.Add(new SqlParameter("@EmployerSummary", ProfileSummary.Value));
+        getEmpSummary.Parameters.Add(new SqlParameter("@SummaryPersonID", accountID));
+        String EmpSum = (String)getEmpSummary.ExecuteScalar();
+        ProfileSummary.Value = EmpSum;
+
+        sc.Close();
+
+    }
+
+
+
 
 }

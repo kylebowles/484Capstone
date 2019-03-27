@@ -80,19 +80,19 @@ public partial class Employer : System.Web.UI.Page
     protected void insert_Click(object sender, EventArgs e)
     {
         //Create new Employer object
-        BusinessEmp bus = new BusinessEmp(FirstName.Value.ToString(), LastName.Value.ToString(), CompanyName.Value.ToString(), EmailAdd.Value.ToString(), Password1.Value.ToString(),
-            PhoneNumber.Value.ToString(), CompHouseNumber.Value.ToString(), CompStreet.Value.ToString(), City.Value.ToString(), 
-            CompCountry.Value.ToString(), State.Items.ToString(), CompZip.Value.ToString());
+        BusinessEmp bus = new BusinessEmp(FirstName.Value.ToString(), LastName.Value.ToString(), CompanyName.Value.ToString(), JobTitle.Value.ToString(), Summary.Value.ToString(),EmailAdd.Value.ToString(), Password1.Value.ToString(),
+            PhoneNumber.Value.ToString(), CompHouseNumber.Value.ToString(), CompStreet.Value.ToString(), City.Value.ToString(),
+            CompCountry.Value.ToString(), State.Value.ToString(), CompZip.Value.ToString());
 
         //Doesn't add to the DB if the email address is taken
         checkEmail(bus);
 
         if (checkEmail(bus) == false)
         {
-            
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowAlert", "ShowDangerAlert();", true);
             return;
-            
+
         }
         else
         {
@@ -103,7 +103,7 @@ public partial class Employer : System.Web.UI.Page
 
         if (checkPassword(bus) == false)
         {
-            
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowPassAlert", "ShowDangerPassAlert();", true);
             return;
         }
@@ -115,13 +115,13 @@ public partial class Employer : System.Web.UI.Page
         if (EmailTaken.Visible == false || PassDontMatch.Visible == false)
         {
 
-         //Insert values into database when user clicks "Insert"
+            //Insert values into database when user clicks "Insert"
 
             //Insert into address table
             sc.Open();
             System.Data.SqlClient.SqlCommand insertAddress = new System.Data.SqlClient.SqlCommand();
             insertAddress.Connection = sc;
-            insertAddress.CommandText = "insert into[Address](HouseNumber, Street, City, State, Country, ZipCode) " + 
+            insertAddress.CommandText = "insert into[Address](HouseNumber, Street, City, State, Country, ZipCode) " +
                 "values(@HouseNumber,@CompStreet,@City,@CompState,@Country,@ZipCode)";
             insertAddress.Parameters.Add(new SqlParameter("@HouseNumber", bus.getCompHouseNumber()));
             insertAddress.Parameters.Add(new SqlParameter("@CompStreet", bus.getCompStreet()));
@@ -140,15 +140,16 @@ public partial class Employer : System.Web.UI.Page
 
             System.Data.SqlClient.SqlCommand getdbAddressID = new System.Data.SqlClient.SqlCommand();
             getdbAddressID.Connection = sc;
-        
+
             getdbAddressID.CommandText = "SELECT Max(AddressID) from ADDRESS";
             getdbAddressID.ExecuteNonQuery();
             int holdAddID = (Int32)getdbAddressID.ExecuteScalar();
 
-            insertPerson.CommandText = "insert into [Person](FirstName,LastName,Email,personType, AddressID) values(@FirstName,@LastName,@Email,@PersonType, @AddressID)";
+            insertPerson.CommandText = "insert into [Person](FirstName,LastName,Email,personType,AddressID,PhoneNumber) values(@FirstName,@LastName,@Email,@PersonType,@AddressID,@PhoneNumber)";
             insertPerson.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
             insertPerson.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
             insertPerson.Parameters.Add(new SqlParameter("@Email", bus.getEmail()));
+            insertPerson.Parameters.Add(new SqlParameter("@PhoneNumber", bus.getPhone()));
             insertPerson.Parameters.Add(new SqlParameter("@PersonType", "Employer"));
             insertPerson.Parameters.Add(new SqlParameter("@AddressID", holdAddID));
 
@@ -168,10 +169,12 @@ public partial class Employer : System.Web.UI.Page
             getdbPersonID.ExecuteNonQuery();
             int holdPersonID = (Int32)getdbPersonID.ExecuteScalar();
 
-            insertEmployer.CommandText = "insert into [Employer](EmployerName,PersonID,isApproved) values(@EmployerName,@PersonID,@isApproved)";
+            insertEmployer.CommandText = "insert into [Employer](EmployerName,JobTitle,PersonID,isApproved,EmployerSummary) values(@EmployerName,@JobTitle,@PersonID,@isApproved,@EmployerSummary)";
             insertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
+            insertEmployer.Parameters.Add(new SqlParameter("@JobTitle", bus.getJobTitle()));
             insertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             insertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
+            insertEmployer.Parameters.Add(new SqlParameter("@EmployerSummary", bus.getEmpSummary()));
 
             insertEmployer.ExecuteNonQuery();
 
@@ -270,7 +273,7 @@ public partial class Employer : System.Web.UI.Page
             return true;
         }
 
-        
+
     }
 
     //Make a method to ensure password1 and password2 are equivalent
@@ -288,5 +291,9 @@ public partial class Employer : System.Web.UI.Page
         }
     }
 
+    protected void EmpSummary(object sender, EventArgs e)
+    {
+        Session["empSummary"] = Summary.Value.ToString();
+    }
 
 }

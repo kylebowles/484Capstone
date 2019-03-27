@@ -27,27 +27,70 @@
     <link href="style.css" rel="stylesheet" />
     <!-- responsive.css -->
     <link href="css/responsive.css" rel="stylesheet" />
-    <style>
-        body 
-        {
-        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-        }
-    </style>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss">
+
+    <link href="path/to/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="path/to/jquery/jquery-1.8.2.min.js"></script>
+    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="path/to/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="path/to/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+     <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" />
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss" />
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
 </head>
-<body style="background-color:#FFF;">
-    <form id="form1" runat="server">
+<body style="background-color:#0099ff;">
+    
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="bootstrap-editable/js/bootstrap-editable.js"></script>
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+   
+<script src="bootstrap-editable/js/bootstrap-editable.js"></script>
+
+    <script type="text/javascript">
+        $.fn.editable.defaults.mode = 'inline';
+        $('#Exp').editable({
+                           type:  'text',
+                           pk:    1,
+                           name:  'Exp',
+                           url:   'post.php',  
+                           title: 'Desired Experience'
+                        });
+    </script>
+    <div>
+   <%-- <div class="container emp-profile" visible="true" /> --%>
+    <form id="form1" runat="server" method="post">
+        <script type="text/javascript">
+        $.fn.editable.defaults.mode = 'inline';
+        $('#Exp').editable({
+                           type:  'text',
+                           pk:    1,
+                           name:  'username',
+                           url:   'post.php',  
+                           title: 'Enter username'
+                        });
+    </script>
         <div>
             <header class="main-header">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg main-nav px-0">
                         <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
-                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100">
+                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100" />
                         </a>
                         <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
                             <span class="hamburger-box">
@@ -57,7 +100,7 @@
                         <div class="collapse navbar-collapse" id="mainMenu">
                             <ul class="navbar-nav ml-auto text-uppercase f1">
                                 <li>
-                                    <a href="#home" rel="m_PageScroll2id">home</a>
+                                    <a href="CUEDIN.aspx#home" rel="m_PageScroll2id">home</a>
                                 </li>
                                 <li>
                                     <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
@@ -67,15 +110,11 @@
                                 </li>
 
                                 <li>
-                                    <a href="CreatePost.aspx" rel="m_PageScroll2id">Create Post</a>
+                                    <a href="#team" rel="m_PageScroll2id">Create Post</a>
                                 </li>
 
                                 <li>
-                                    <a href="The Community.aspx" rel="m_PageScroll2id">Community Insights</a>
-                                </li>
-
-                                <li>
-                                    <asp:linkbutton runat="server"  OnClick="LogOutUser"  rel="m_PageScroll2id">Logout</asp:linkbutton>
+                                    <a href="TableauData.aspx" rel="m_PageScroll2id">Community Insights</a>
                                 </li>
                             </ul>
                         </div>
@@ -84,6 +123,10 @@
                 <!-- /.container -->
             </header>
         </div>
+
+<%--     <div class="container emp-profile" visible="true" /> 
+    <form id="form1" runat="server" method="post">--%>
+
          
         <%--END HEADER LINK--%>
 
@@ -105,6 +148,7 @@
 
 
    <%-- POST MODAL--%>
+      
   <div class="modal fade" id="PostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -141,6 +185,7 @@
     </div>
   </div>
 </div>
+            
         <%--END POST MODAL--%>
 
        
@@ -181,8 +226,9 @@
 
 
 
-<div class="container emp-profile">
-            <form method="post">
+<div class="container emp-profile" visible="true" /> 
+            
+    <%--<form method="post" runat="server" id="form1">--%>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -198,24 +244,27 @@
                                     <h5>
                                         <asp:Label ID="lblDisplayName" runat="server"></asp:Label>
                                     </h5>
-                                    <h6>
-                                        Web Developer and Designer
-                                    </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                    <h5>
+                                        <asp:Label ID="Employer" runat="server" Text="Cued-In Employer"></asp:Label>
+                                    </h5>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">What I'm looking for</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
                         <asp:Button ID="btnShowPopup" runat="server" Text="New Post" OnClick="ShowPopup"
                          CssClass="btn btn-info btn-lg" />
+                        <br />
+                        <br />
+
+                         <asp:Button ID="btnEditProf" runat="server" Text="Edit Profile"
+                         CssClass="btn btn-primary" />
                         
 
                     </div>
@@ -236,98 +285,73 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-content profile-tab active" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Id</label>
+                                        <div class="row active">
+                                            <div class="col-md-6 active">
+                                                <label>Username / Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti123</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Kshiti Ghelani</p>
+                                                <asp:Label id="lblUserEmail" runat="Server"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row active">
                                             <div class="col-md-6">
-                                                <label>Email</label>
+                                                <label>Phone Number</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                               <asp:Label id="lblPhone" runat="Server"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row active">
                                             <div class="col-md-6">
-                                                <label>Profession</label>
+                                                <label>Company</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
-                                        </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
+                                                <asp:Label id="lblCompany" runat="Server"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row active">
                                             <div class="col-md-6">
-                                                <label>Hourly Rate</label>
+                                                <label>Job Title</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
+                                                <asp:Label id="lblJobTitle" runat="Server"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row active">
                                             <div class="col-md-6">
-                                                <label>English Level</label>
+                                                <label>Location</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
+                                                <asp:Label id="lblLocation" runat="Server"></asp:Label>
                                             </div>
                                         </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
-                            </div>
+                          
                         </div>
+
+                            
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                         
+                                <div class="form-group">
+                                   <asp:Button ID="ShowSum" runat="server" Text="Show my summary" OnClick="ShowSummary" CssClass="btn btn-info"/>
+                                  
+                                  
+                                      
+                                  <textarea class="form-control" rows="5" id="ProfileSummary" runat="server" visible="false"></textarea>
+                                </div>
+
+                                <p class="h6" id="subheader" runat="server" visible="false">Enter information about yourself, your company, students you're interested in, and potential opportunities!</p>
+
+                                <br />
+                                <asp:Button ID="BtnEdit" runat="server" Text="Save Changes" CssClass="btn btn-primary" OnClick="EditSummary" Visible="false"/>
+                                <br />
+
+                                            
+                                </div>
+                               
+                   </div>
+                        
                     </div>
                 </div>
             </form>           
@@ -335,7 +359,7 @@
 
 
 
-    </form>
+   
      
 </body>
    

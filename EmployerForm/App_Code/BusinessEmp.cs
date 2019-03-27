@@ -18,6 +18,8 @@ public class BusinessEmp
     private String FirstName;
     private String LastName;
     private String CompanyName;
+    private String JobTitle;
+    private String EmployerSummary;
     private String EmailAdd;
     private String Password;
     private String PhoneNumber;
@@ -52,11 +54,13 @@ public class BusinessEmp
         this.EmailAdd = Email;
     }
 
-    public BusinessEmp(String FirstName, String LastName, String Company, String Email, String Password, String PhoneNumber, String CompHouseNumber,String CompStreet, String City, String CompCountry, String State, String ZipCode)
+    public BusinessEmp(String FirstName, String LastName, String Company, String JobTitle, String EmployerSummary, String Email, String Password, String PhoneNumber, String CompHouseNumber, String CompStreet, String City, String CompCountry, String State, String ZipCode)
     {
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.CompanyName = Company;
+        this.JobTitle = JobTitle;
+        this.EmployerSummary = EmployerSummary;
         this.EmailAdd = Email;
         this.Password = Password;
         this.PhoneNumber = PhoneNumber;
@@ -201,5 +205,24 @@ public class BusinessEmp
     {
         this.isApproved = approval;
     }
-}
 
+    public String getJobTitle()
+    {
+        return this.JobTitle;
+    }
+
+    public void setJobTitle(String JobTitle)
+    {
+        this.JobTitle = JobTitle;
+    }
+
+    public String getEmpSummary()
+    {
+        return this.EmployerSummary;
+    }
+
+    public void setEmployerSummmary(String EmployerSummary)
+    {
+        this.EmployerSummary = EmployerSummary;
+    }
+}

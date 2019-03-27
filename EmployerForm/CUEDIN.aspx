@@ -8,6 +8,7 @@
     <meta name="author" content="Signature Systems">
     <title>CUED-IN</title>
     <link rel="shortcut icon" href="img/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
 
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Futura:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
