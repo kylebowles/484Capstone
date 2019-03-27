@@ -77,8 +77,7 @@ EXEC sys.sp_db_vardecimal_storage_format N'Cued-In', N'ON'
 GO
 ALTER DATABASE [Cued-In] SET QUERY_STORE = OFF
 GO
-USE [Cued-In]
-GO
+
 ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
 GO
 ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
@@ -614,7 +613,7 @@ REFERENCES [dbo].[Student] ([StudentID])
 GO
 ALTER TABLE [dbo].[StudentOpportunity] CHECK CONSTRAINT [FK_StudentOpportunity_Student]
 GO
-USE [Cued-In]
+USE [Cued-in]
 GO
 ALTER DATABASE [Cued-In] SET  READ_WRITE 
 GO
@@ -635,8 +634,9 @@ USE [master]
 GO
 ALTER DATABASE [Cued-In] SET  READ_WRITE 
 GO
-
-	       insert into address ([HouseNumber],[Street],[City],[State],[Country],[Zipcode]) values (1325, 'Devon Ln', 'Harrisonburg', 'VA','United States', 22801);
+Use [Cued-In]
+GO
+insert into address ([HouseNumber],[Street],[City],[State],[Country],[Zipcode]) values (1325, 'Devon Ln', 'Harrisonburg', 'VA','United States', 22801);
 insert into address ([HouseNumber],[Street],[City],[State],[Country],[Zipcode]) values (1000, 'Neff Ave.', 'Harrisonburg', 'VA','United States', 22801);
 insert into address ([HouseNumber],[Street],[City],[State],[Country],[Zipcode]) values (800, 'Port Republic rd.', 'Harrisonburg', 'VA','United States', 22801);
 insert into address ([HouseNumber],[Street],[City],[State],[Country],[Zipcode]) values (807, 'Village Ln', 'Harrisonburg', 'VA','United States', 22801);
@@ -657,19 +657,19 @@ insert into interest(interestname) values ('Electrical Service Repair')
 insert into interest(interestname) values ('Nursing')
 insert into interest(interestname) values ('Dentistry')
 
-insert into person(firstname, lastname, email, addressID, persontype) values ('Kristian', 'Andrews', 'kandrews15@gmail.com', 5, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Ariel', 'Pena', 'apena17@gmail.com', 6, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Alisha', 'Hobbs', 'ahobbs142@gmail.com', 1, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Trevor', 'Singleton', 'Tsingleton@gmail.com', 1, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Mario', 'Fleming', 'Fleming32@gmail.com', 2, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Javier', 'Ramirez', 'cr66@gmail.com', 3, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Trinity', 'Collins', 'collinsT@gmail.com', 4, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Elliot', 'Ball', 'ballE@gmail.com', 5, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Alexis', 'Valencia', 'Valenciaalex@aol.com', 3, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Journey', 'Glover', 'JGlover1022@verizon.net', 5, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Kevin', 'Johnson', 'kjohnn@gmail.com', 2, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('William', 'Evans', 'williamev@gmail.com', 2, 'Student')
-insert into person(firstname, lastname, email, addressID, persontype) values ('Johnny', 'Pulitano', 'jpulli@gmail.com', 5, 'Student')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Kristian', 'Andrews', 'kandrews15@gmail.com', 5, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype,  PhoneNumber) values ('Ariel', 'Pena', 'apena17@gmail.com', 6, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Alisha', 'Hobbs', 'ahobbs142@gmail.com', 1, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Trevor', 'Singleton', 'Tsingleton@gmail.com', 1, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Mario', 'Fleming', 'Fleming32@gmail.com', 2, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Javier', 'Ramirez', 'cr66@gmail.com', 3, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Trinity', 'Collins', 'collinsT@gmail.com', 4, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Elliot', 'Ball', 'ballE@gmail.com', 5, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Alexis', 'Valencia', 'Valenciaalex@aol.com', 3, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Journey', 'Glover', 'JGlover1022@verizon.net', 5, 'Student' , '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Kevin', 'Johnson', 'kjohnn@gmail.com', 2, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('William', 'Evans', 'williamev@gmail.com', 2, 'Student', '703-939-4557')
+insert into person(firstname, lastname, email, addressID, persontype, PhoneNumber) values ('Johnny', 'Pulitano', 'jpulli@gmail.com', 5, 'Student', '703-939-4557')
 
 insert into student(PersonID, DateOfBirth, AcademicYear, SchoolID) values (1, '3/18/2005', 'Freshman', 2)
 insert into student(PersonID, DateOfBirth, AcademicYear, SchoolID) values (2, '2/18/2001', 'Senior', 2)
