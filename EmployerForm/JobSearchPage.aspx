@@ -183,7 +183,7 @@
                                 </asp:GridView>
 
 
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:localhostConnectionString %>" SelectCommand="SELECT [PostID], [PostDescription], [DateCreated], [Deadline], [PersonID], [OpportunityID], [ModifiedDate] FROM [Post] WHERE ([PostDescription] LIKE '%' + @PostDescription + '%')">
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [PostID], [PostDescription], [DateCreated], [Deadline], [PersonID], [OpportunityID], [ModifiedDate] FROM [Post] WHERE ([PostDescription] LIKE '%' + @PostDescription + '%')">
                                     <SelectParameters>
                                         <asp:SessionParameter DefaultValue="&quot;&quot;" Name="PostDescription" SessionField="temp" Type="String" />
                                     </SelectParameters>

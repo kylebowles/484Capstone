@@ -14,10 +14,11 @@ using System.ServiceModel.Channels;
 
 public partial class Employer : System.Web.UI.Page
 {
+    //Localhost Connection
+    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
-
-    //SQL Connection
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    //AWS Connection
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {

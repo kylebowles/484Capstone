@@ -9,8 +9,14 @@ using System.Web.UI.WebControls;
 
 public partial class CUEDIN : System.Web.UI.Page
 {
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
-    System.Data.SqlClient.SqlConnection scloop = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    //Localhost Connection
+    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    //System.Data.SqlClient.SqlConnection scloop = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+
+    //AWS Connection 
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection scloop = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loggedOut"] == null)

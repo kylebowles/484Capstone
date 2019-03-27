@@ -8,16 +8,21 @@ using System.Web.UI.WebControls;
 public partial class CreatePost : System.Web.UI.Page
 {
     //Create SQL connection
-    System.Data.SqlClient.SqlConnection sql = new System.Data.SqlClient.SqlConnection();
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         try
         {
             //Connect to Cued-In DB
-            sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-            sql.Open();
 
+            //AWS Connection
+            sc.ConnectionString = "CuedInConnectionString";
+
+            //Localhost Connection
+            //sc.ConnectionString = "LocalhostConnectionString";
+
+            
         }
 
         catch

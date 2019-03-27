@@ -11,8 +11,11 @@ using System.Web.Services;
 
 public partial class The_Community : System.Web.UI.Page
 {
-    SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+    //AWS Connection
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
+    //Localhost Connection
+    // System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -82,7 +85,13 @@ public partial class The_Community : System.Web.UI.Page
     [System.Web.Script.Services.ScriptMethod()]
     public static void btnLikePost_Click(int likeCount)
     {
-        SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+        //Localhost Connection
+        //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+
+
+        //AWS Connection 
+        System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+
         SqlCommand cmd = new SqlCommand("Insert into [dbo].[Like](PersonID, PostID) values (14, 3)", sc);
         sc.Open();
         cmd.ExecuteNonQuery();

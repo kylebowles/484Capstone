@@ -97,7 +97,13 @@ public class Post
 
     public static List<Post> getAllPostInfo()
     {
-        string connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+        //Localhost Connection
+        //String connection = (ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+
+        //AWS Connection
+        String connection = (ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+
+
         List<Post> listPosters = new List<Post>();
         using (SqlConnection sc = new SqlConnection(connection))
         {

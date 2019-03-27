@@ -33,8 +33,15 @@ public class Comment
         public static List<Comment> GetComments(int postID)
         {
             List<Comment> comments = new List<Comment>();
-        String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-            using (SqlConnection sc = new SqlConnection(connection))
+        //Localhost Connection
+        //String connection = (ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+
+        //AWS Connection
+        String connection = (ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+
+
+
+        using (SqlConnection sc = new SqlConnection(connection))
             {
                 SqlCommand sqlcmd = new SqlCommand("Select Comment.PersonID, Employer.EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName], Comment.CommentDescription, Comment.DateCreated, Comment.PostID from Comment Inner join Person on Comment.PersonID = Person.PersonID inner join Employer on Employer.PersonID = person.PersonID inner join Post on Comment.PostID = Post.PostID where Comment.PostID = @PostID", sc);
                 sqlcmd.Parameters.Add(new SqlParameter("@PostID", postID));

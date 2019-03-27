@@ -164,13 +164,13 @@
 
             <asp:DropDownList ID="ddStudentID" runat="server" DataSourceID="StudentID" DataTextField="StudentID" DataValueField="StudentID">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="StudentID" runat="server" ConnectionString="<%$ ConnectionStrings:LocalhostConnectionString %>" SelectCommand="SELECT [StudentID] FROM [Student]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="StudentID" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [StudentID] FROM [Student]"></asp:SqlDataSource>
 
             <asp:Label ID="Label1" runat="server" Text="School ID" ForeColor="White"></asp:Label>
 
             <asp:DropDownList ID="ddSchoolID" runat="server" DataSourceID="SchoolID" DataTextField="SchoolName" DataValueField="SchoolID">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="SchoolID" runat="server" ConnectionString="<%$ ConnectionStrings:LocalhostConnectionString %>" SelectCommand="SELECT [SchoolID], [SchoolName] FROM [School]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SchoolID" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [SchoolID], [SchoolName] FROM [School]"></asp:SqlDataSource>
 
 
             <asp:Label ID="Label3" runat="server" ForeColor="White" Text="EmployerID"></asp:Label>
@@ -178,7 +178,7 @@
 
             <asp:DropDownList ID="ddEmployer" runat="server" DataSourceID="EmpID" DataTextField="EmployerID" DataValueField="EmployerID">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="EmpID" runat="server" ConnectionString="<%$ ConnectionStrings:LocalhostConnectionString %>" SelectCommand="SELECT [EmployerID] FROM [Employer]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="EmpID" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [EmployerID] FROM [Employer]"></asp:SqlDataSource>
 
 
             <asp:Label ID="Label4" runat="server" ForeColor="White" Text="OpportunityID"></asp:Label>
@@ -186,7 +186,7 @@
 
             <asp:DropDownList ID="ddOpportunity" runat="server" DataSourceID="OppID" DataTextField="OpportunityID" DataValueField="OpportunityID">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="OppID" runat="server" ConnectionString="<%$ ConnectionStrings:LocalhostConnectionString %>" SelectCommand="SELECT [OpportunityID] FROM [Opportunity]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="OppID" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [OpportunityID] FROM [Opportunity]"></asp:SqlDataSource>
 
         </div>
 
