@@ -1,4 +1,4 @@
-﻿USE [master]
+USE [master]
 GO
 /****** Object:  Database [Cued-In]    Script Date: 3/22/2019 5:00:33 PM ******/
 CREATE DATABASE [Cued-In]
@@ -214,7 +214,8 @@ CREATE TABLE [dbo].[Employer](
 	[PersonID] [int] NOT NULL,
 	[isApproved] [nvarchar](5) NOT NULL,
 	[EmployerName] [nvarchar](100) NOT NULL,
- 	[EmployerSummary] [nvarchar](1000),
+	[JobTitle] [nvarchar](50),
+	[EmployerSummary] [nvarchar](1000),
  CONSTRAINT [PK_Employer] PRIMARY KEY CLUSTERED 
 (
 	[EmployerID] ASC
@@ -298,6 +299,7 @@ CREATE TABLE [dbo].[Person](
 	[MiddleName] [nvarchar](50) NULL,
 	[LastName] [nvarchar](50) NOT NULL,
 	[Email] [nvarchar](50) NOT NULL,
+	[PhoneNumber] [nvarchar](12) NOT NULL,
 	[AddressID] [int] NOT NULL,
 	[personType] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED 
@@ -611,6 +613,10 @@ ALTER TABLE [dbo].[StudentOpportunity]  WITH CHECK ADD  CONSTRAINT [FK_StudentOp
 REFERENCES [dbo].[Student] ([StudentID])
 GO
 ALTER TABLE [dbo].[StudentOpportunity] CHECK CONSTRAINT [FK_StudentOpportunity_Student]
+GO
+USE [master]
+GO
+ALTER DATABASE [Cued-In] SET  READ_WRITE 
 GO
 
  ALTER TABLE [dbo].[Request]
