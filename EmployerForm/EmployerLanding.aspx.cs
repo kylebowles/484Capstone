@@ -105,7 +105,13 @@ public partial class EmployerLanding : System.Web.UI.Page
         lblPhone.Text = PhoneNum;
         sc.Close();
 
-        
+
+
+        lblUserEmail.Visible = true;
+        lblPhone.Visible = true;
+        lblCompany.Visible = true;
+        lblJobTitle.Visible = true;
+        lblLocation.Visible = true;
 
 
     }
@@ -228,7 +234,31 @@ public partial class EmployerLanding : System.Web.UI.Page
 
     }
 
+    //User clicks Show links to display their previusly loaded work links
+    protected void ShowEmpLinks(object sender, EventArgs e)
+    {
+        CompLinklbl.Visible = true;
+        CompanyLinkText.Visible = true;
+        Opplbl.Visible = true;
+        OppLinkText.Visible = true;
+    }
+
+    //Save links entered into the DB and updates the DB
+    protected void SaveLinkChanges(object sender, EventArgs e)
+    {
+        //Load entered URLs into the DB if the user decides to do so.
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+        getdbPersonID.Connection = sc;
+        //Gets the personid for the username
+        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
+        int accountID = (int)getdbPersonID.ExecuteScalar();
+
+        System.Data.SqlClient.SqlCommand UpdateLinks = new System.Data.SqlClient.SqlCommand();
+
+        //Picking up here tomorrow!
 
 
+    }
 
 }
