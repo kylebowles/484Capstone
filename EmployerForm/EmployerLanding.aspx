@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Your Account</title>
+    <title>Modal Test</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template" />
@@ -28,63 +28,72 @@
     <!-- responsive.css -->
     <link href="css/responsive.css" rel="stylesheet" />
 
-
-    <link href="path/to/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="path/to/jquery/jquery-1.8.2.min.js"></script>
-    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>
-
-    <link href="path/to/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" />
-    <script src="path/to/bootstrap-editable/js/bootstrap-editable.min.js"></script>
-    
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
-
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
-     <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" />
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss" />
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+  
+   
 
 </head>
-<body style="background-color:#0099ff;">
+<body style="background-color:indianred;">
+    <form id="form1" runat="server">
+        <div>
+
+              <%-- POST MODAL--%>
+
+  <div class="modal fade" id="PostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Employment Posting</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+        <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          
+            <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="JobName" runat="server">Job Name</asp:label>
+            <input type="text" id="JobNameText" class="form-control validate" runat="server"/>
+          
+           <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="JobType" runat="server">Job Type(Technical, Construction, etc.)</asp:label>
+           <input type="text" id="JobTypeText" class="form-control validate" runat="server"/>
+
+             <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="Apprenticeship" runat="server">Is this an Apprenticeship? (Y or N)</asp:label>
+            <input type="text" id="ApprenText" class="form-control validate" runat="server"/>
+          
+            <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="Deadline" runat="server">Deadline(yyyy/mm/dd)</asp:label>
+            <input type="text" id="DeadlineText" class="form-control validate" runat="server"/>
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+         <asp:Button ID="BtnSubmit" runat="server" Text="Submit" OnClick="SubmitPost" CssClass="btn btn-primary"></asp:Button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+       
+
+           <script type="text/javascript">
+    function ShowPopup(/*title, body*/) {
+        //$("#PostModal .modal-title").html(title);
+        //$("#PostModal .modal-body").html(body);
+        $("#PostModal").modal("show");
+    }
+</script>
+
+            
+        <%--END POST MODAL--%>
     
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="bootstrap-editable/js/bootstrap-editable.js"></script>
 
-<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-   
-<script src="bootstrap-editable/js/bootstrap-editable.js"></script>
 
-    <script type="text/javascript">
-        $.fn.editable.defaults.mode = 'inline';
-        $('#Exp').editable({
-                           type:  'text',
-                           pk:    1,
-                           name:  'Exp',
-                           url:   'post.php',  
-                           title: 'Desired Experience'
-                        });
-    </script>
-    <div>
+  
+    
    <%-- <div class="container emp-profile" visible="true" /> --%>
-    <form id="form1" runat="server" method="post">
-        <script type="text/javascript">
-        $.fn.editable.defaults.mode = 'inline';
-        $('#Exp').editable({
-                           type:  'text',
-                           pk:    1,
-                           name:  'username',
-                           url:   'post.php',  
-                           title: 'Enter username'
-                        });
-    </script>
+   
+        
         <div>
             <header class="main-header">
                 <div class="container">
@@ -147,48 +156,7 @@
         
 
 
-   <%-- POST MODAL--%>
-      
-  <div class="modal fade" id="PostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Employment Posting</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-        <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          
-            <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="JobName" runat="server">Job Name</asp:label>
-            <input type="text" id="JobNameText" class="form-control validate" runat="server"/>
-          
-           <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="JobType" runat="server">Job Type(Technical, Construction, etc.)</asp:label>
-           <input type="text" id="JobTypeText" class="form-control validate" runat="server"/>
-
-             <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="Apprenticeship" runat="server">Is this an Apprenticeship? (Y or N)</asp:label>
-            <input type="text" id="ApprenText" class="form-control validate" runat="server"/>
-          
-            <asp:label data-error="wrong" data-success="right" for="defaultForm-email" id="Deadline" runat="server">Deadline(yyyy/mm/dd)</asp:label>
-            <input type="text" id="DeadlineText" class="form-control validate" runat="server"/>
-          
-        </div>
-      </div>
-      <div class="modal-footer">
-         <asp:Button ID="BtnSubmit" runat="server" Text="Submit" OnClick="SubmitPost" CssClass="btn btn-primary"></asp:Button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          
-        
-      </div>
-    </div>
-  </div>
-</div>
-            
-        <%--END POST MODAL--%>
-
-       
+  
         
 
 
@@ -213,22 +181,15 @@
     media="screen" />
 
 
-        <script type="text/javascript">
-    function ShowPopup(/*title, body*/) {
-        //$("#PostModal .modal-title").html(title);
-        //$("#PostModal .modal-body").html(body);
-        $("#PostModal").modal("show");
-    }
-</script>
+     
 
 
 
 
 
-
-<div class="container emp-profile" visible="true" /> 
+<div class="container emp-profile" visible="true" id="EmpProfile"/> 
             
-    <%--<form method="post" runat="server" id="form1">--%>
+  
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -258,13 +219,21 @@
                         </div>
                     </div>
                     <div class="col-md-2">
+                        <div class="form-group">
                         <asp:Button ID="btnShowPopup" runat="server" Text="New Post" OnClick="ShowPopup"
                          CssClass="btn btn-info btn-lg" />
-                        <br />
-                        <br />
+
+                            <br />
+                            <br />
 
                          <asp:Button ID="btnEditProf" runat="server" Text="Edit Profile"
                          CssClass="btn btn-primary" />
+
+                            </div>
+                        <br />
+                        <br />
+
+                         
                         
 
                     </div>
@@ -272,16 +241,28 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
+                            <asp:Button ID="ShowLinks" runat="server" Text="Show my Links" CssClass="btn btn-info" OnClick="ShowEmpLinks"/>
+                            <br />
+                            <br />
+
+
+                            <asp:label for="CompanyLink" runat="server" id="CompLinklbl" CssClass="alert-primary" Font-Bold Visible="false">Company Link</asp:label>
+                            <%--<input type="url" class="" id="WebLink1" name="link1" placeholder="https://example.com" runat="server" size="30"/>
+                            <asp:Button ID="WorkLinkBtn1" runat="server" Text="Save Link" Visible="false"/>--%>
+                            <asp:TextBox ID="CompanyLinkText" runat="server" TextMode="Url" style = "resize:none" placeholder="Enter company URL here!" Visible="false"></asp:TextBox>
+                            
+                            <br />
+                            <br />
+                            <asp:label for="OppLink" runat="server" id="Opplbl" CssClass="alert-primary" Font-Bold Visible="false">Opportunity Links</asp:label>
+                            <asp:TextBox ID="OppLinkText" runat="server" TextMode="Url" style="resize:none" placeholder="Enter URLs to your post here!" Visible="false"></asp:TextBox>
+                            <br />
+                            <br />
+                            <br />
+
+                            <asp:Button ID="ViewApps" runat="server" Text="View Applications"  CssClass="btn btn-success"/>
+
+                            <asp:Button ID="ViewPosts" runat="server" Text="View my Posts" CssClass="btn btn-primary"/>
+                            
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -330,6 +311,9 @@
                           
                         </div>
 
+                           
+
+       
                             
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                          
@@ -354,14 +338,10 @@
                         
                     </div>
                 </div>
-            </form>           
+
+         
+
         </div>
-
-
-
-   
-     
+    </form>
 </body>
-   
-
 </html>
