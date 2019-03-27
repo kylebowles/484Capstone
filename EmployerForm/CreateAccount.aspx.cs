@@ -185,7 +185,7 @@ public partial class Employer : System.Web.UI.Page
             System.Data.SqlClient.SqlCommand insertAct = new System.Data.SqlClient.SqlCommand();
             insertAct.Connection = sc;
 
-            insertAct.CommandText = "insert into [Account](Username,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
+            insertAct.CommandText = "insert into [Account](PersonID, Username,PasswordHash,PasswordSalt,ModifiedDate) values(@PersonID, @Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
             insertAct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             insertAct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
             insertAct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));

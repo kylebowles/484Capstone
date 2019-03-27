@@ -109,21 +109,21 @@
                         <div class="collapse navbar-collapse" id="mainMenu">
                             <ul class="navbar-nav ml-auto text-uppercase f1">
                                 <li>
-                                    <a href="CUEDIN.aspx#home" rel="m_PageScroll2id">home</a>
+                                    <a href="EmployerLanding.aspx#home" rel="m_PageScroll2id">home</a>
                                 </li>
                                 <li>
                                     <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
                                 </li>
                                 <li>
-                                    <a href="#service" rel="m_PageScroll2id">View Schools</a>
+                                    <a href="JobSearchPAge.aspx" rel="m_PageScroll2id">Search Jobs</a>
                                 </li>
 
                                 <li>
-                                    <a href="#team" rel="m_PageScroll2id">Create Post</a>
+                                    <a href="The Community.aspx" rel="m_PageScroll2id">Create Post</a>
                                 </li>
 
                                 <li>
-                                    <a href="TableauData.aspx" rel="m_PageScroll2id">Community Insights</a>
+                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id">Logout</asp:linkbutton>
                                 </li>
                             </ul>
                         </div>

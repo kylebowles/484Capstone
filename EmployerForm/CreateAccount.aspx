@@ -317,7 +317,7 @@
 		<!-- ---------- -->
         <!-- js plugins -->
         <script src="js/jquery-1.12.4.min.js"></script>
-        <script src="js/queryloader2.min.js"></script>
+        <%--<script src="js/queryloader2.min.js"></script>--%>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/owl.carousel.js"></script>
         <script src="js/wow.min.js"></script>
