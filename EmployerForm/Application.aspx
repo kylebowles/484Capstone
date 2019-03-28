@@ -53,7 +53,7 @@
         }
         #mainheader{
             
-            background-color: #000000;
+            /*background-color: #000000;*/
             
             
         }
@@ -70,11 +70,11 @@
 <body style="background-color: #7D7D7D;">
     <form id="form1" runat="server">
         <div>
-            <header id="mainheader" class="main-header">
+            <header class="main-header">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg main-nav px-0">
                         <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
-                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100">
+                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100" />
                         </a>
                         <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
                             <span class="hamburger-box">
@@ -84,21 +84,21 @@
                         <div class="collapse navbar-collapse" id="mainMenu">
                             <ul class="navbar-nav ml-auto text-uppercase f1">
                                 <li>
-                                    <a href="CUEDIN.aspx#home" rel="m_PageScroll2id">home</a>
+                                    <a href="RevisedLanding.aspx#home" rel="m_PageScroll2id">home</a>
                                 </li>
                                 <li>
-                                    <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50">about</a>
+                                    <a href="Application.aspx" rel="m_PageScroll2id" data-ps2id-offset="50">Job Application</a>
                                 </li>
                                 <li>
-                                    <a href="#service" rel="m_PageScroll2id">View Schools</a>
-                                </li>
-
-                                <li>
-                                    <a href="#team" rel="m_PageScroll2id">Create Post</a>
+                                    <a href="JobSearchPAge.aspx" rel="m_PageScroll2id">Search Jobs</a>
                                 </li>
 
                                 <li>
-                                    <a href="TableauData.aspx" rel="m_PageScroll2id">Community Insights</a>
+                                    <a href="The Community.aspx" rel="m_PageScroll2id">Create Post</a>
+                                </li>
+
+                                <li>
+                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id">Logout</asp:linkbutton>
                                 </li>
                             </ul>
                         </div>
@@ -107,6 +107,7 @@
                 <!-- /.container -->
             </header>
         </div>
+       
 
         <%--END HEADER LINK--%>
 

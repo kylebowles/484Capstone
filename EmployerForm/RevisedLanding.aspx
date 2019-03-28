@@ -134,14 +134,56 @@
 
 
 <body style="background-color:indianred">
+ <form id="form2" runat="server">
+    <div>
+            <header class="main-header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg main-nav px-0">
+                        <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
+                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100" />
+                        </a>
+                        <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="mainMenu">
+                            <ul class="navbar-nav ml-auto text-uppercase f1">
+                                <li>
+                                    <a href="RevisedLanding.aspx#home" rel="m_PageScroll2id">home</a>
+                                </li>
+                                <li>
+                                    <a href="Application.aspx" rel="m_PageScroll2id" data-ps2id-offset="50">Job Application</a>
+                                </li>
+                                <li>
+                                    <a href="JobSearchPAge.aspx" rel="m_PageScroll2id">Search Jobs</a>
+                                </li>
 
+                                <li>
+                                    <a href="The Community.aspx" rel="m_PageScroll2id">Create Post</a>
+                                </li>
+
+                                <li>
+                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id">Logout</asp:linkbutton>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- /.container -->
+            </header>
+        </div>
       
     
 
-  
+<br />
+<br />
+<br />
 
-            <form runat="server" id="form1">
-                 <div class="container emp-profile" runat="server">
+     <br />
+<br />
+<br />
+     <div class="container emp-profile" runat="server">
 
 
 
@@ -183,6 +225,7 @@
     </div>
   </div>
 </div>
+                    
        
 
            <script type="text/javascript">
@@ -382,7 +425,7 @@
                     </div>
                 </div>
                      </div>
-            </form>           
-        
+                     
+      </form>  
 </body>
 </html>

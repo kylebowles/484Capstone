@@ -14,10 +14,10 @@ public partial class RevisedLanding : System.Web.UI.Page
 {
 
     //SQL Connection to AWS
-    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
-    //SQL Connection to Localhost
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    ////SQL Connection to Localhost
+    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -267,6 +267,17 @@ public partial class RevisedLanding : System.Web.UI.Page
 
     }
 
-    
+    public void LogOutUser(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+
+        Session["loggedIn"] = "false";
+        Session["loggedOut"] = "true";
+
+        Response.Redirect("CuedIn.aspx");
+    }
+
+
 
 }
