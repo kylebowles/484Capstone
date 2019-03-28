@@ -53,7 +53,7 @@
         }
         #mainheader{
             
-            /*background-color: #000000;*/
+            background-color: #000000;
             
             
         }
@@ -69,8 +69,8 @@
 </head>
 <body style="background-color: #7D7D7D;">
     <form id="form1" runat="server">
-        <div>
-            <header class="main-header">
+        <div class="mainheader">
+            <header id="mainheader" class="main-header">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg main-nav px-0">
                         <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
