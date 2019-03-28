@@ -26,6 +26,10 @@
     <link href="style.css" rel="stylesheet">
     <!-- responsive.css -->
     <link href="css/responsive.css" rel="stylesheet">
+
+
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <body style="background-color:#FFF;">
@@ -698,7 +702,7 @@
     <!-- ---------- -->
     <!-- js plugins -->
     <script src="js/jquery-1.12.4.min.js"></script>
-    <%--<script src="js/queryloader2.min.js"></script>--%>
+    <script src="js/queryloader2.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/owl.carousel.js"></script>
     <script src="js/wow.min.js"></script>
