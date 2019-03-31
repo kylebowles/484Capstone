@@ -13,9 +13,11 @@ using System.ServiceModel.Channels;
 
 public partial class Application : System.Web.UI.Page
 {
-    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    //aws connection string
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    //Localhost connection string
+    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,18 +26,18 @@ public partial class Application : System.Web.UI.Page
 
 
 
-   
+
 
     protected void Apply_Click1(object sender, EventArgs e)
     {
         sc.Open();
         System.Data.SqlClient.SqlCommand insert = new System.Data.SqlClient.SqlCommand();
         insert.Connection = sc;
-        insert.CommandText = "INSERT INTO APPLICATION values (@RequestID, @EmployerID, @OpportunityID, @StudentID, @SATMath, @SATVerbal, @ACTEnglish, @ACTMath, @ACTReading, @ACTScience, @ACTComposite, @first_name, @last_name, @Email)";
+        insert.CommandText = "INSERT INTO APPLICATION values (@EmployerID, @OpportunityID, @StudentID, @SATMath, @SATVerbal, @ACTMath, @ACTEnglish, @ACTReading, @ACTScience, @ACTComposite, @FirstName, @LastName, @Email)";
 
-        insert.Parameters.AddWithValue("@RequestID", ddRequest.SelectedValue);
+        //insert.Parameters.AddWithValue("@RequestID", ddRequest.SelectedValue);
         insert.Parameters.AddWithValue("@EmployerID", ddEmployer.SelectedValue);
-        insert.Parameters.AddWithValue("@OpportunityID", ddRequest.SelectedValue);
+        insert.Parameters.AddWithValue("@OpportunityID", ddOpportunity.SelectedValue);
         insert.Parameters.AddWithValue("@StudentID", ddStudentID.SelectedValue);
         insert.Parameters.AddWithValue("@SATMath", txtSATMath.Text);
         insert.Parameters.AddWithValue("@SATVerbal", txtSATVerbal.Text);
@@ -44,13 +46,25 @@ public partial class Application : System.Web.UI.Page
         insert.Parameters.AddWithValue("@ACTReading", txtACTReading.Text);
         insert.Parameters.AddWithValue("@ACTScience", txtACTScience.Text);
         insert.Parameters.AddWithValue("@ACTComposite", txtComposite.Text);
-        insert.Parameters.AddWithValue("@first_name", txtFirstName.Text);
-        insert.Parameters.AddWithValue("@last_name", txtLastName.Text);
+        insert.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+        insert.Parameters.AddWithValue("@LastName", txtLastName.Text);
         insert.Parameters.AddWithValue("@Email", txtEmail.Text);
-
+        
 
         insert.ExecuteNonQuery();
         sc.Close();
+
+        
+        //geting max AppID
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getMax = new System.Data.SqlClient.SqlCommand();
+        getMax.Connection = sc;
+        getMax.CommandText = "SELECT MAX(ApplicationID) from APPLICATION";
+        int appID = Convert.ToInt32(getMax.ExecuteScalar());
+        txtTest.Text = appID.ToString();
+        getMax.ExecuteNonQuery();
+        sc.Close();
+        
     }
 
     protected void Populate_Click(object sender, EventArgs e)
@@ -80,4 +94,15 @@ public partial class Application : System.Web.UI.Page
         txtACTScience.Text = String.Empty;
         txtComposite.Text = String.Empty;
     }
+    public void LogOutUser(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+
+        Session["loggedIn"] = "false";
+        Session["loggedOut"] = "true";
+
+        Response.Redirect("CuedIn.aspx");
+    }
+
 }
