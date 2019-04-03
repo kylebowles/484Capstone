@@ -13,9 +13,11 @@ using System.ServiceModel.Channels;
 
 public partial class Application : System.Web.UI.Page
 {
-    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    //aws connection string
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    //Localhost connection string
+    //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -92,4 +94,15 @@ public partial class Application : System.Web.UI.Page
         txtACTScience.Text = String.Empty;
         txtComposite.Text = String.Empty;
     }
+    public void LogOutUser(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+
+        Session["loggedIn"] = "false";
+        Session["loggedOut"] = "true";
+
+        Response.Redirect("CuedIn.aspx");
+    }
+
 }

@@ -10,14 +10,14 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.ServiceModel.Channels;
-
+using System.Xml.Linq;
 
 public partial class Employer : System.Web.UI.Page
 {
 
 
     //SQL Connection
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -49,6 +49,7 @@ public partial class Employer : System.Web.UI.Page
         State.Value = String.Empty;
         CompCountry.Value = String.Empty;
         CompZip.Value = String.Empty;
+
     }
 
     //Populate button
@@ -97,6 +98,7 @@ public partial class Employer : System.Web.UI.Page
         else
         {
             EmailTaken.Visible = false;
+           
         }
 
         checkPassword(bus);
@@ -133,7 +135,45 @@ public partial class Employer : System.Web.UI.Page
             insertAddress.ExecuteNonQuery();
             sc.Close();
 
-            //Insert into person table
+            //Insert intp Employer table
+            //Insert into employer table
+            sc.Open();
+            System.Data.SqlClient.SqlCommand insertEmployer = new System.Data.SqlClient.SqlCommand();
+            insertEmployer.Connection = sc;
+
+
+
+
+
+
+            SqlCommand selectCompany = new SqlCommand();
+            selectCompany.Connection = sc;
+            selectCompany.CommandText = "SELECT EmployerName from Employer where EmployerName = " +  "'" + bus.getCompany() + "'";
+            selectCompany.ExecuteNonQuery();
+            SqlDataReader companyReader = selectCompany.ExecuteReader();
+
+            for (int i = 0; i < 1; i++)
+            {
+                if (companyReader.HasRows)
+                {
+                    break;
+                }
+                else
+                {
+                    companyReader.Close();
+
+                    insertEmployer.CommandText = "insert into [Employer](EmployerName,isApproved) values(@EmployerName,@isApproved)";
+                    insertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
+                    insertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
+                    
+
+                    insertEmployer.ExecuteNonQuery();
+                }
+            }
+            companyReader.Close();
+            sc.Close();
+
+            //Insert into Person table
             sc.Open();
             System.Data.SqlClient.SqlCommand insertPerson = new System.Data.SqlClient.SqlCommand();
             insertPerson.Connection = sc;
@@ -145,52 +185,65 @@ public partial class Employer : System.Web.UI.Page
             getdbAddressID.ExecuteNonQuery();
             int holdAddID = (Int32)getdbAddressID.ExecuteScalar();
 
-            insertPerson.CommandText = "insert into [Person](FirstName,LastName,Email,personType,AddressID,PhoneNumber) values(@FirstName,@LastName,@Email,@PersonType,@AddressID,@PhoneNumber)";
+
+            SqlCommand EmpIDforPerson = new SqlCommand();
+            EmpIDforPerson.Connection = sc;
+            EmpIDforPerson.CommandText = "Select EmployerID from Employer where Employername = " + "'" + bus.getCompany() + "'";
+            EmpIDforPerson.ExecuteNonQuery();
+            int holdEmpID = (Int32)EmpIDforPerson.ExecuteScalar();
+
+            
+            int length = ProfilePic.PostedFile.ContentLength;
+            byte[] pic = new byte[length];
+            ProfilePic.PostedFile.InputStream.Read(pic, 0, length);
+            Session["pic"] = ProfilePic.PostedFile.InputStream.Read(pic, 0, length);
+
+
+            insertPerson.CommandText = "insert into [Person](FirstName,LastName,Email,personType,AddressID,PhoneNumber,JobTitle,ProfilePhoto,PersonalSummary,EmployerID)" +
+                " values(@FirstName,@LastName,@Email,@PersonType,@AddressID,@PhoneNumber,@JobTitle,@ProfilePhoto,@PersonalSummary,@EmployerID)";
             insertPerson.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
             insertPerson.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
             insertPerson.Parameters.Add(new SqlParameter("@Email", bus.getEmail()));
             insertPerson.Parameters.Add(new SqlParameter("@PhoneNumber", bus.getPhone()));
+            insertPerson.Parameters.Add(new SqlParameter("@JobTitle", bus.getJobTitle()));
+            insertPerson.Parameters.Add(new SqlParameter("ProfilePhoto", pic));
+            insertPerson.Parameters.Add(new SqlParameter("@PersonalSummary", bus.getEmpSummary()));
             insertPerson.Parameters.Add(new SqlParameter("@PersonType", "Employer"));
             insertPerson.Parameters.Add(new SqlParameter("@AddressID", holdAddID));
+            insertPerson.Parameters.Add(new SqlParameter("@EmployerID", holdEmpID));
+            
 
             insertPerson.ExecuteNonQuery();
 
             sc.Close();
 
+           
 
-            //Insert into employer table
+
+
+
+
+
+            //Insert into account table
             sc.Open();
-            System.Data.SqlClient.SqlCommand insertEmployer = new System.Data.SqlClient.SqlCommand();
-            insertEmployer.Connection = sc;
+            System.Data.SqlClient.SqlCommand insertAct = new System.Data.SqlClient.SqlCommand();
+            insertAct.Connection = sc;
 
             System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
             getdbPersonID.Connection = sc;
             getdbPersonID.CommandText = "SELECT MAX(PERSONID) from PERSON";
             getdbPersonID.ExecuteNonQuery();
-            int holdPersonID = (Int32)getdbPersonID.ExecuteScalar();
+            Int32 holdPersonID = (Int32)getdbPersonID.ExecuteScalar();
 
-            insertEmployer.CommandText = "insert into [Employer](EmployerName,JobTitle,PersonID,isApproved,EmployerSummary) values(@EmployerName,@JobTitle,@PersonID,@isApproved,@EmployerSummary)";
-            insertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
-            insertEmployer.Parameters.Add(new SqlParameter("@JobTitle", bus.getJobTitle()));
-            insertEmployer.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
-            insertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
-            insertEmployer.Parameters.Add(new SqlParameter("@EmployerSummary", bus.getEmpSummary()));
 
-            insertEmployer.ExecuteNonQuery();
 
-            sc.Close();
-
-            //Insert into activity table
-            sc.Open();
-            System.Data.SqlClient.SqlCommand insertAct = new System.Data.SqlClient.SqlCommand();
-            insertAct.Connection = sc;
-
-            insertAct.CommandText = "insert into [Account](PersonID, Username,PasswordHash,PasswordSalt,ModifiedDate) values(@PersonID, @Username,@PasswordHash,@PasswordSalt,@ModifiedDate)";
-            insertAct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+            insertAct.CommandText = "insert into [Account](Username,PersonID,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PersonID, @PasswordHash,@PasswordSalt,@ModifiedDate)";
+           
             insertAct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
             insertAct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
             insertAct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
             insertAct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
+            insertAct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
             insertAct.ExecuteNonQuery();
 
 
@@ -199,6 +252,10 @@ public partial class Employer : System.Web.UI.Page
 
             //sql.Close();
             sc.Close();
+
+            clearSubmit();
+
+
 
 
         }
@@ -291,9 +348,30 @@ public partial class Employer : System.Web.UI.Page
         }
     }
 
-    protected void EmpSummary(object sender, EventArgs e)
-    {
-        Session["empSummary"] = Summary.Value.ToString();
-    }
+    
 
+    //protected void EmpSummary(object sender, EventArgs e)
+    //{
+    //    Session["empSummary"] = Summary.Value.ToString();
+    //}
+     protected void clearSubmit()
+    {
+        FirstName.Value = String.Empty;
+        LastName.Value = String.Empty;
+        CompanyName.Value = String.Empty;
+        JobTitle.Value = String.Empty;
+        EmailAdd.Value = String.Empty;
+        Password1.Value = String.Empty;
+        Password2.Value = String.Empty;
+        PhoneNumber.Value = String.Empty;
+        CompHouseNumber.Value = String.Empty;
+        CompStreet.Value = String.Empty;
+        City.Value = String.Empty;
+        CompCountry.Value = String.Empty;
+        CompZip.Value = String.Empty;
+        State.Value = String.Empty;
+        Summary.Value = String.Empty;
+    }
+    
+    
 }

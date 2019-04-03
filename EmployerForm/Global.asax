@@ -26,17 +26,23 @@
 
     void Session_Start(object sender, EventArgs e)
     {
-        
+
     }
 
     void Session_End(object sender, EventArgs e)
     {
-        System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+        //Localhost
+        //System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+
+        //AWS
+        System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+
+
         Session["DateTimeEnd"] = DateTime.Now;
         sc.Open();
         System.Data.SqlClient.SqlCommand query = new System.Data.SqlClient.SqlCommand();
         query.Connection = sc;
-        
+
         query.CommandText = "UPDATE User_LogTime SET Logout_Time = @Logout_Time, offline=0 WHERE offline=1 AND SID = @SID AND PersonID=@userID";
         query.Parameters.AddWithValue("@UserId", Session["loginID"]);
         query.Parameters.AddWithValue("@SID", Session.SessionID);

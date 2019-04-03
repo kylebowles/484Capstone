@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 public partial class CUEDIN : System.Web.UI.Page
 {
-    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
-    System.Data.SqlClient.SqlConnection scloop = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection sc = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
+    System.Data.SqlClient.SqlConnection scloop = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["loggedOut"] == null)
@@ -85,7 +85,7 @@ public partial class CUEDIN : System.Web.UI.Page
                     LoginSuccess.Visible = false;
                     LoginFail.Visible = false;
                     PreLogin.Visible = false;
-                    Response.Redirect("EmployerLanding.aspx");
+                    Response.Redirect("RevisedLanding.aspx");
 
 
 

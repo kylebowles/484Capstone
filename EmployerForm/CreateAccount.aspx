@@ -223,6 +223,18 @@
                                             </div>
                                             </div>
 
+<%--                                                             <div class="form-group">
+                                                                 <div class="profile-img">
+                                        <img src="" alt="" />
+                                        <div class="file btn btn-lg btn-primary" >
+                                            Change Photo
+                                                <input type="file" name="file"/>
+                                            </div>--%>
+                                            <div class="form-group">
+                                            <asp:label for="ProfilePic" runat="server">Upload Image</asp:label>
+                                                <input type="file" class="form-control" id="ProfilePic" name="profilePic" placeholder="Upload profile image" runat="server" />
+                                                </div>
+
                                             <div class="form-group">
                                               <asp:label for="Summary" runat="server" Text="Enter an Employer Summary here! Students you're looking for, opportunities, etc."></asp:label>
                                               <textarea class="form-control rounded-0" id="Summary" rows="5" placeholder="Enter summary here. This can be edited and updated from your profile once you account is created." runat="server"></textarea>
@@ -317,7 +329,7 @@
 		<!-- ---------- -->
         <!-- js plugins -->
         <script src="js/jquery-1.12.4.min.js"></script>
-        <%--<script src="js/queryloader2.min.js"></script>--%>
+        <script src="js/queryloader2.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/owl.carousel.js"></script>
         <script src="js/wow.min.js"></script>
