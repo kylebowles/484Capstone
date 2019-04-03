@@ -17,7 +17,7 @@ using System.ServiceModel.Channels;
 public partial class CommunityTEST : System.Web.UI.Page
 {
     //This is your file originally
-    System.Data.SqlClient.SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+    System.Data.SqlClient.SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -174,11 +174,11 @@ public partial class CommunityTEST : System.Web.UI.Page
     [System.Web.Script.Services.ScriptMethod()]
     public static void BtnLikePost_Click(int n)
     {
-        SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+        SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
         //GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
         //Label lblLikedPostId = (Label)row.FindControl("lblPostId");
         //TextBox txtCommentParent = (TextBox)row.FindControl("txtCommentReply");
-        SqlCommand cmd = new SqlCommand("Insert into [dbo].[Like](PersonID, PostID) values (14, @PostID)", sc);
+        SqlCommand cmd = new SqlCommand("Insert into [dbo].[Like](PersonID, PostID) values (1, @PostID)", sc);
         //cmd.Parameters.Add(new SqlParameter("@PersonID"));
         cmd.Parameters.Add(new SqlParameter("@PostID", n));
         sc.Open();
@@ -191,11 +191,11 @@ public partial class CommunityTEST : System.Web.UI.Page
     [System.Web.Script.Services.ScriptMethod()]
     public static void BtnUnLikePost_Click(int n)
     {
-        SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+        SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
         //GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
         //Label lblLikeId = (Label)row.FindControl("lblPostId");
         //TextBox txtCommentParent = (TextBox)row.FindControl("txtCommentReply");
-        SqlCommand cmd = new SqlCommand("Delete from [dbo].[Like] where PersonID = 14 and PostID = " + n, sc);
+        SqlCommand cmd = new SqlCommand("Delete from [dbo].[Like] where PersonID = 1 and PostID = " + n, sc);
         sc.Open();
         cmd.ExecuteNonQuery();
         sc.Close();

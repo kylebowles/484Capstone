@@ -97,9 +97,9 @@ public class Post
 
     public static List<Post> getAllPostInfo()
     {
-        string connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+        //string connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
         List<Post> listPosters = new List<Post>();
-        using (SqlConnection sc = new SqlConnection(connection))
+        using (SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString()))
         {
             SqlCommand sqlCmd = new SqlCommand("select post.postID, Post.PostDescription, Post.DateCreated, post.PersonID, OpportunityID, Post.EmployerID, isnull(EmployerName, '')[EmployerName], Person.FirstName + ' ' + Person.LastName[PersonName], count([dbo].[Like].LikeID)[LikeCount] from post full outer join [dbo].[like] on [dbo].[like].PostID = Post.PostID full outer join person on Post.PersonID = Person.PersonID inner join Employer on Post.EmployerID = Employer.EmployerID group by post.postid, PostDescription, DateCreated, post.PersonID, OpportunityID, Post.EmployerID, EmployerName, Person.FirstName, Person.LastName order by PostID desc", sc);
             sc.Open();

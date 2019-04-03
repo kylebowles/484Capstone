@@ -13,7 +13,7 @@ using System.Web.UI.HtmlControls;
 public partial class The_Community : System.Web.UI.Page
 {
     //This is your file originally
-    SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+    SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -48,7 +48,7 @@ public partial class The_Community : System.Web.UI.Page
         cmd.Parameters.Add(new SqlParameter("@Description", newPost.getPostDesc()));
         cmd.Parameters.Add(new SqlParameter("@DateCreated", DateTime.Now));
         cmd.Parameters.Add(new SqlParameter("@Deadline", DateTime.Now));
-        cmd.Parameters.Add(new SqlParameter("@PersonID", 14));
+        cmd.Parameters.Add(new SqlParameter("@PersonID", Session["LoginID"]));
         cmd.Parameters.Add(new SqlParameter("@EmployerID", 1));
         cmd.Parameters.Add(new SqlParameter("@OpportunityID", 1));
         cmd.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
@@ -87,7 +87,7 @@ public partial class The_Community : System.Web.UI.Page
     [System.Web.Script.Services.ScriptMethod()]
     public static void BtnLikePost_Click(int n)
     {
-        SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+        SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
         //GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
         //Label lblLikedPostId = (Label)row.FindControl("lblPostId");
         //TextBox txtCommentParent = (TextBox)row.FindControl("txtCommentReply");
@@ -104,7 +104,7 @@ public partial class The_Community : System.Web.UI.Page
     [System.Web.Script.Services.ScriptMethod()]
     public static void BtnUnLikePost_Click(int n)
     {
-        SqlConnection sc = new SqlConnection("Data Source = localhost; Initial Catalog = Cued-In; Integrated Security = True");
+        SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
         //GridViewRow row = (sender as Button).NamingContainer as GridViewRow;
         //Label lblLikeId = (Label)row.FindControl("lblPostId");
         //TextBox txtCommentParent = (TextBox)row.FindControl("txtCommentReply");

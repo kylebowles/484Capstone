@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Configuration;
 public partial class CreatePost : System.Web.UI.Page
 {
     //Create SQL connection
@@ -15,7 +15,7 @@ public partial class CreatePost : System.Web.UI.Page
         try
         {
             //Connect to Cued-In DB
-            sql.ConnectionString = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+            sql.ConnectionString = ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString();
             sql.Open();
 
         }

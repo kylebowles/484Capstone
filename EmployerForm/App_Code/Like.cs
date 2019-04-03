@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
-
+using System.Configuration;
 /// <summary>
 /// Summary description for Like
 /// </summary>
@@ -22,7 +22,7 @@ public class Like
     {
         List<Like> Likes = new List<Like>();
         String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-        using (SqlConnection sc = new SqlConnection(connection))
+        using (SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString()))
         {
             SqlCommand sqlcmd = new SqlCommand(" select Post.PostID, Post.PersonID, count([dbo].[Like].LikeID)[LikeCount] from Post full outer join [dbo].[Like] on post.PostID = [dbo].[Like].PostID where [dbo].[Like].PostID = @PostID group by post.postID, Post.Personid order by post.PostID", sc);
             sqlcmd.Parameters.Add(new SqlParameter("@PostID", postID));
