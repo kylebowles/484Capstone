@@ -27,41 +27,34 @@ public class Comment
 
     public Comment()
     {
-    }  
-
-
-        public static List<Comment> GetComments(int postID)
-        {
-            List<Comment> comments = new List<Comment>();
-        //Localhost Connection
-        //String connection = (ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
-
-        //AWS Connection
-        String connection = (ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
-
-
-
-        using (SqlConnection sc = new SqlConnection(connection))
-            {
-                SqlCommand sqlcmd = new SqlCommand("Select Comment.PersonID, Employer.EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName], Comment.CommentDescription, Comment.DateCreated, Comment.PostID from Comment Inner join Person on Comment.PersonID = Person.PersonID inner join Employer on Employer.PersonID = person.PersonID inner join Post on Comment.PostID = Post.PostID where Comment.PostID = @PostID", sc);
-                sqlcmd.Parameters.Add(new SqlParameter("@PostID", postID));
-                sc.Open();
-                SqlDataReader sqldr = sqlcmd.ExecuteReader();
-                while (sqldr.Read())
-                {
-                    Comment newComment = new Comment();
-                    newComment.personID = Convert.ToInt32(sqldr["PersonID"]);
-                    String postDate = sqldr["DateCreated"].ToString();
-                    postDate = postDate.Substring(0, postDate.LastIndexOf("/") + 5);
-                    newComment.dateCreated = postDate;
-                    newComment.commentDescription = sqldr["CommentDescription"].ToString();
-                    newComment.EmployerName = sqldr["EmployerName"].ToString();
-                    newComment.personName = sqldr["PersonName"].ToString();
-                    comments.Add(newComment);
-                }
-            }
-            return comments;
-        }
-
-
     }
+
+
+    public static List<Comment> GetComments(int postID)
+    {
+        List<Comment> comments = new List<Comment>();
+        String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+        using (SqlConnection sc = new SqlConnection(connection))
+        {
+            SqlCommand sqlcmd = new SqlCommand("Select Comment.PersonID, isnull(Employer.EmployerName,'') [EmployerName], Person.FirstName + ' ' + Person.LastName [PersonName], Comment.CommentDescription, Comment.DateCreated, Comment.PostID from Comment full outer join Person on Comment.PersonID = Person.PersonID full outer join Employer on Employer.EmployerID = person.EmployerID inner join Post on Comment.PostID = Post.PostID where Comment.PostID = @PostID", sc);
+            sqlcmd.Parameters.Add(new SqlParameter("@PostID", postID));
+            sc.Open();
+            SqlDataReader sqldr = sqlcmd.ExecuteReader();
+            while (sqldr.Read())
+            {
+                Comment newComment = new Comment();
+                newComment.personID = Convert.ToInt32(sqldr["PersonID"]);
+                String postDate = sqldr["DateCreated"].ToString();
+                postDate = postDate.Substring(0, postDate.LastIndexOf("/") + 5);
+                newComment.dateCreated = postDate;
+                newComment.commentDescription = sqldr["CommentDescription"].ToString();
+                newComment.EmployerName = sqldr["EmployerName"].ToString();
+                newComment.personName = sqldr["PersonName"].ToString();
+                comments.Add(newComment);
+            }
+        }
+        return comments;
+    }
+
+
+}

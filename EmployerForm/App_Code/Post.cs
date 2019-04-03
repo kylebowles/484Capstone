@@ -13,7 +13,7 @@ public class Post
 {
     //Data Fields
     public int PostID { get; set; }
-    public String PostDescription {get; set;}
+    public String PostDescription { get; set; }
     public String DateCreated { get; set; }
     public DateTime Deadline { get; set; }
     public DateTime ModifiedDate { get; set; }
@@ -97,25 +97,20 @@ public class Post
 
     public static List<Post> getAllPostInfo()
     {
-        //Localhost Connection
-        //String connection = (ConfigurationManager.ConnectionStrings["LocalhostConnectionString"].ToString());
-
-        //AWS Connection
-        String connection = (ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString());
-
-
+        string connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
         List<Post> listPosters = new List<Post>();
         using (SqlConnection sc = new SqlConnection(connection))
         {
-            SqlCommand sqlCmd = new SqlCommand("select post.postID, PostDescription, DateCreated, post.PersonID, OpportunityID, EmployerID, EmployerName, Person.FirstName + ' ' + Person.LastName [PersonName],count([dbo].[Like].LikeID)[LikeCount] from post full outer join [dbo].[like] on [dbo].[like].PostID = Post.PostID inner join employer on Post.PersonID = Employer.PersonID inner join Person on Person.PersonID = Employer.PersonID group by post.postid, PostDescription, DateCreated, post.PersonID, OpportunityID, EmployerID, EmployerName, Person.FirstName, Person.LastName order by PostID desc", sc);
+            SqlCommand sqlCmd = new SqlCommand("select post.postID, Post.PostDescription, Post.DateCreated, post.PersonID, OpportunityID, Post.EmployerID, isnull(EmployerName, '')[EmployerName], Person.FirstName + ' ' + Person.LastName[PersonName], count([dbo].[Like].LikeID)[LikeCount] from post full outer join [dbo].[like] on [dbo].[like].PostID = Post.PostID full outer join person on Post.PersonID = Person.PersonID inner join Employer on Post.EmployerID = Employer.EmployerID group by post.postid, PostDescription, DateCreated, post.PersonID, OpportunityID, Post.EmployerID, EmployerName, Person.FirstName, Person.LastName order by PostID desc", sc);
             sc.Open();
             SqlDataReader sqlDR = sqlCmd.ExecuteReader();
-            while(sqlDR.Read())
+            while (sqlDR.Read())
             {
                 Post newPost = new Post();
                 newPost.PostID = Convert.ToInt32(sqlDR["PostID"]);
                 newPost.EmployerName = sqlDR["EmployerName"].ToString();
                 newPost.PersonName = sqlDR["PersonName"].ToString();
+                newPost.PersonID = Convert.ToInt32(sqlDR["PersonID"]);
                 //newPost.PersonID = Convert.ToInt32(sqlDR["PersonID"]);
                 string createdDate = sqlDR["DateCreated"].ToString();
                 newPost.setDateCreated(createdDate);

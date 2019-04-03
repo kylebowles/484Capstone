@@ -21,13 +21,7 @@ public class Like
     public static List<Like> GetLikes(int postID)
     {
         List<Like> Likes = new List<Like>();
-
-        //Localhost
-        //String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
-
-        //AWS
-        String connection = "server=aa1rz8rrwdmbbes.czxjloyv3w4v.us-east-1.rds.amazonaws.com;database=Cued-In;uid=signaturesystems;password=Cissmad2019";
-
+        String connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
         using (SqlConnection sc = new SqlConnection(connection))
         {
             SqlCommand sqlcmd = new SqlCommand(" select Post.PostID, Post.PersonID, count([dbo].[Like].LikeID)[LikeCount] from Post full outer join [dbo].[Like] on post.PostID = [dbo].[Like].PostID where [dbo].[Like].PostID = @PostID group by post.postID, Post.Personid order by post.PostID", sc);
