@@ -274,15 +274,14 @@
                         </button>
                         <div class="collapse navbar-collapse" id="mainMenu">
                             <ul class="navbar-nav ml-auto text-uppercase f1">
-                                <li>
-                                    <a href="JobSearchPage.aspx" rel="m_PageScroll2id">Search Posts</a>
-                                </li>
-
-                                <li>
-                                    <a href="The Community.aspx" rel="m_PageScroll2id">Create Post</a>
+                                 <li>
+                                    <a href="RevisedLanding.aspx" rel="m_PageScroll2id">Home</a>
                                 </li>
                                 <li>
-                                    <a href="" rel="m_PageScroll2id">Post Timeline</a>
+                                    <a href="Application.aspx" rel="m_PageScroll2id" >Search Posts</a>
+                                </li>
+                                <li>
+                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id">Post Timeline</a>
                                 </li>
                                 <li>
                                     <a href="TableauData.aspx" rel="m_PageScroll2id">View Community Insights</a>

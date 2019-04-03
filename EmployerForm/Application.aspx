@@ -138,8 +138,8 @@
 </head>
 <body class="contact text-center text-white text-uppercase">
     <form id="form1" runat="server">
-        <div class="mainheader">
-            <header id="mainheader" class="main-header">
+        <div>
+            <header class="main-header">
                 <div class="container">
                     <nav class="navbar navbar-expand-lg main-nav px-0">
                         <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
@@ -151,24 +151,23 @@
                             </span>
                         </button>
                         <div class="collapse navbar-collapse" id="mainMenu">
-                            <ul class="navbar-nav ml-auto text-uppercase f1">
-                                <li>
-                                    <a href="RevisedLanding.aspx#home" rel="m_PageScroll2id">home</a>
+                            <ul class="navbar-nav ml-auto text-uppercase f1" >
+                                    <li>
+                                    <a href="RevisedLanding.aspx" rel="m_PageScroll2id">Home</a>
                                 </li>
                                 <li>
-                                    <a href="Application.aspx" rel="m_PageScroll2id" data-ps2id-offset="50">Job Application</a>
+                                    <a href="Application.aspx" rel="m_PageScroll2id">Search Posts</a>
                                 </li>
                                 <li>
-                                    <a href="JobSearchPAge.aspx" rel="m_PageScroll2id">Search Jobs</a>
+                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id" >Post Timeline</a>
+                                </li>
+                                <li>
+                                    <a href="TableauData.aspx" rel="m_PageScroll2id" >View Community Insights</a>
+                                </li>
+                                <li>
+                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id">Logout</asp:linkbutton>
                                 </li>
 
-                                <li>
-                                    <a href="The Community.aspx" rel="m_PageScroll2id">Create Post</a>
-                                </li>
-
-                                <li>
-                                    <asp:LinkButton runat="server" ID="logout" OnClick="LogOutUser" rel="m_PageScroll2id">Logout</asp:LinkButton>
-                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -176,6 +175,7 @@
                 <!-- /.container -->
             </header>
         </div>
+           
 
 
         <%--END HEADER LINK--%>
@@ -267,13 +267,13 @@
                     <div class="row">
                         <asp:DropDownList ID="ddInterest1" class="form-control col-sm-3" runat="server" DataSourceID="SqlDataSource1" DataTextField="InterestName" DataValueField="InterestName" SelectionMode="multiple"></asp:DropDownList>
 
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT [InterestName] FROM [Interest]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [InterestName] FROM [Interest]"></asp:SqlDataSource>
                         <asp:DropDownList ID="ddInterest2" class="form-control col-sm-3" runat="server" DataSourceID="SqlDataSource1" DataTextField="InterestName" DataValueField="InterestName" SelectionMode="multiple"></asp:DropDownList>
 
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT [InterestName] FROM [Interest]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [InterestName] FROM [Interest]"></asp:SqlDataSource>
                         <asp:DropDownList ID="ddInterest3" class="form-control col-sm-3" runat="server" DataSourceID="SqlDataSource1" DataTextField="InterestName" DataValueField="InterestName" SelectionMode="multiple"></asp:DropDownList>
 
-                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT [InterestName] FROM [Interest]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [InterestName] FROM [Interest]"></asp:SqlDataSource>
                     </div>
 
 

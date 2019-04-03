@@ -13,39 +13,46 @@
     <div class="page-wrapper">
         <!-- ----------------- -->
         <!-- main-header start -->
-        <header class="main-header">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg main-nav px-0">
-                    <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
-                        <img src="img/tinylogo.png" alt="Logo" width="400" height="100">
-                    </a>
-                    <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="mainMenu">
-                        <ul class="navbar-nav ml-auto text-uppercase f1">
-                            <li>
-                                <a href="EmployerLanding.aspx" rel="m_PageScroll2id" style="color: black">Home</a>
-                            </li>
-                            <li>
-                                <a href="#about" rel="m_PageScroll2id" data-ps2id-offset="50" style="color: black">Business Center</a>
-                            </li>
-                            <li>
-                                <a href="#service" rel="m_PageScroll2id" style="color: black">The Community</a>
-                            </li>
-                            <li>
-                                <a href="#contact" rel="m_PageScroll2id" style="color: black">Account Settings</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            <!-- /.container -->
-        </header>
+                <div>
+            <header class="main-header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg main-nav px-0">
+                        <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
+                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100" />
+                        </a>
+                        <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="mainMenu">
+                            <ul class="navbar-nav ml-auto text-uppercase f1" >
+                                
+                                <li>
+                                    <a href="RevisedLanding.aspx" rel="m_PageScroll2id" style="color: black;">Home</a>
+                                </li>
+                                <li>
+                                    <a href="Application.aspx" rel="m_PageScroll2id" style="color: black;">Search Posts</a>
+                                </li>
 
-    </div>
+                              
+                                <li>
+                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id" style="color: black;">Post Timeline</a>
+                                </li>
+                                <li>
+                                    <a href="TableauData.aspx" rel="m_PageScroll2id" style="color: black;">View Community Insights</a>
+                                </li>
+                                <li>
+                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id" style="color: black;">Logout</asp:linkbutton>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- /.container -->
+            </header>
+        </div>
     <br />
     <br />
     <br />

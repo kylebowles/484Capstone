@@ -11,4 +11,14 @@ public partial class TableauData : System.Web.UI.Page
     {
 
     }
+    public void LogOutUser(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+
+        Session["loggedIn"] = "false";
+        Session["loggedOut"] = "true";
+
+        Response.Redirect("CuedIn.aspx");
+    }
 }
