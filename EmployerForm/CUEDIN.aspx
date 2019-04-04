@@ -26,6 +26,7 @@
     <link href="style.css" rel="stylesheet">
     <!-- responsive.css -->
     <link href="css/responsive.css" rel="stylesheet">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <body style="background-color:#FFF;">
@@ -60,10 +61,7 @@
                                 <a href="#team" rel="m_PageScroll2id">contact</a>
                             </li>
                             <li>
-                                <a href="#contact" rel="m_PageScroll2id">Login/Create Account</a>
-                            </li>
-                            <li>
-                                <a href="TableauData.aspx" rel="m_PageScroll2id">Community Insights</a>
+                                <a href="#login" rel="m_PageScroll2id">Login or Create Account</a>
                             </li>
                         </ul>
                     </div>
@@ -75,6 +73,8 @@
         <!-- --------------- -->
 
         <!-- ----------- -->
+
+
         <!-- #home start -->
         <main class="slider-wrapper" id="home">
             <div id="mainSlider" class="carousel slide carousel-fade slider-content-style slider-home-one">
@@ -139,6 +139,77 @@
         </main>
         <!-- #home end -->
         <!-- --------- -->
+
+        
+        <!-- login and create account start -->
+        <div id="login">
+             <div class="contact text-center text-white text-uppercase">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-10">
+                            <div class="contact-content">
+                                <h2 class="f1 fw-4">ready to learn more?</h2>
+                                <h1 class="f1 fw-7">let's start your journey!</h1>
+                                <!-- insert two cards for login and create account linking -->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="card text-dark">
+                                            <div class="card-body">
+                                                <h5 class="card-title">LOGIN</h5>
+                                                <p id="PreLogin" class="card-text" runat="server" visible="true">Welcome Back!</p>
+                                                <p id="LoginSuccess" class="card-text" runat="server" visible="false">You Logged In</p>
+                                                <p id="LoginFail" class="card-text" runat="server" visible="false" >Login Failure</p>
+                                                <!-- login credentials/inputs (email and password?) -->
+                                                <div class="form-group row">
+                                                    <label for="InputEmail2">Email address</label>
+                                                    <input type="email" class="form-control" id="InputEmail2" runat="server" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="InputPassword1">Password</label>
+                                                    <input type="password" class="form-control" id="InputPassword1" runat="server" name="psw" required placeholder="Password"/>
+                                                </div>
+                                                <!-- put in correct #href when page is made -->
+                                                
+                                                    <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
+                                                    <asp:LinkButton ID="LoginClick" runat="server" PostBackUrl="~/CUEDIN.aspx#login" onClick="LoginButton" class="thm-btn text-grey f2 fw-7 text-left" 
+                                                     data-animation="animated fadeInUp" rel="m_PageScroll2id">Login</asp:LinkButton>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card text-dark">
+                                            <div class="card-body">
+                                                <h5 class="card-title">CREATE ACCOUNT</h5>
+                                                <div class="form-group">
+                                                    <label for="SelectRole">Who Are you?</label>
+                                                    <select class="form-control" id="SelectRole" placeholder="Select state...">
+                                                        <option>Student</option>
+                                                        <option>Employer</option>
+                                                        <option>Parent</option>
+                                                        <option>Teacher</option>
+                                                        <option>School</option>
+                                                    </select>
+                                                </div>
+                                                <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
+                                                    <a href="CreateAccount.aspx" class="f2 text-uppercase">NEXT</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.contact-content -->
+                        </div>
+                        <!-- /.col-xl-10 -->
+                    </div>
+                    <!-- /.row justify-content-center -->
+                </div>
+                <!-- /.container -->
+            </div>
+            </div>
+            <!-- /.contact -->
 
         <!-- ------------ -->
         <!-- #about start -->
@@ -571,72 +642,7 @@
         <!-- -------------- -->
         <!-- #contact start -->
         <div id="contact">
-            <div class="contact text-center text-white text-uppercase">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-10">
-                            <div class="contact-content">
-                                <h2 class="f1 fw-4">ready to learn more?</h2>
-                                <h1 class="f1 fw-7">let's start your journey!</h1>
-                                <!-- insert two cards for login and create account linking -->
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="card text-dark">
-                                            <div class="card-body">
-                                                <h5 class="card-title">LOGIN</h5>
-                                                <p id="PreLogin" class="card-text" runat="server" visible="true">Welcome Back!</p>
-                                                <p id="LoginSuccess" class="card-text" runat="server" visible="false">You Logged In</p>
-                                                <p id="LoginFail" class="card-text" runat="server" visible="false">Login Failure</p>
-                                                <!-- login credentials/inputs (email and password?) -->
-                                                <div class="form-group row">
-                                                    <label for="InputEmail2">Email address</label>
-                                                    <input type="email" class="form-control" id="InputEmail2" runat="server" aria-describedby="emailHelp" placeholder="Enter email"/>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="InputPassword1">Password</label>
-                                                    <input type="password" class="form-control" id="InputPassword1" runat="server" name="psw" required placeholder="Password"/>
-                                                </div>
-                                                <!-- put in correct #href when page is made -->
-                                                
-                                                    <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
-                                                    <asp:LinkButton ID="LoginClick" runat="server" PostBackUrl="~/CUEDIN.aspx#contact" onClick="LoginButton" class="thm-btn text-grey f2 fw-7 text-left" 
-                                                     data-animation="animated fadeInUp" rel="m_PageScroll2id">Login</asp:LinkButton>
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="card text-dark">
-                                            <div class="card-body">
-                                                <h5 class="card-title">CREATE ACCOUNT</h5>
-                                                <div class="form-group">
-                                                    <label for="SelectRole">Who Are you?</label>
-                                                    <select class="form-control" id="SelectRole" placeholder="Select state...">
-                                                        <option>Student</option>
-                                                        <option>Employer</option>
-                                                        <option>Parent</option>
-                                                        <option>Teacher</option>
-                                                        <option>School</option>
-                                                    </select>
-                                                </div>
-                                                <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
-                                                    <a href="CreateAccount.aspx" class="f2 text-uppercase">NEXT</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.contact-content -->
-                        </div>
-                        <!-- /.col-xl-10 -->
-                    </div>
-                    <!-- /.row justify-content-center -->
-                </div>
-                <!-- /.container -->
-            </div>
-            <!-- /.contact -->
+
 
             <footer class="text-center">
                 <div class="contact-info text-white">

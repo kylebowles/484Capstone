@@ -1,0 +1,181 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ApplicationViewer.aspx.cs" Inherits="ApplicationViewer" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+     <title>Revised Profile</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template" />
+    <meta name="author" content="theme_xpress" />
+    <link rel="shortcut icon" href="img/favicon.png" />
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Futura:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" />
+
+    <!-- css libraries -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/icofont.min.css" rel="stylesheet" />
+    <link href="css/owl.carousel.css" rel="stylesheet" />
+    <link href="css/lightbox.css" rel="stylesheet" />
+    <link href="css/hamburgers.min.css" rel="stylesheet" />
+
+    <!-- main style -->
+    <link href="style.css" rel="stylesheet" />
+    <!-- responsive.css -->
+    <link href="css/responsive.css" rel="stylesheet" />
+    <style type="text/css">
+        #container { margin-left: auto;
+         	margin-right: auto;
+         	width:70%; }
+
+        .heading1{
+            background: #f4d200;
+        }
+        .content1{
+            border-radius: 25px;
+            background: #eeeeee;
+            text-align: left;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 120%;
+            padding: 3em;
+
+        }
+
+    </style>
+</head>
+<body class="contact1 text-center text-black text-uppercase">
+     <form id="form1" runat="server">
+   
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg main-nav px-0">
+                        <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
+                            <img src="img/tinylogo.png" alt="Logo" width="400" height="100" />
+                        </a>
+                        <button class="hamburger hamburger--collapse navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="mainMenu">
+                            <ul class="navbar-nav ml-auto text-uppercase f1">
+                                <li>
+                                    <a href="RevisedLanding.aspx#home" rel="m_PageScroll2id" style="color: black;">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="ApplicationViewer.aspx" rel="m_PageScroll2id" data-ps2id-offset="50" style="color: black;">View Applications</a>
+                                </li>
+                                <li>
+                                    <a href="CommunityTest.aspx" rel="m_PageScroll2id" style="color: black;" >Post Timeline</a>
+                                </li>
+
+                                <li>
+                                    <a href="TableauData.aspx" rel="m_PageScroll2id" style="color: black;">View Community Insights</a>
+                                </li>
+
+                                <li>
+                                    <asp:LinkButton runat="server" ID="logout" OnClick="LogOutUser" rel="m_PageScroll2id" style="color: black;">Logout</asp:LinkButton>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- /.container -->
+            
+   <br />
+       
+
+        
+
+         <br />
+
+         <div class="heading1">
+             <h1>Application Viewer</h1>
+         </div>
+         <br />
+         <div id="container" class="content1">
+     
+             
+             
+             <br />
+             <asp:Label ID="Label1" runat="server" Text="Search"></asp:Label>
+             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+             <br />
+     
+             
+     
+             <br />
+             
+             <asp:GridView ID="GridView1"  DataSourceId="MyDataSource"  DataKeyNames="ApplicationID"
+        AutoGenerateColumns="false"       AutoGenerateEditButton="false"
+        AutoGenerateDeleteButton="false"   runat="server">
+    <Columns>
+        
+        
+        <asp:ImageField DataImageUrlField="Email" nullImageURL="https://picsum.photos/200/300" DataImageUrlFormatString="https://robohash.org/{0}" ItemStyle-Height ="100px" ItemStyle-Width ="100px" ></asp:ImageField>
+        <asp:TemplateField HeaderText="Name">
+           
+            <ItemTemplate>
+                <%#Eval("Name")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+          <asp:TemplateField  HeaderText="Opportunity" HeaderStyle-Width="150px">
+            <ItemTemplate>
+                <%#Eval("OpportunityName1")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Academic Year" HeaderStyle-Width="150px">
+        <ItemTemplate>
+                <%#Eval("AcademicYear")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Email" HeaderStyle-Width="250px">
+       
+            <ItemTemplate>
+                <%#Eval("Email")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Phone Number" HeaderStyle-Width="150px">
+        <ItemTemplate>
+                <%#Eval("PhoneNumber")%>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="View Application" HeaderStyle-Width="100px">
+            <ItemTemplate>
+                <asp:Button ID="Button1" runat="server" Text="View Application" OnClick="ApplicationProcess" />
+            </ItemTemplate>
+        </asp:TemplateField>
+      
+
+    </Columns>
+    </asp:GridView>
+      </div>
+
+        </form>
+<asp:SqlDataSource ID="MyDataSource" 
+ConnectionString="<%$Connectionstrings:CuedInConnectionString%>"
+SelectCommand="SELECT DISTINCT Application.ApplicationID, Application.FirstName + ' ' + Application.LastName + ' ' as Name, Application.Email, Student.AcademicYear, Person.PhoneNumber, ' ' + Opportunity.OpportunityName as OpportunityName1
+FROM Application
+    inner join Opportunity on Application.OpportunityID = Opportunity.OpportunityID
+    inner join Employer on Application.EmployerID = @EmployerID
+    inner join Student on Application.StudentID = Student.StudentID
+    inner join Person on Student.PersonID = Person.PersonID;" runat="server">
+    <SelectParameters>
+                <asp:Parameter Name="EmployerID" DefaultValue="1"/>
+              
+</SelectParameters>
+</asp:SqlDataSource>
+ 
+
+</body>
+</html>

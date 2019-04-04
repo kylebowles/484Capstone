@@ -118,10 +118,8 @@
     <link href="css/responsive.css" rel="stylesheet" />
 
 </head>
-<body style="background-color:#eeeeee">
-    <br />
-    <br />
-    <br />
+<body style="background-color:#eeeeee; padding-top: 1%;">
+    
 
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
@@ -139,7 +137,7 @@
          <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="true"/>
        
         <div>
-            <header class="main-header">
+           <%-- <header class="main-header">--%>
                 <div class="container">
                     <nav class="navbar navbar-expand-lg main-nav px-0">
                         <a class="navbar-brand" href="#home" rel="m_PageScroll2id">
@@ -151,36 +149,33 @@
                             </span>
                         </button>
                         <div class="collapse navbar-collapse" id="mainMenu">
-                            <ul class="navbar-nav ml-auto text-uppercase f1" >
-                                    <li>
-                                    <a href="RevisedLanding.aspx" rel="m_PageScroll2id" style="color: black;">Home</a>
+                           <ul class="navbar-nav ml-auto text-uppercase f1">
+                                <li>
+                                    <a href="RevisedLanding.aspx#home" rel="m_PageScroll2id" style="color:black;">Profile</a>
                                 </li>
                                 <li>
-                                    <a href="Application.aspx" rel="m_PageScroll2id" style="color: black;">Search Posts</a>
+                                    <a href="ApplicationViewer.aspx" rel="m_PageScroll2id" data-ps2id-offset="50" style="color:black;">View Application</a>
                                 </li>
                                 <li>
-                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id" style="color: black;">Post Timeline</a>
-                                </li>
-                                <li>
-                                    <a href="TableauData.aspx" rel="m_PageScroll2id" style="color: black;">View Community Insights</a>
-                                </li>
-                                <li>
-                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id" style="color: black;">Logout</asp:linkbutton>
+                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id" style="color:black;">Post Timeline</a>
                                 </li>
 
+                                <li>
+                                    <a href="TableauData.aspx" rel="m_PageScroll2id" style="color:black;">View Community Insights</a>
+                                </li>
+
+                                <li>
+                                    <asp:LinkButton runat="server" ID="logout" OnClick="LogOutUser" rel="m_PageScroll2id" style="color:black;">Logout</asp:LinkButton>
+                                </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
                 <!-- /.container -->
-            </header>
+          <%--  </header>--%>
         </div>
            
-        <br />
-        <br />
-        <br />
-
-
+       
         <br />
         <br />
         <div>
@@ -228,13 +223,13 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <asp:Label ID="Sumlbl" runat="server" Text="Summary" Font-Size="Larger"></asp:Label>
+                            <asp:Label ID="Sumlbl" runat="server" Text="Summary" Font-Size="Larger" ForeColor="#8fc73e"></asp:Label>
                             <br />
                             <asp:Label ID="SumLblDesc" runat="server" Text="" Font-Size="Large"></asp:Label>
 
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="LocLbl" runat="server" Text="Location" Font-Size="Larger"></asp:Label>
+                            <asp:Label ID="LocLbl" runat="server" Text="Location" Font-Size="Larger" ForeColor="#8fc73e"></asp:Label>
                             <br />
                             <asp:Label ID="LocLblResult" runat="server" Text="" Font-Size="Large"></asp:Label>
                         </li>
@@ -249,12 +244,19 @@
 
                 Put gridview here?--%>
 
-                <div class="col-md-6">
+                <div class="col-md-12">
                         <asp:TextBox ID="txtNewPost" runat="server" CssClass="form-control" TextMode="MultiLine" Width="100%" Height="60px" Rows="15" placeholder="What's new?"></asp:TextBox>
                                
                         <br />
                      
                          <asp:button type="submit" class="btn btn-primary" OnClick="btnPublishPost_Click" runat="server" Text="Post" BackColor="#FFB014" BorderColor="#FFB014" ForeColor="Black"></asp:button>
+                    &nbsp&nbsp&nbsp&nbsp
+
+                    <asp:Label runat="server" Font-size="Larger" ID="sort">Sort by:</asp:Label>&nbsp&nbsp<asp:DropDownList ID="SortDropDown" runat="server" AutoPostBack="true">
+                        <asp:ListItem Text="Most Recent"></asp:ListItem>
+                        <asp:ListItem Text="Least Recent"></asp:ListItem>
+                        <asp:ListItem Text="Most Liked"></asp:ListItem>
+                        </asp:DropDownList>
                                     <br />
 
                         <br />

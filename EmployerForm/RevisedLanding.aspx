@@ -191,14 +191,30 @@
               border-radius:4px;
         }
 
-         img{
+         #imgprofile{
              border-radius: 50%;
          }
 
          body{
-             background-color: #cbbaa6;
+             /*background-color: #cbbaa6;*/
          }
-
+         .heading{
+             background: #f4d200;
+         }
+         .content1{
+             border-radius: 25px;
+             background: #eeeeee;
+             text-align: left;
+             width: 60%;
+             margin-left: auto;
+             margin-right: auto;
+             font-size: 130%;
+             padding: 3em;
+            
+         }
+         #backpic{
+                text-align:center;
+                }
 
     </style>
     
@@ -274,20 +290,20 @@
                         </button>
                         <div class="collapse navbar-collapse" id="mainMenu">
                             <ul class="navbar-nav ml-auto text-uppercase f1">
-                                 <li>
-                                    <a href="RevisedLanding.aspx" rel="m_PageScroll2id">Home</a>
+                                <li>
+                                    <a href="RevisedLanding.aspx" rel="m_PageScroll2id" style="color: #000000">Profile</a>
                                 </li>
                                 <li>
-                                    <a href="Application.aspx" rel="m_PageScroll2id" >Search Posts</a>
+                                    <a href="ApplicationViewer.aspx" rel="m_PageScroll2id" style="color: #000000">View Applications</a>
                                 </li>
                                 <li>
-                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id">Post Timeline</a>
+                                    <a href="CommunityTEST.aspx" rel="m_PageScroll2id" style="color: #000000">Post Timeline</a>
                                 </li>
                                 <li>
-                                    <a href="TableauData.aspx" rel="m_PageScroll2id">View Community Insights</a>
+                                    <a href="TableauData.aspx" rel="m_PageScroll2id"style="color: #000000" >View Community Insights</a>
                                 </li>
                                 <li>
-                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id">Logout</asp:linkbutton>
+                                    <asp:linkbutton runat="server" ID="logout" onclick="LogOutUser" rel="m_PageScroll2id" style="color: #000000">Logout</asp:linkbutton>
                                 </li>
 
                             </ul>
@@ -311,13 +327,13 @@
     
         
         
-
-        <div class="container emp-profile" runat="server">
+      
+        <div class="content1 emp-profile" runat="server">
 
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                       <img src="https://www.vachamber.com/wp-content/uploads/2018/06/CUED-In-Logo.jpg" alt="" />
+                       <img id="imgprofile" src="https://www.vachamber.com/wp-content/uploads/2018/06/CUED-In-Logo.jpg" alt="" />
                         
                         
                        
@@ -416,7 +432,6 @@
                                 </div>
                                 <div class="col-md-6">
                                     <asp:Label ID="CompanyResult" runat="server" Text=""></asp:Label>
-                                    <asp:TextBox class="control-lbl" ID="companyEdit" runat="server" placeholder="Company" BorderColor="Black" BorderStyle="Solid" BackColor="#CBBAA6"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row">

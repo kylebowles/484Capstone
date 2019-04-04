@@ -1277,12 +1277,12 @@ nav {
 
 /* contact start */
 .contact {
-  padding: 100px 0;
-  background: url('img/bg/08.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  background-size: cover;
-  position: relative;
-  z-index: 1;
+    padding: 100px 0;
+    background: url('img/student.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
 }
 
 .contact::before {

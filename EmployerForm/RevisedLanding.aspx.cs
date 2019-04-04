@@ -61,10 +61,16 @@ public partial class RevisedLanding : System.Web.UI.Page
 
         //Display current employer's company
         sc.Open();
+        System.Data.SqlClient.SqlCommand getEmpID = new System.Data.SqlClient.SqlCommand();
+        getEmpID.Connection = sc;
+        getEmpID.CommandText = "SELECT EmployerID from Person where Email = @Email";
+        getEmpID.Parameters.Add(new SqlParameter("@Email", (string)(Session)["loginUser"]));
+        Session["employerID"] = getEmpID.ExecuteScalar();
+
         System.Data.SqlClient.SqlCommand getCoName = new System.Data.SqlClient.SqlCommand();
         getCoName.Connection = sc;
-        getCoName.CommandText = "select Employer.EmployerName FROM Employer INNER JOIN Person ON Person.EmployerID = Employer.EmployerID where Person.EmployerID = @AccountPersonID";
-        getCoName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
+        getCoName.CommandText = "select Employer.EmployerName FROM Employer INNER JOIN Person ON Person.EmployerID = Employer.EmployerID where Person.EmployerID = @EmployerID";
+        getCoName.Parameters.Add(new SqlParameter("@EmployerID", Session["employerID"]));
         string coName = (string)getCoName.ExecuteScalar();
         CompanyResult.Text = coName;
         sc.Close();

@@ -95,13 +95,27 @@ public class Post
         this.ModifiedDate = ModifiedDate;
     }
 
-    public static List<Post> getAllPostInfo()
+    public static List<Post> getAllPostInfo(int selectedSort)
     {
         //string connection = "Data Source=localhost;Initial Catalog=Cued-In;Integrated Security=True";
+        String sqlEnding;
+
+        if(selectedSort == 0)
+        {
+            sqlEnding = "PostID desc";
+        }
+        else if(selectedSort == 1)
+        {
+            sqlEnding = "PostID";
+        }
+        else
+        {
+            sqlEnding = "[LikeCount] desc";
+        }
         List<Post> listPosters = new List<Post>();
         using (SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["CuedInConnectionString"].ToString()))
         {
-            SqlCommand sqlCmd = new SqlCommand("select post.postID, Post.PostDescription, Post.DateCreated, post.PersonID, OpportunityID, Post.EmployerID, isnull(EmployerName, '')[EmployerName], Person.FirstName + ' ' + Person.LastName[PersonName], count([dbo].[Like].LikeID)[LikeCount] from post full outer join [dbo].[like] on [dbo].[like].PostID = Post.PostID full outer join person on Post.PersonID = Person.PersonID inner join Employer on Post.EmployerID = Employer.EmployerID group by post.postid, PostDescription, DateCreated, post.PersonID, OpportunityID, Post.EmployerID, EmployerName, Person.FirstName, Person.LastName order by PostID desc", sc);
+            SqlCommand sqlCmd = new SqlCommand("select post.postID, Post.PostDescription, Post.DateCreated, post.PersonID, OpportunityID, Post.EmployerID, isnull(EmployerName, '')[EmployerName], Person.FirstName + ' ' + Person.LastName[PersonName], count([dbo].[Like].LikeID)[LikeCount] from post full outer join [dbo].[like] on [dbo].[like].PostID = Post.PostID full outer join person on Post.PersonID = Person.PersonID inner join Employer on Post.EmployerID = Employer.EmployerID group by post.postid, PostDescription, DateCreated, post.PersonID, OpportunityID, Post.EmployerID, EmployerName, Person.FirstName, Person.LastName order by " + sqlEnding, sc);
             sc.Open();
             SqlDataReader sqlDR = sqlCmd.ExecuteReader();
             while (sqlDR.Read())

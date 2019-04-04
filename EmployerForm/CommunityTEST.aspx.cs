@@ -22,8 +22,9 @@ public partial class CommunityTEST : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        int selectedSort = SortDropDown.SelectedIndex;
         // Bind current posts from the database to the page
-        GridViewPosts.DataSource = Post.getAllPostInfo();
+        GridViewPosts.DataSource = Post.getAllPostInfo(selectedSort);
         GridViewPosts.DataBind();
 
         sc.Open();
@@ -64,8 +65,8 @@ public partial class CommunityTEST : System.Web.UI.Page
         sc.Open();
         System.Data.SqlClient.SqlCommand getCompName = new System.Data.SqlClient.SqlCommand();
         getCompName.Connection = sc;
-        getCompName.CommandText = "Select EmployerName from Employer Inner Join Person on Employer.EmployerID = Person.PersonID where PersonID = @AccountID";
-        getCompName.Parameters.Add(new SqlParameter("@AccountID", accountID));
+        getCompName.CommandText = "Select EmployerName from Employer Inner Join Person on Employer.EmployerID = Person.PersonID where PersonID = @EmployerID";
+        getCompName.Parameters.Add(new SqlParameter("@EmployerID", Session["employerID"]));
         String Company = (String)getCompName.ExecuteScalar();
         CompanyName.Text = Company;
         sc.Close();
@@ -134,7 +135,8 @@ public partial class CommunityTEST : System.Web.UI.Page
        
         cmd.ExecuteNonQuery();
         sc.Close();
-        GridViewPosts.DataSource = Post.getAllPostInfo();
+        int selectedSort = SortDropDown.SelectedIndex;
+        GridViewPosts.DataSource = Post.getAllPostInfo(selectedSort);
         GridViewPosts.DataBind();
         txtNewPost.Text = "";
     }
@@ -164,7 +166,8 @@ public partial class CommunityTEST : System.Web.UI.Page
         sc.Close();
 
         // Binds the Comments to the Post
-        GridViewPosts.DataSource = Post.getAllPostInfo();
+        int selectedSort = SortDropDown.SelectedIndex;
+        GridViewPosts.DataSource = Post.getAllPostInfo(selectedSort);
         GridViewPosts.DataBind();
     }
 
@@ -211,4 +214,6 @@ public partial class CommunityTEST : System.Web.UI.Page
 
         Response.Redirect("CuedIn.aspx");
     }
+
+
 }
