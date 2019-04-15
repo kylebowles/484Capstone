@@ -10,7 +10,7 @@ public partial class ApplicationViewer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
        
-        MyDataSource.SelectParameters["EmployerID"].DefaultValue = "1";
+        MyDataSource.SelectParameters["EmployerID"].DefaultValue = "2";
        
 
     }
@@ -26,6 +26,7 @@ public partial class ApplicationViewer : System.Web.UI.Page
     }
     public void ApplicationProcess(object sender, EventArgs e)
     {
+        
         Response.Redirect("ApplicationProcess.aspx");
     }
 
