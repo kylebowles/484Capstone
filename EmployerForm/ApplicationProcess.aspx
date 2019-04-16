@@ -31,7 +31,7 @@
 
 
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss"/>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
@@ -63,8 +63,10 @@
             width: 541px;
         }
 
-        .heading1 {
+        .heading1  {
             background: #F4D200;
+            text-align: center;
+           
         }
 
         .content1 {
@@ -101,17 +103,27 @@
         #button{
             text-align: center;
         }
+        h3{
+           
+        }
         h1{
             color: black;
         }
 
-        #Label17 {
-            width:inherit;
-        }
+       
         li
         {
             color:black;
         }
+        #appIDSelection{
+            text-align: center;
+            width: 43%;
+            padding-top: 1em;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        
         
     </style>
 
@@ -210,9 +222,25 @@
         <br />
         
 
-        <div>
+        
             <div class="heading1">
-            <h1>Application Viewing Page</h1>
+            
+                  <div id="appIDSelection" class="row form-group"><div class ="container"><h3>
+                    
+                      <asp:Label ID="Label17" runat="server" Text="Choose Applicant" ForeColor="Black"></asp:Label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="NameDropDownSource" DataTextField="Name" DataValueField="ApplicationID" OnSelectedIndexChanged="Dropdown1Change" AutoPostBack="True">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="NameDropDownSource" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT DISTINCT ApplicationID, Application.FirstName + ' ' + Application.LastName + ' ' as Name
+                        FROM Application
+                        inner join Employer on Application.EmployerID = @EmployerID">
+                        <SelectParameters>
+                            <asp:sessionparameter name="employerID" sessionfield="employerID" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                       </h3> 
+                      </div>
+               
+                </div>
             </div>
             <br />
                 
@@ -220,35 +248,35 @@
                 
                 
 
-                <div id="appIDSelection" class="row form-group">
-                    <asp:Label ID="Label17" runat="server" Text="Applicant Name" ForeColor="Black"></asp:Label>
                 
-                    <asp:DropDownList ID="ddName" runat="server" class="form-control col-sm-3"  DataSourceID="nameSource" DataTextField="FullName" DataValueField="FullName" SelectionMode="multiple" > </asp:DropDownList>
-                    <asp:SqlDataSource ID="nameSource" runat="server" ConnectionString="<%$ ConnectionStrings:CuedInConnectionString %>" SelectCommand="SELECT [FirstName]+ ' ' +[LastName]AS [FullName] FROM [dbo].[Application] "></asp:SqlDataSource>
-                </div>
 
-                <br />
-                <div id="stuff" class="row form-group">
-                
+                <div id="contactInformation" class="row form-group">
+
            
                     <br />
-                    <asp:Label ID="Label13" runat="server" ForeColor="Black" Text="Application ID "></asp:Label>
-
-                    <asp:TextBox ID="txtAppID" runat="server" class="form-control col-sm-2" BackColor="White" MaxLength="50" placeholder="AppID" ReadOnly="True"></asp:TextBox>
-
-
                   
-
-                   
-                    <asp:Label ID="lblStudID" runat="server" ForeColor="Black" Text="Student ID" ></asp:Label>
-                    <asp:TextBox ID="txtStudentID" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Student ID"></asp:TextBox>
-               
-                     <asp:Label ID="lblEmail" runat="server" ForeColor="Black" Text="Email" ></asp:Label>
+                     <asp:Label ID="lblPhone" runat="server" ForeColor="Black" Text="Phone" ></asp:Label>
+                    <asp:TextBox ID="txtPhone" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Email"></asp:TextBox>
+                    <asp:Label ID="lblEmail" runat="server" ForeColor="Black" Text="Email" ></asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Email"></asp:TextBox>
 
                 </div>
+              
+               
                 <br />
-                <div id="GPA" class="row form-group">
+                <div id="interests" class="form-group row">
+                    <asp:Label ID="lblInterests" runat="server" ForeColor="Black" Text="Interests"></asp:Label>
+                     <asp:TextBox ID="txtInt1" runat="server" class="form-control col-sm-3" BackColor="White" ReadOnly="True" placeholder="1"></asp:TextBox>
+                     <asp:TextBox ID="txtInt2" runat="server" class="form-control col-sm-3" BackColor="White" ReadOnly="True" placeholder="2"></asp:TextBox>
+                     <asp:TextBox ID="txtInt3" runat="server" class="form-control col-sm-3" BackColor="White" ReadOnly="True" placeholder="3"></asp:TextBox>
+                </div>
+                <br />
+                <div id="exp" class="form-group row">
+                    <asp:Label ID="lblExp" runat="server" ForeColor="Black" Text="Experience"></asp:Label>
+                     <asp:TextBox ID="txtExperience" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Experience"></asp:TextBox>
+                </div>
+                <br />
+                 <div id="GPA" class="row form-group">
                     <asp:Label ID="lblGPA" runat="server" ForeColor="Black" Text="GPA"></asp:Label>
                      <asp:TextBox ID="txtGPA" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="GPA"></asp:TextBox>
                 </div>
@@ -275,19 +303,7 @@
                     
 
                 </div>
-                <br />
-                <div id="interests" class="form-group row">
-                    <asp:Label ID="lblInterests" runat="server" ForeColor="Black" Text="Interests"></asp:Label>
-                     <asp:TextBox ID="txtInt1" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="1"></asp:TextBox>
-                     <asp:TextBox ID="txtInt2" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="2"></asp:TextBox>
-                     <asp:TextBox ID="txtInt3" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="3"></asp:TextBox>
-                </div>
-                <br />
-                <div id="exp" class="form-group row">
-                    <asp:Label ID="lblExp" runat="server" ForeColor="Black" Text="Experience"></asp:Label>
-                     <asp:TextBox ID="txtExperience" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Experience"></asp:TextBox>
-                </div>
-                <br />
+                 <br />
                 <div id="Documents" class="form-group row">
                     <asp:Label ID="lblRes" runat="server" ForeColor="Black" Text="Resume ID"></asp:Label>
                      <asp:TextBox ID="txtRes" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Resume"></asp:TextBox>
@@ -295,14 +311,25 @@
                      <asp:TextBox ID="txtCov" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Cover Letter"></asp:TextBox>
 
                 </div>
+                <div id="stuff" class="row form-group">
+                  <asp:Label ID="Label13" runat="server" ForeColor="Black" Text="Application ID "></asp:Label>
 
+                    <asp:TextBox ID="txtAppID" runat="server" class="form-control col-sm-2" BackColor="White" MaxLength="50" placeholder="AppID" ReadOnly="True"></asp:TextBox>
+
+
+                  
+
+                   
+                    <asp:Label ID="lblStudID" runat="server" ForeColor="Black" Text="Student ID" ></asp:Label>
+                    <asp:TextBox ID="txtStudentID" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Student ID"></asp:TextBox>
+            </div>
             </div>
         </div>
 
         <br />
-        <asp:Button ID="btnQuery" runat="server" Text="Query" BackColor="Black" OnClick="btnQuery_Click" Height="50px" Width="132px" BorderColor="Black" ForeColor="White" />
+       <%-- <asp:Button ID="btnQuery" runat="server" Text="Query" BackColor="Black" OnClick="btnQuery_Click" Height="50px" Width="132px" BorderColor="Black" ForeColor="White" />--%>
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnClear" runat="server" Text="Clear" BackColor="Black"  Height="50px" Width="132px" OnClick="btnClear_Click" BorderColor="Black" ForeColor="White" />
+        <asp:Button ID="btnClear" runat="server" Text="Back To All Applications" BackColor="Black"  Height="50px" Width="132px" OnClick="btnClear_Click" BorderColor="Black" ForeColor="White" />
         <br />
         <br />
     </form>

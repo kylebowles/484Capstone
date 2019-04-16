@@ -10,7 +10,7 @@ public partial class ApplicationViewer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
        
-        MyDataSource.SelectParameters["EmployerID"].DefaultValue = "2";
+        
        
 
     }
@@ -24,12 +24,16 @@ public partial class ApplicationViewer : System.Web.UI.Page
 
         Response.Redirect("CuedIn.aspx");
     }
-    public void ApplicationProcess(object sender, EventArgs e)
+    public void ApplicationProcess(object sender, GridViewCommandEventArgs e)
     {
-        
-        Response.Redirect("ApplicationProcess.aspx");
+        if (e.CommandName == "application")
+        {
+            Session["CurrentApplication"] = Convert.ToString(e.CommandArgument.ToString());
+            string current = Session["CurrentApplication"].ToString();
+            Response.Redirect("ApplicationProcess.aspx");
+        }
     }
-
+       
     protected void Button1_Click(object sender, EventArgs e)
     {
 
