@@ -24,7 +24,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
     }
 
 //populating each textbox with information from the application table
-//specified by the application id number
+//specified by the applicant name
     protected void btnQuery_Click(object sender, EventArgs e)
     {
         /*
@@ -44,7 +44,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
         txtAppID.Text = appID.ToString();
 
         //email
-        select.CommandText = "SELECT (Email) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(Email,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         txtEmail.Text = (String)select.ExecuteScalar();
 
         //Student ID
@@ -53,37 +53,37 @@ public partial class ApplicationProcess : System.Web.UI.Page
         txtStudentID.Text = studID.ToString();
 
         //SAT Math
-        select.CommandText = "SELECT (SATMath) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(SATMath,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int satMath = (int)select.ExecuteScalar();
         txtSATMath.Text = satMath.ToString();
 
         //SAT Verbal
-        select.CommandText = "SELECT (SATVerbal) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(SATVerbal,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int satVerb = (int)select.ExecuteScalar();
         txtSATVerbal.Text = satVerb.ToString();
 
         //ACT Math
-        select.CommandText = "SELECT (ACTMath) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(ACTMath,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int actMath = (int)select.ExecuteScalar();
         txtACTMath.Text = actMath.ToString();
 
         //ACT English
-        select.CommandText = "SELECT (ACTEnglish) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(ACTEnglish,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int actEng = (int)select.ExecuteScalar();
         txtACTEng.Text = actEng.ToString();
 
         //ACT Reading
-        select.CommandText = "SELECT (ACTReading) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(ACTReading,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int actRead = (int)select.ExecuteScalar();
         txtACTRead.Text = actRead.ToString();
 
         //ACT Science
-        select.CommandText = "SELECT (ACTScience) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(ACTScience,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int actScience = (int)select.ExecuteScalar();
         txtACTSci.Text = actScience.ToString();
 
         //ACT Composite
-        select.CommandText = "SELECT (ACTComposite) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'"+testName+"'";
+        select.CommandText = "SELECT ISNULL(ACTComposite,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'"+testName+"'";
         int actComp = (int)select.ExecuteScalar();
         txtACTComp.Text = actComp.ToString();
 
@@ -103,21 +103,21 @@ public partial class ApplicationProcess : System.Web.UI.Page
         txtInt3.Text = int3.ToString();
 
         //GPA
-        select.CommandText = "SELECT (GPA) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(GPA,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int gpaNum = (int)select.ExecuteScalar();
         txtGPA.Text = gpaNum.ToString();
 
         //Experience
-        select.CommandText = "SELECT (Experience) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(Experience,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         txtExperience.Text = (String)select.ExecuteScalar();
 
         //Resume
-        select.CommandText = "SELECT (Resume) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(Resume,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int resID = (int)select.ExecuteScalar();
         txtRes.Text = resID.ToString();
 
         //Cover Letter
-        select.CommandText = "SELECT (CoverLetter) FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
+        select.CommandText = "SELECT ISNULL(CoverLetter,' ') FROM APPLICATION where (FirstName + ' '+ LastName)=" + "'" + testName + "'";
         int covID = (int)select.ExecuteScalar();
         txtCov.Text = covID.ToString();
 
