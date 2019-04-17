@@ -29,8 +29,6 @@
     <link href="css/responsive.css" rel="stylesheet" />
 
 
-
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrapcss"/>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -230,9 +228,9 @@
                       <asp:Label ID="Label17" runat="server" Text="Choose Applicant" ForeColor="Black"></asp:Label>
                     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="NameDropDownSource" DataTextField="Name" DataValueField="ApplicationID" OnSelectedIndexChanged="Dropdown1Change" AutoPostBack="True">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="NameDropDownSource" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT DISTINCT ApplicationID, Application.FirstName + ' ' + Application.LastName + ' ' as Name
-                        FROM Application
-                        inner join Employer on Application.EmployerID = @EmployerID">
+                    <asp:SqlDataSource ID="NameDropDownSource" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT DISTINCT ApplicationID, TestApplication.FirstName + ' ' + TestApplication.LastName + ' ' as Name
+                        FROM TestApplication
+                        inner join Employer on TestApplication.EmployerID = @EmployerID">
                         <SelectParameters>
                             <asp:sessionparameter name="employerID" sessionfield="employerID" />
                         </SelectParameters>
@@ -245,7 +243,8 @@
             <br />
                 
             <div class="content1">
-                
+                <asp:Button ID="confirmDelete" runat="server" Text="Deny/Delete" BackColor="Black"  Height="50px" Width="170px" OnClick="btnDelete_Click" Visible="false"  BorderColor="Black" ForeColor="White" />
+                <asp:Label ID="lblConfirm" runat="server" ForeColor="Red" Text="Click again to confirm deletion" Visible="false"></asp:Label>
                 
 
                 
@@ -273,7 +272,7 @@
                 <br />
                 <div id="exp" class="form-group row">
                     <asp:Label ID="lblExp" runat="server" ForeColor="Black" Text="Experience"></asp:Label>
-                     <asp:TextBox ID="txtExperience" runat="server" class="form-control col-sm-2" BackColor="White" ReadOnly="True" placeholder="Experience"></asp:TextBox>
+                     <asp:TextBox ID="txtExperience" runat="server" class="form-control col-md-6" BackColor="White" ReadOnly="True" TextMode="MultiLine" Rows="3" placeholder="Experience"></asp:TextBox>
                 </div>
                 <br />
                  <div id="GPA" class="row form-group">
@@ -325,11 +324,14 @@
             </div>
             </div>
         </div>
-
+        <div id="buttons">
         <br />
        <%-- <asp:Button ID="btnQuery" runat="server" Text="Query" BackColor="Black" OnClick="btnQuery_Click" Height="50px" Width="132px" BorderColor="Black" ForeColor="White" />--%>
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnClear" runat="server" Text="Back To All Applications" BackColor="Black"  Height="50px" Width="132px" OnClick="btnClear_Click" BorderColor="Black" ForeColor="White" />
+        <asp:Button ID="btnClear" runat="server" Text="Back to Applications" BackColor="Black"  Height="50px" Width="170px" OnClick="btnClear_Click" BorderColor="Black" ForeColor="White" />
+        <asp:Button ID="btnDeny" runat="server" Text="Deny/Delete" BackColor="Black"  Height="50px" Width="170px" OnClick="btnDelete_Click"  BorderColor="Black" ForeColor="White" />
+        <asp:Label ID="deleteLabel" runat="server" ForeColor="Red" Text="Click again to confirm deletion" Visible="false"></asp:Label>
+        </div>
         <br />
         <br />
     </form>

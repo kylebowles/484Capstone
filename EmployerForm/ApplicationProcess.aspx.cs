@@ -218,24 +218,24 @@ public partial class ApplicationProcess : System.Web.UI.Page
                 System.Data.SqlClient.SqlCommand select = new System.Data.SqlClient.SqlCommand();
                 select.Connection = sc;
                 //app id
-                select.CommandText = "SELECT (ApplicationID) FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT (ApplicationID) FROM TESTAPPLICATION where applicationID = @applicationID";
                 select.Parameters.AddWithValue("@ApplicationID", Session["CurrentApplication"].ToString());
                 int appID = (int)select.ExecuteScalar();
                 txtAppID.Text = appID.ToString();
                 //phone
-                select.CommandText = "SELECT ISNULL(PhoneNumber,' ') FROM APPLICATION inner join Student on Student.StudentID = Application.StudentID inner join Person on Person.PersonID = Student.StudentID where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(PhoneNumber,' ') FROM TESTAPPLICATION inner join Student on Student.StudentID = TESTApplication.StudentID inner join Person on Person.PersonID = Student.StudentID where applicationID = @applicationID";
                 txtPhone.Text = (String)(select.ExecuteScalar());
                 //email
-                select.CommandText = "SELECT ISNULL(Email,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(Email,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 txtEmail.Text = (String)select.ExecuteScalar();
 
                 //Student ID
-                select.CommandText = "SELECT (StudentID) FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT (StudentID) FROM TESTAPPLICATION where applicationID = @applicationID";
                 int studID = (int)select.ExecuteScalar();
                 txtStudentID.Text = studID.ToString();
 
                 //SAT Math
-                select.CommandText = "SELECT ISNULL(SATMath,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(SATMath,' ') FROM tesTAPPLICATION where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -248,7 +248,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
                 }
 
                 //SAT Verbal
-                select.CommandText = "SELECT ISNULL(SATVerbal,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(SATVerbal,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -261,7 +261,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
                 }
 
                 //ACT Math
-                select.CommandText = "SELECT ISNULL(ACTMath,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(ACTMath,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -275,7 +275,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
                 //ACT English
-                select.CommandText = "SELECT ISNULL(ACTEnglish,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(ACTEnglish,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -288,7 +288,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
                 }
 
                 //ACT Reading
-                select.CommandText = "SELECT ISNULL(ACTReading,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(ACTReading,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -302,7 +302,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
                 //ACT Science
-                select.CommandText = "SELECT ISNULL(ACTScience,' ') FROM APPLICATION  where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(ACTScience,' ') FROM TESTAPPLICATION  where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -316,7 +316,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
                 //ACT Composite
-                select.CommandText = "SELECT ISNULL(ACTComposite,' ') FROM APPLICATION  where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(ACTComposite,' ') FROM TESTAPPLICATION  where applicationID = @applicationID";
                 if (result == 0)
                 {
                     txtACTComp.Text = "N/A";
@@ -328,22 +328,22 @@ public partial class ApplicationProcess : System.Web.UI.Page
                 }
 
                 //interest 1
-                select.CommandText = "SELECT InterestName FROM Interest inner join Application on Application.ApplicationID = @applicationID where InterestID = Interest1";
+                select.CommandText = "SELECT InterestName FROM Interest inner join TESTAPPLICATION on TESTApplication.ApplicationID = @applicationID where InterestID = Interest1";
                 String int1 = (String)select.ExecuteScalar();
                 txtInt1.Text = int1.ToString();
 
                 //interest 2 
-                select.CommandText = "SELECT InterestName FROM Interest inner join Application on Application.ApplicationID = @applicationID where InterestID = Interest2";
+                select.CommandText = "SELECT InterestName FROM Interest inner join TESTApplication on TESTApplication.ApplicationID = @applicationID where InterestID = Interest2";
                 String int2 = (String)select.ExecuteScalar();
                 txtInt2.Text = int2.ToString();
 
                 //interest 3
-                select.CommandText = "SELECT InterestName FROM Interest inner join Application on Application.ApplicationID = @applicationID where InterestID = Interest3";
+                select.CommandText = "SELECT InterestName FROM Interest inner join TESTApplication on TESTApplication.ApplicationID = @applicationID where InterestID = Interest3";
                 String int3 = (String)select.ExecuteScalar();
                 txtInt3.Text = int3.ToString();
 
                 //GPA
-                select.CommandText = "SELECT ISNULL(GPA,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(GPA,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
                 {
@@ -356,12 +356,12 @@ public partial class ApplicationProcess : System.Web.UI.Page
                 }
 
                 //Experience
-                select.CommandText = "SELECT ISNULL(Experience,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(Experience,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 txtExperience.Text = (String)select.ExecuteScalar();
 
 
                 //Resume
-                select.CommandText = "SELECT ISNULL(Resume,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(Resume,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
                 if (Int32.TryParse((select.ExecuteScalar().ToString()), out result))
                 {
                     int resID = result;
@@ -375,7 +375,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
                 //Cover Letter
-                select.CommandText = "SELECT ISNULL(CoverLetter,' ') FROM APPLICATION where applicationID = @applicationID";
+                select.CommandText = "SELECT ISNULL(CoverLetter,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
 
                 Int32.TryParse((select.ExecuteScalar().ToString()), out result);
                 if (result == 0)
@@ -428,7 +428,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
         System.Data.SqlClient.SqlCommand select = new System.Data.SqlClient.SqlCommand();
         select.Connection = sc;
         //app id
-        select.CommandText = "SELECT (ApplicationID) FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT (ApplicationID) FROM TESTAPPLICATION where applicationID = @applicationID";
         select.Parameters.AddWithValue("@ApplicationID", Session["CurrentApplication"].ToString());
         int appID = (int)select.ExecuteScalar();
         txtAppID.Text = appID.ToString();
@@ -436,19 +436,19 @@ public partial class ApplicationProcess : System.Web.UI.Page
         //Session["CurrentApplication"] = DropDownList1.SelectedValue;
         //DropDownList1.DataBind();
         //phone
-        select.CommandText = "SELECT ISNULL(PhoneNumber,' ') FROM APPLICATION inner join Student on Student.StudentID = Application.StudentID inner join Person on Person.PersonID = Student.StudentID where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(PhoneNumber,' ') FROM TESTAPPLICATION inner join Student on Student.StudentID = TESTAPPLICATION.StudentID inner join Person on Person.PersonID = Student.StudentID where applicationID = @applicationID";
         txtPhone.Text = (String)(select.ExecuteScalar());
         //email
-        select.CommandText = "SELECT ISNULL(Email,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(Email,' ') FROM TESTAPPLICATION where APPLICATIONID = @applicationID";
         txtEmail.Text = (String)select.ExecuteScalar();
 
         //Student ID
-        select.CommandText = "SELECT (StudentID) FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT (StudentID) FROM TESTAPPLICATION where applicationID = @applicationID";
         int studID = (int)select.ExecuteScalar();
         txtStudentID.Text = studID.ToString();
 
         //SAT Math
-        select.CommandText = "SELECT ISNULL(SATMath,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(SATMath,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -461,7 +461,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
         }
 
         //SAT Verbal
-        select.CommandText = "SELECT ISNULL(SATVerbal,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(SATVerbal,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -474,7 +474,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
         }
 
         //ACT Math
-        select.CommandText = "SELECT ISNULL(ACTMath,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(ACTMath,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -488,7 +488,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
         //ACT English
-        select.CommandText = "SELECT ISNULL(ACTEnglish,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(ACTEnglish,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -501,7 +501,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
         }
 
         //ACT Reading
-        select.CommandText = "SELECT ISNULL(ACTReading,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(ACTReading,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -515,7 +515,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
         //ACT Science
-        select.CommandText = "SELECT ISNULL(ACTScience,' ') FROM APPLICATION  where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(ACTScience,' ') FROM TESTAPPLICATION  where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -529,7 +529,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
         //ACT Composite
-        select.CommandText = "SELECT ISNULL(ACTComposite,' ') FROM APPLICATION  where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(ACTComposite,' ') FROM TESTAPPLICATION  where applicationID = @applicationID";
         if (result == 0)
         {
             txtACTComp.Text = "N/A";
@@ -541,22 +541,22 @@ public partial class ApplicationProcess : System.Web.UI.Page
         }
 
         //interest 1
-        select.CommandText = "SELECT InterestName FROM Interest inner join Application on Application.ApplicationID = @applicationID where InterestID = Interest1";
+        select.CommandText = "SELECT InterestName FROM Interest inner join TESTApplication on TESTApplication.ApplicationID = @applicationID where InterestID = Interest1";
         String int1 = (String)select.ExecuteScalar();
         txtInt1.Text = int1.ToString();
 
         //interest 2 
-        select.CommandText = "SELECT InterestName FROM Interest inner join Application on Application.ApplicationID = @applicationID where InterestID = Interest2";
+        select.CommandText = "SELECT InterestName FROM Interest inner join TESTApplication on TESTApplication.ApplicationID = @applicationID where InterestID = Interest2";
         String int2 = (String)select.ExecuteScalar();
         txtInt2.Text = int2.ToString();
 
         //interest 3
-        select.CommandText = "SELECT InterestName FROM Interest inner join Application on Application.ApplicationID = @applicationID where InterestID = Interest3";
+        select.CommandText = "SELECT InterestName FROM Interest inner join TESTApplication on TESTApplication.ApplicationID = @applicationID where InterestID = Interest3";
         String int3 = (String)select.ExecuteScalar();
         txtInt3.Text = int3.ToString();
 
         //GPA
-        select.CommandText = "SELECT ISNULL(GPA,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(GPA,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
         {
@@ -569,12 +569,12 @@ public partial class ApplicationProcess : System.Web.UI.Page
         }
 
         //Experience
-        select.CommandText = "SELECT ISNULL(Experience,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(Experience,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         txtExperience.Text = (String)select.ExecuteScalar();
 
 
         //Resume
-        select.CommandText = "SELECT ISNULL(Resume,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(Resume,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
         if (Int32.TryParse((select.ExecuteScalar().ToString()), out result))
         {
             int resID = result;
@@ -588,7 +588,7 @@ public partial class ApplicationProcess : System.Web.UI.Page
 
 
         //Cover Letter
-        select.CommandText = "SELECT ISNULL(CoverLetter,' ') FROM APPLICATION where applicationID = @applicationID";
+        select.CommandText = "SELECT ISNULL(CoverLetter,' ') FROM TESTAPPLICATION where applicationID = @applicationID";
 
         Int32.TryParse((select.ExecuteScalar().ToString()), out result);
         if (result == 0)
@@ -603,8 +603,32 @@ public partial class ApplicationProcess : System.Web.UI.Page
         sc.Close();
         Session["CurrentApplication"] = "used";
     }
-    
-            
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        if (deleteLabel.Visible)
+        {
+            System.Data.SqlClient.SqlCommand select = new System.Data.SqlClient.SqlCommand();
+            select.Connection = sc;
+            sc.Open();
+            int appDelete = Int32.Parse(txtAppID.Text);
+            select.CommandText = "Delete TestApplication where ApplicationID = @ApplicationID";
+            select.Parameters.AddWithValue("@ApplicationID", appDelete);
+            select.ExecuteNonQuery();
+            deleteLabel.Visible = false;
+            confirmDelete.Visible = false;
+            lblConfirm.Visible = false;
+            sc.Close();
+            Response.Redirect("ApplicationViewer.aspx");
+
+        }
+        else
+        {
+            deleteLabel.Visible = true;
+            confirmDelete.Visible = true;
+            lblConfirm.Visible = true;
+        }
+    }
 }
 
 
