@@ -52,7 +52,7 @@ public partial class RevisedLanding : System.Web.UI.Page
         getLName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
         string accountLName = (string)getLName.ExecuteScalar();
         sc.Close();
-
+        
         //Displays the user's name
         NameResult.Text = accountFName + " " + accountLName;
         BigNameResult.Text = accountFName + " " + accountLName;
@@ -174,7 +174,7 @@ public partial class RevisedLanding : System.Web.UI.Page
         System.Data.SqlClient.SqlCommand getEmpSummary = new System.Data.SqlClient.SqlCommand();
         getEmpSummary.Connection = sc;
         getEmpSummary.CommandText = "UPDATE Person set PersonalSummary = @PersonalSummary where PersonID = @SummaryPersonID";
-        getEmpSummary.Parameters.Add(new SqlParameter("@PersonalSummary", ProfileSummary.Value));
+        getEmpSummary.Parameters.Add(new SqlParameter("@PersonalSummary", HttpUtility.HtmlEncode(ProfileSummary.Value)));
         getEmpSummary.Parameters.Add(new SqlParameter("@SummaryPersonID", accountID));
         String EmpSum = (String)getEmpSummary.ExecuteScalar();
 
@@ -182,10 +182,10 @@ public partial class RevisedLanding : System.Web.UI.Page
         System.Data.SqlClient.SqlCommand getPersonalSum = new System.Data.SqlClient.SqlCommand();
         getPersonalSum.Connection = sc;
         getPersonalSum.CommandText = "SELECT PersonalSummary from PERSON where PersonID = @SummaryPersonID";
-        getPersonalSum.Parameters.Add(new SqlParameter("@PersonalSummary", EmpSum));
+        getPersonalSum.Parameters.Add(new SqlParameter("@PersonalSummary", HttpUtility.HtmlEncode(EmpSum)));
 
 
-        ProfileSummary.Value = EmpSum;
+        ProfileSummary.Value = HttpUtility.HtmlEncode(EmpSum);
         ProfileSummary.Visible = false;
         btnEditSum.Visible = false;
         lblSummary.Visible = false;
@@ -225,9 +225,9 @@ public partial class RevisedLanding : System.Web.UI.Page
         sc.Close();
 
         //Getting name variables
-        string newFName = fNameEdit.Text.ToString();
-        string newMName = mNameEdit.Text.ToString();
-        string newLName = lNameEdit.Text.ToString();
+        string newFName = HttpUtility.HtmlEncode(fNameEdit.Text.ToString());
+        string newMName = HttpUtility.HtmlEncode(mNameEdit.Text.ToString());
+        string newLName = HttpUtility.HtmlEncode(lNameEdit.Text.ToString());
 
         //Updating Name in database
         sc.Open();
@@ -257,7 +257,7 @@ public partial class RevisedLanding : System.Web.UI.Page
 
 
         //Updating Jobtitle in database
-        string newJT = jobtitleEdit.Text.ToString();
+        string newJT = HttpUtility.HtmlEncode(jobtitleEdit.Text.ToString());
 
         sc.Open();
         System.Data.SqlClient.SqlCommand updateTitle = new System.Data.SqlClient.SqlCommand();
@@ -276,7 +276,7 @@ public partial class RevisedLanding : System.Web.UI.Page
         sc.Close();
 
         //Updating phonenumber in database
-        string newnumber = phoneEdit.Text.ToString();
+        string newnumber = HttpUtility.HtmlEncode(phoneEdit.Text.ToString());
 
         sc.Open();
         System.Data.SqlClient.SqlCommand updatePhone = new System.Data.SqlClient.SqlCommand();
@@ -332,7 +332,7 @@ public partial class RevisedLanding : System.Web.UI.Page
     protected void AgreeSubmit_Click(object sender, EventArgs e)
     {
 
-        Opportunity newOpportunity = new Opportunity(txtOpportunityName.Text, txtOpportunityDescription.Text, DropDownOpportunityType.SelectedItem.Text, dropdownApprenticeship.SelectedItem.Text, DropDownFulltime.Text, txtDeadlineDate.Text);
+        Opportunity newOpportunity = new Opportunity(HttpUtility.HtmlEncode(txtOpportunityName.Text), HttpUtility.HtmlEncode(txtOpportunityDescription.Text), DropDownOpportunityType.SelectedItem.Text, dropdownApprenticeship.SelectedItem.Text, DropDownFulltime.Text, HttpUtility.HtmlEncode(txtDeadlineDate.Text));
         sc.Open();
         System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
         getdbPersonID.Connection = sc;

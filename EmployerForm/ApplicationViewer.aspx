@@ -188,11 +188,8 @@
                     <asp:SqlDataSource ID="OpportunityDropDownSource" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" 
                         SelectCommand="Select Distinct OpportunityName, Opportunity.OpportunityID from Opportunity 
                         inner join EmployerOpportunity on EmployerOpportunity.OpportunityID= Opportunity.OpportunityID 
-                        inner join Employer on Employer.EmployerID = EmployerOpportunity.OpportunityID where EmployerOpportunity.EmployerID = @EmployerID;
+                        inner join Employer on Employer.EmployerID = EmployerOpportunity.EmployerID where EmployerOpportunity.EmployerID = 1;
                         ">
-                        <SelectParameters>
-                            <asp:sessionparameter name="employerID" sessionfield="employerID"/>
-                        </SelectParameters>
             </asp:SqlDataSource>
                 
              
@@ -277,12 +274,12 @@
         </form>
 <asp:SqlDataSource ID="MyDataSource" 
 ConnectionString="<%$Connectionstrings:CuedInConnectionString%>"
-SelectCommand="SELECT DISTINCT TestApplication.ApplicationID, TestApplication.FirstName + ' ' + TestApplication.LastName + ' ' as Name, TestApplication.Email, Student.AcademicYear, Person.PhoneNumber, ' ' + Opportunity.OpportunityName as OpportunityName1
-FROM TestApplication
-    inner join Employer on TestApplication.EmployerID = @EmployerID
-    inner join Opportunity on TestApplication.OpportunityID = Opportunity.OpportunityID
-    inner join Student on TestApplication.StudentID = Student.StudentID
-    inner join Person on Student.PersonID = Person.PersonID;" DeleteCommand="Delete  from TestApplication where ApplicationID = @ApplicationID" runat="server">
+SelectCommand="SELECT DISTINCT Application.ApplicationID, Application.FirstName + ' ' + Application.LastName + ' ' as Name, Application.Email, Student.AcademicYear, Person.PhoneNumber, ' ' + Opportunity.OpportunityName as OpportunityName1
+FROM Application
+    inner join Employer on Application.EmployerID = @EmployerID
+    inner join Opportunity on Application.OpportunityID = Opportunity.OpportunityID
+    inner join Student on Application.StudentID = Student.StudentID
+    inner join Person on Student.PersonID = Person.PersonID;" DeleteCommand="Delete  from Application where ApplicationID = @ApplicationID" runat="server">
     <SelectParameters>
                  <asp:sessionparameter name="employerID" sessionfield="employerID" />
                  <asp:SessionParameter Name="opportunityID" SessionField="opportunityID" />

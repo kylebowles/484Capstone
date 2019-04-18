@@ -49,7 +49,7 @@ public partial class CUEDIN : System.Web.UI.Page
                 string storedHash = reader["PasswordHash"].ToString(); // store the database password into this variable
 
 
-                if (PasswordHash.ValidatePassword(InputPassword1.Value, storedHash)) // if the entered password matches what is stored, it will show success
+                if (PasswordHash.ValidatePassword(HttpUtility.HtmlEncode(InputPassword1.Value), storedHash)) // if the entered password matches what is stored, it will show success
                 {
 
                     System.Data.SqlClient.SqlCommand getUserID = new System.Data.SqlClient.SqlCommand();
@@ -58,7 +58,7 @@ public partial class CUEDIN : System.Web.UI.Page
                     
                     // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
                     getUserID.CommandText = "select Person.PersonID, isnull(Person.EmployerID, ' ') as EmployerID from Account inner join Person on Account.PersonID = Person.PersonID inner join Employer on Person.EmployerID = Employer.EmployerID  where Username = @Username";
-                    getUserID.Parameters.Add(new SqlParameter("@Username", InputEmail2.Value));
+                    getUserID.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(InputEmail2.Value)));
                 
                     SqlDataReader getSessionVar = getUserID.ExecuteReader();
                     if (getSessionVar.HasRows)
@@ -68,7 +68,7 @@ public partial class CUEDIN : System.Web.UI.Page
 
                             Session["loginID"] = getSessionVar.Read();
                             Session["employerID"] = getSessionVar.Read(); // getEmployerID
-                            Session["loginUser"] = InputEmail2.Value; //gets username
+                            Session["loginUser"] = HttpUtility.HtmlEncode(InputEmail2.Value); //gets username
                         }
                     }
                     scloop.Close();
@@ -78,16 +78,16 @@ public partial class CUEDIN : System.Web.UI.Page
                         //getUserID.CommandText = "select FirstName, LastName from Account where Username = @Username";
                         //Session["LoginName"] = getUserID.ExecuteScalar(); //gets person name from account
                         //scloop.Close();
-                        System.Data.SqlClient.SqlCommand logUpdate = new System.Data.SqlClient.SqlCommand();
-                        logUpdate.Connection = scloop;
-                        logUpdate.CommandText = "Update User_LogTime SET offline=0 WHERE offline= @offline AND personID = @userID";
-                        logUpdate.Parameters.AddWithValue("userID", Session["loginID"]);
-                        logUpdate.Parameters.AddWithValue("offline", 1);
-                        logUpdate.ExecuteNonQuery();
-                        scloop.Close();
-                        scloop.Open();
-                        System.Data.SqlClient.SqlCommand logLogin = new System.Data.SqlClient.SqlCommand();
-                        logLogin.Connection = scloop;
+                        //System.Data.SqlClient.SqlCommand logUpdate = new System.Data.SqlClient.SqlCommand();
+                        //logUpdate.Connection = scloop;
+                        //logUpdate.CommandText = "Update User_LogTime SET offline=0 WHERE offline= @offline AND personID = @userID";
+                        //logUpdate.Parameters.AddWithValue("userID", Session["loginID"]);
+                        //logUpdate.Parameters.AddWithValue("offline", 1);
+                        //logUpdate.ExecuteNonQuery();
+                        //scloop.Close();
+                        //scloop.Open();
+                        //System.Data.SqlClient.SqlCommand logLogin = new System.Data.SqlClient.SqlCommand();
+                        //logLogin.Connection = scloop;
                         //logLogin.CommandText = "INSERT INTO User_LogTime (personId, SID, Login_Time, offline) Values(@userID, @SID, @Login_Time, 1)";
                         //logLogin.Parameters.AddWithValue("userID", Session["loginID"]);
                         //logLogin.Parameters.AddWithValue("SID", Session.SessionID);

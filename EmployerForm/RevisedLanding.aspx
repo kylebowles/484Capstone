@@ -370,9 +370,10 @@
 
                 </div>
                 <div class="col-md-2">
-                    <input class="yellowbutton" runat="server" type="button" id="btnEdit" ame="btnAddMore" value="Edit Profile" onclick="displayEditName()" />
+                    <input class="yellowbutton" runat="server" type="button" id="btnEdit" name="btnEdit" value="Edit Profile" onclick="displayEditName()" />
                     <br />
                     <asp:Button ID="btnSaveEdits" runat="server" Text="Save my profile edits" OnClick="SaveEdits_Click" class="control-lbl" CssClass="yellowbutton" ValidationGroup="ReqChanges" />
+
                 </div>
 
             </div>
@@ -402,8 +403,6 @@
                                   <asp:Button ID="btnCloseSuccess" CssClass="smallButton" Text="Close Confirmation" runat="server" Visible="false" OnClick="btnCloseSuccess_Click"></asp:Button>
                                       </div>
                               
-  <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-
  <div id="modal1" class="modal">
      <div class="modal-dialog-centered"> 
     <div class="modal-content">

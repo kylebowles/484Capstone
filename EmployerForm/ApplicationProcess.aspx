@@ -228,9 +228,9 @@
                       <asp:Label ID="Label17" runat="server" Text="Choose Applicant" ForeColor="Black"></asp:Label>
                     <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="NameDropDownSource" DataTextField="Name" DataValueField="ApplicationID" OnSelectedIndexChanged="Dropdown1Change" AutoPostBack="True">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="NameDropDownSource" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT DISTINCT ApplicationID, TestApplication.FirstName + ' ' + TestApplication.LastName + ' ' as Name
-                        FROM TestApplication
-                        inner join Employer on TestApplication.EmployerID = @EmployerID">
+                    <asp:SqlDataSource ID="NameDropDownSource" runat="server" ConnectionString="<%$ ConnectionStrings:Cued-InConnectionString %>" SelectCommand="SELECT DISTINCT ApplicationID, Application.FirstName + ' ' + Application.LastName + ' ' as Name
+                        FROM Application
+                        inner join Employer on Application.EmployerID = @EmployerID">
                         <SelectParameters>
                             <asp:sessionparameter name="employerID" sessionfield="employerID" />
                         </SelectParameters>
