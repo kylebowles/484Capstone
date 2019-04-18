@@ -132,6 +132,38 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
+    <noscript
+class="noscript">
+   <div
+id="div100">
+   JavaScript is not currently enabled on your browser. Please enable JavaScript to view this page.
+   </div>
+</noscript>
+<style>
+
+   body{
+      position:relative;
+   }
+   .noscript
+{
+      width:100%;
+      height:100%;
+/*
+ will cover the text displayed when javascript is enabled*/
+
+      z-index:100000;
+/*
+ higher than other z-index */
+      position:absolute;
+   }
+   .noscript
+#div100{
+       display:block;
+       height:100%;
+       background-color:white;
+   }
+</style>
+
     <form id="form1" runat="server">
 
          <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="true"/>
@@ -178,25 +210,8 @@
        
         <br />
         <br />
-        <div>
-            <div class="container" style="width:auto;align-content:center" id="imgCont">
-                <div class="row" style="width:1900px;align-content:center" id="imgRow">
-                    <div class="col-lg-4 thumb" >
-                        <a class="thumbnail" href="#" id="midtowne">
-                            <img class="img-responsive" src="img/metrics.JPG" alt="" id="const" />
-                        </a>
-                    </div>
-                    <div class="col-lg-4 thumb">
-                    <a class="thumbnail" href="#" id="smallKitchen">
-                        <img class="img-responsive" src="img/smallkitchen.JPG" alt="" style="height:395px;"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <br />
 
-            
-                
-        </div>
 
         <div class="jumbotron" style="background-color:#FFB014">
             
@@ -243,6 +258,8 @@
                <%-- Deleted hardcoded posts here
 
                 Put gridview here?--%>
+                                   <asp:UpdatePanel runat="server">
+                                       <ContentTemplate>
 
                 <div class="col-md-12">
                         <asp:TextBox ID="txtNewPost" runat="server" CssClass="form-control" TextMode="MultiLine" Width="100%" Height="60px" Rows="15" placeholder="What's new?"></asp:TextBox>
@@ -270,8 +287,8 @@
                                 </div>
 
                             </div>--%>
-                    <asp:UpdatePanel runat="server">
-                        <ContentTemplate>
+ 
+                        
                   <asp:GridView ID="GridViewPosts" CssClass="table table-bordered" AutoGenerateColumns="False" runat="server" Width="100%" ShowHeader="False" CellPadding="0" GridLines="None" ForeColor="#333333">
                       <RowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>

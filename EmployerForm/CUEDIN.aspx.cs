@@ -74,30 +74,30 @@ public partial class CUEDIN : System.Web.UI.Page
                     scloop.Close();
 
 
-                    //scloop.Open();
-                    ////getUserID.CommandText = "select FirstName, LastName from Account where Username = @Username";
-                    ////Session["LoginName"] = getUserID.ExecuteScalar(); //gets person name from account
-                    ////scloop.Close();
-                    //System.Data.SqlClient.SqlCommand logUpdate = new System.Data.SqlClient.SqlCommand();
-                    //logUpdate.Connection = scloop;
-                    //logUpdate.CommandText = "Update User_LogTime SET offline=0 WHERE offline= @offline AND personID = @userID";
-                    //logUpdate.Parameters.AddWithValue("userID", Session["loginID"]);
-                    //logUpdate.Parameters.AddWithValue("offline", 1);
-                    //logUpdate.ExecuteNonQuery();
-                    //scloop.Close();
-                    //scloop.Open();
-                    //System.Data.SqlClient.SqlCommand logLogin = new System.Data.SqlClient.SqlCommand();
-                    //logLogin.Connection = scloop;
-                    ////logLogin.CommandText = "INSERT INTO User_LogTime (personId, SID, Login_Time, offline) Values(@userID, @SID, @Login_Time, 1)";
-                    ////logLogin.Parameters.AddWithValue("userID", Session["loginID"]);
-                    ////logLogin.Parameters.AddWithValue("SID", Session.SessionID);
-                    ////logLogin.Parameters.AddWithValue("Login_Time", DateTime.Now);
-                    ////logLogin.ExecuteNonQuery();
-                    ////Session["loggedIn"] = "true";
-                    //LoginSuccess.Visible = false;
-                    //LoginFail.Visible = false;
-                    //PreLogin.Visible = false;
-                    Response.Redirect("RevisedLanding.aspx");
+                        scloop.Open();
+                        //getUserID.CommandText = "select FirstName, LastName from Account where Username = @Username";
+                        //Session["LoginName"] = getUserID.ExecuteScalar(); //gets person name from account
+                        //scloop.Close();
+                        System.Data.SqlClient.SqlCommand logUpdate = new System.Data.SqlClient.SqlCommand();
+                        logUpdate.Connection = scloop;
+                        logUpdate.CommandText = "Update User_LogTime SET offline=0 WHERE offline= @offline AND personID = @userID";
+                        logUpdate.Parameters.AddWithValue("userID", Session["loginID"]);
+                        logUpdate.Parameters.AddWithValue("offline", 1);
+                        logUpdate.ExecuteNonQuery();
+                        scloop.Close();
+                        scloop.Open();
+                        System.Data.SqlClient.SqlCommand logLogin = new System.Data.SqlClient.SqlCommand();
+                        logLogin.Connection = scloop;
+                        //logLogin.CommandText = "INSERT INTO User_LogTime (personId, SID, Login_Time, offline) Values(@userID, @SID, @Login_Time, 1)";
+                        //logLogin.Parameters.AddWithValue("userID", Session["loginID"]);
+                        //logLogin.Parameters.AddWithValue("SID", Session.SessionID);
+                        //logLogin.Parameters.AddWithValue("Login_Time", DateTime.Now);
+                        //logLogin.ExecuteNonQuery();
+                        //Session["loggedIn"] = "true";
+                        LoginSuccess.Visible = false;
+                        LoginFail.Visible = false;
+                        PreLogin.Visible = false;
+                        Response.Redirect("RevisedLanding.aspx");
 
 
 

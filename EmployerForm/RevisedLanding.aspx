@@ -496,7 +496,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content profile-tab" id="myTabContent" runat="server">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" runat="server">
+                        <div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab" runat="server">
                             <b><asp:Label ID="Personalinfo" runat="server" Text="Personal Information"></asp:Label></b>
                             <div class="row">
                                 <div class="col-md-6">
