@@ -100,79 +100,81 @@
                                                 <div class="form-group">
                                                     <asp:label for="FirstName" runat="server">First Name</asp:label>
                                                     <input type="text" class="form-control" id="FirstName" name="firstname" placeholder="Your name.." runat="server" />
-                                                    
+                                                    <asp:RequiredFieldValidator ID="reqFName" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="FirstName" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </div>
                                              </div>
                                           <div class="col-sm-6 float-right">   
                                             <div class="form-group">
                                                 <asp:label for="LastName" runat="server">Last Name</asp:label>
                                                 <input type="text" class="form-control" id="LastName" name="lastname" placeholder="Your last name.." runat="server" />
-                                                    
+                                                <asp:RequiredFieldValidator ID="reqLName" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="LastName" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </div>
                                             </div>
                                             </div>
                                         <div class="form-group">
                                             <asp:label for="CompanyName" runat="server">Company Name</asp:label>
                                             <input type="text" class="form-control" id="CompanyName" name="companyname" placeholder="Company name.." runat="server" />
-                                                
+                                            <asp:RequiredFieldValidator ID="reqCoName" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="CompanyName" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </div>
 
                                         <div class="form-group">
                                             <asp:label for="JobTitle" runat="server">Job Title</asp:label>
                                             <input type="text" class="form-control" id="JobTitle" name="companyname" placeholder="Enter your job title" runat="server" />
-                                                
+                                            
                                             </div>
 
                                             <div class="form-group">
                                                 <asp:label for="EmailAdd" runat="server">Email address</asp:label>
                                                 <input type="email" class="form-control" id="EmailAdd" aria-describedby="emailHelp" placeholder="Enter email" runat="server" />
-                                                
+                                                <asp:RequiredFieldValidator ID="reqEmail" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="EmailAdd" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 
                                         </div>
                                     
                                     <div class="form-group">
                                             <asp:label for="Password1" runat="server">Password</asp:label>
                                             <input type="password" class="form-control" id="Password1" name="psw" required placeholder="Password" runat="server" />
-                                                    
+                                            <asp:RequiredFieldValidator ID="reqPass" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="Password1" ForeColor="Red"></asp:RequiredFieldValidator>      
                                         </div>
                                     <div class="form-group">
                                         <label for="Password2" runat="server">Re-Enter Password</label>
                                         <input type="password" class="form-control" id="Password2" placeholder="Re-Enter Password" name="psw-repeat" required runat="server" /> 
-                                      
+                                        <asp:RequiredFieldValidator ID="reqPassCheck" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="Password2" ForeColor="Red"></asp:RequiredFieldValidator>
                                         <hr>
                                     </div>
                                         <div class="form-group">
                                             <asp:label for="PhoneNumber" runat="server">Phone Number</asp:label>
-                                             <input class="form-control" type="tel" placeholder="Phone Number"  id="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" runat="server" />
-                                                
+                                            <input class="form-control" type="tel" placeholder="Phone Number"  id="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" runat="server" />
+                                            <asp:RequiredFieldValidator ID="reqPhone" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="PhoneNumber" ForeColor="Red"></asp:RequiredFieldValidator>   
                                         </div>
                                           <div class="form-group">
                                             <asp:label for="CompHouseNumber" runat="server">Company Address</asp:label>
-                                                <input type="text" class="form-control" id="CompHouseNumber" name="companyaddress" placeholder="Company Street Number" runat="server" />
-                                               
-                                            </div>
+                                            <input type="text" class="form-control" id="CompHouseNumber" name="companyaddress" placeholder="Company Street Number" runat="server" />
+                                            <asp:RequiredFieldValidator ID="reqCoNum" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="CompHouseNumber" ForeColor="Red"></asp:RequiredFieldValidator> 
+                                         </div>
                                         <div class="form-group">
                                                 <asp:label for="CompStreet" runat="server">Company Address</asp:label>
                                                 <input type="text" class="form-control" id="CompStreet" name="companyaddress" placeholder="Company Street" runat="server" />
-                                               
+                                                <asp:RequiredFieldValidator ID="reqCoSt" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="CompStreet" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </div>
                                         <div class="row">
                                               <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <asp:label for="City" runat="server">City</asp:label>
                                                     <input type="text" class="form-control" id="City" name="city" placeholder="City..." runat="server" />
-                                                    
+                                                    <asp:RequiredFieldValidator ID="reqCity" runat="server" ErrorMessage="Required Field" ValidationGroup="RequiredNoNull" ControlToValidate="City" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </div>
                                              </div>
 
                                             <div class="form-group">
                                             <asp:label for="CompCountry" runat="server">Company Country</asp:label>
                                                 <input type="text" class="form-control" id="CompCountry" name="companyaddress" placeholder="Country" runat="server" />
+                                                <asp:RequiredFieldValidator ID="reqCountry" runat="server" ErrorMessage="Required" ValidationGroup="RequiredNoNull" ControlToValidate="CompCountry" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </div>
 
                                             <div class="form-group">
                                             <asp:label for="CompZip" runat="server">Company Zip Code</asp:label>
                                                 <input type="text" class="form-control" id="CompZip" name="companyaddress" placeholder="Company Zip Code" runat="server" />
+                                                <asp:RequiredFieldValidator ID="reqZip" runat="server" ErrorMessage="Required" ValidationGroup="RequiredNoNull" ControlToValidate="CompZip" ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </div>
 
                                           <div class="col-sm-6 float-right">   
@@ -256,7 +258,7 @@
                                     <center>   
                                     <div class="singleService wow fadeInLeft" data-wow-duration="1.8s">
                                         <asp:LinkButton ID="SubmitClick" runat="server" onClick="insert_Click" class="thm-btn text-white f2 fw-7 text-left" 
-                                            data-animation="animated fadeInUp" rel="m_PageScroll2id">Submit</asp:LinkButton>
+                                            data-animation="animated fadeInUp" rel="m_PageScroll2id" ValidationGroup="RequiredNoNull">Submit</asp:LinkButton>
                                           </div>
                                      </center>
 

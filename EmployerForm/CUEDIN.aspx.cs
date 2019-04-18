@@ -37,7 +37,7 @@ public partial class CUEDIN : System.Web.UI.Page
         findPass.Connection = sc;
         // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
         findPass.CommandText = "select PasswordHash from Account where Username = @Username";
-        findPass.Parameters.Add(new SqlParameter("@Username", InputEmail2.Value));
+        findPass.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(InputEmail2.Value)));
 
         SqlDataReader reader = findPass.ExecuteReader(); // create a reader
         

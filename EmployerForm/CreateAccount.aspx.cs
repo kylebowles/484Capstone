@@ -125,12 +125,12 @@ public partial class Employer : System.Web.UI.Page
             insertAddress.Connection = sc;
             insertAddress.CommandText = "insert into[Address](HouseNumber, Street, City, State, Country, ZipCode) " +
                 "values(@HouseNumber,@CompStreet,@City,@CompState,@Country,@ZipCode)";
-            insertAddress.Parameters.Add(new SqlParameter("@HouseNumber", bus.getCompHouseNumber()));
-            insertAddress.Parameters.Add(new SqlParameter("@CompStreet", bus.getCompStreet()));
-            insertAddress.Parameters.Add(new SqlParameter("@City", bus.getCity()));
-            insertAddress.Parameters.Add(new SqlParameter("@CompState", bus.getState()));
-            insertAddress.Parameters.Add(new SqlParameter("@Country", bus.getCountry()));
-            insertAddress.Parameters.Add(new SqlParameter("@ZipCode", bus.getZipCode()));
+            insertAddress.Parameters.Add(new SqlParameter("@HouseNumber", HttpUtility.HtmlEncode(bus.getCompHouseNumber())));
+            insertAddress.Parameters.Add(new SqlParameter("@CompStreet", HttpUtility.HtmlEncode(bus.getCompStreet())));
+            insertAddress.Parameters.Add(new SqlParameter("@City", HttpUtility.HtmlEncode(bus.getCity())));
+            insertAddress.Parameters.Add(new SqlParameter("@CompState", HttpUtility.HtmlEncode(bus.getState())));
+            insertAddress.Parameters.Add(new SqlParameter("@Country", HttpUtility.HtmlEncode(bus.getCountry())));
+            insertAddress.Parameters.Add(new SqlParameter("@ZipCode", HttpUtility.HtmlEncode(bus.getZipCode())));
 
             insertAddress.ExecuteNonQuery();
             sc.Close();
@@ -148,7 +148,7 @@ public partial class Employer : System.Web.UI.Page
 
             SqlCommand selectCompany = new SqlCommand();
             selectCompany.Connection = sc;
-            selectCompany.CommandText = "SELECT EmployerName from Employer where EmployerName = " +  "'" + bus.getCompany() + "'";
+            selectCompany.CommandText = "SELECT EmployerName from Employer where EmployerName = " +  "'" + HttpUtility.HtmlEncode(bus.getCompany()) + "'";
             selectCompany.ExecuteNonQuery();
             SqlDataReader companyReader = selectCompany.ExecuteReader();
 
@@ -163,8 +163,8 @@ public partial class Employer : System.Web.UI.Page
                     companyReader.Close();
 
                     insertEmployer.CommandText = "insert into [Employer](EmployerName,isApproved) values(@EmployerName,@isApproved)";
-                    insertEmployer.Parameters.Add(new SqlParameter("@EmployerName", bus.getCompany()));
-                    insertEmployer.Parameters.Add(new SqlParameter("@isApproved", bus.getApproval()));
+                    insertEmployer.Parameters.Add(new SqlParameter("@EmployerName", HttpUtility.HtmlEncode(bus.getCompany())));
+                    insertEmployer.Parameters.Add(new SqlParameter("@isApproved", HttpUtility.HtmlEncode(bus.getApproval())));
                     
 
                     insertEmployer.ExecuteNonQuery();
@@ -188,7 +188,7 @@ public partial class Employer : System.Web.UI.Page
 
             SqlCommand EmpIDforPerson = new SqlCommand();
             EmpIDforPerson.Connection = sc;
-            EmpIDforPerson.CommandText = "Select EmployerID from Employer where Employername = " + "'" + bus.getCompany() + "'";
+            EmpIDforPerson.CommandText = "Select EmployerID from Employer where Employername = " + "'" + HttpUtility.HtmlEncode(bus.getCompany()) + "'";
             EmpIDforPerson.ExecuteNonQuery();
             int holdEmpID = (Int32)EmpIDforPerson.ExecuteScalar();
 
@@ -201,16 +201,16 @@ public partial class Employer : System.Web.UI.Page
 
             insertPerson.CommandText = "insert into [Person](FirstName,LastName,Email,personType,AddressID,PhoneNumber,JobTitle,ProfilePhoto,PersonalSummary,EmployerID)" +
                 " values(@FirstName,@LastName,@Email,@PersonType,@AddressID,@PhoneNumber,@JobTitle,@ProfilePhoto,@PersonalSummary,@EmployerID)";
-            insertPerson.Parameters.Add(new SqlParameter("@FirstName", bus.getFirstName()));
-            insertPerson.Parameters.Add(new SqlParameter("@LastName", bus.getLastName()));
-            insertPerson.Parameters.Add(new SqlParameter("@Email", bus.getEmail()));
-            insertPerson.Parameters.Add(new SqlParameter("@PhoneNumber", bus.getPhone()));
-            insertPerson.Parameters.Add(new SqlParameter("@JobTitle", bus.getJobTitle()));
+            insertPerson.Parameters.Add(new SqlParameter("@FirstName", HttpUtility.HtmlEncode(bus.getFirstName())));
+            insertPerson.Parameters.Add(new SqlParameter("@LastName", HttpUtility.HtmlEncode(bus.getLastName())));
+            insertPerson.Parameters.Add(new SqlParameter("@Email", HttpUtility.HtmlEncode(bus.getEmail())));
+            insertPerson.Parameters.Add(new SqlParameter("@PhoneNumber", HttpUtility.HtmlEncode(bus.getPhone())));
+            insertPerson.Parameters.Add(new SqlParameter("@JobTitle", HttpUtility.HtmlEncode(bus.getJobTitle())));
             insertPerson.Parameters.Add(new SqlParameter("ProfilePhoto", pic));
-            insertPerson.Parameters.Add(new SqlParameter("@PersonalSummary", bus.getEmpSummary()));
+            insertPerson.Parameters.Add(new SqlParameter("@PersonalSummary", HttpUtility.HtmlEncode(bus.getEmpSummary())));
             insertPerson.Parameters.Add(new SqlParameter("@PersonType", "Employer"));
-            insertPerson.Parameters.Add(new SqlParameter("@AddressID", holdAddID));
-            insertPerson.Parameters.Add(new SqlParameter("@EmployerID", holdEmpID));
+            insertPerson.Parameters.Add(new SqlParameter("@AddressID", HttpUtility.HtmlEncode(holdAddID)));
+            insertPerson.Parameters.Add(new SqlParameter("@EmployerID", HttpUtility.HtmlEncode(holdEmpID)));
             
 
             insertPerson.ExecuteNonQuery();
@@ -239,11 +239,11 @@ public partial class Employer : System.Web.UI.Page
 
             insertAct.CommandText = "insert into [Account](Username,PersonID,PasswordHash,PasswordSalt,ModifiedDate) values(@Username,@PersonID, @PasswordHash,@PasswordSalt,@ModifiedDate)";
            
-            insertAct.Parameters.Add(new SqlParameter("@Username", bus.getEmail()));
-            insertAct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(bus.getPassword())));
+            insertAct.Parameters.Add(new SqlParameter("@Username", HttpUtility.HtmlEncode(bus.getEmail())));
+            insertAct.Parameters.Add(new SqlParameter("@PasswordHash", PasswordHash.HashPassword(HttpUtility.HtmlEncode(((bus.getPassword()))))));
             insertAct.Parameters.Add(new SqlParameter("@PasswordSalt", "Salt"));
             insertAct.Parameters.Add(new SqlParameter("@ModifiedDate", DateTime.Now));
-            insertAct.Parameters.Add(new SqlParameter("@PersonID", holdPersonID));
+            insertAct.Parameters.Add(new SqlParameter("@PersonID", HttpUtility.HtmlEncode(holdPersonID)));
             insertAct.ExecuteNonQuery();
 
 
