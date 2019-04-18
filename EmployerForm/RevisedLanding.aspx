@@ -15,7 +15,9 @@
     <meta name="description" content="Mojo - Bootstrap 4 Multipurpose One Page Template" />
     <meta name="author" content="theme_xpress" />
     <link rel="shortcut icon" href="img/favicon.png" />
-
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Futura:300,400,500,600,700,800,900|Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" />
 
@@ -215,6 +217,16 @@
          #backpic{
                 text-align:center;
                 }
+         .modal {
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  max-width: 100%;
+  max-height: 100%;
+}
 
     </style>
     
@@ -275,6 +287,8 @@
 <body>
 
     <form runat="server" id="form1">
+
+        <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="true"/>
         
          <div>
             <header class="main-header">
@@ -373,6 +387,110 @@
              
                     </div>
                     <asp:Button ID="ShowSum" runat="server" Text="View my summary" OnClick="ShowSummary" CssClass="greenbutton" /> <!--"btn btn-info" />-->
+                    <asp:Button ID="btnCreateOpportunity" runat="server" Text="Post new Opportunity" CssClass="greenbutton" data-toggle="modal" data-target="#modal1" OnClientClick ="return false" />
+                          <div class="container">
+                              <br />
+                              <div class="row">
+                                  <div class="col-lg">
+      
+                              <asp:Label id="lblSuccess" runat="server" CssClass="alert alert-success alert-dismissible" visible="false"><strong>Successfully Posted!</strong></asp:Label>
+
+                              </div>
+                                  </div>
+                                  <div class="col-lg">
+                                      <br>
+                                  <asp:Button ID="btnCloseSuccess" CssClass="smallButton" Text="Close Confirmation" runat="server" Visible="false" OnClick="btnCloseSuccess_Click"></asp:Button>
+                                      </div>
+                              
+  <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+ <div id="modal1" class="modal">
+     <div class="modal-dialog-centered"> 
+    <div class="modal-content">
+         <div class="modal-header" style="background-color:#FFB014">
+             <h2 class="display-4" style="text-align:center"><strong>Post New Opportunity</strong></h2>
+             </div>
+
+        <br />
+        <asp:Label id="lblOpportunityName" runat="server"><strong>Opportunity Name:</strong></asp:Label>
+                <div class="input-group">
+        <asp:TextBox id="txtOpportunityName" runat="server" CssClass="form-control rounded-0" placeholder="Enter the title of this position"></asp:TextBox>
+                    </div>
+        <asp:RequiredFieldValidator ID="opportunityNameValidator" runat="server" ControlToValidate="txtOpportunityName" Text="Enter the name of this opportunity" cssclass="alert-danger" ValidationGroup="OpportunityPostGroup"></asp:RequiredFieldValidator>
+
+        <asp:Label ID="lblOpportunityDescription" runat="server"><strong>Description:</strong></asp:Label>
+        <div class="input-group">
+
+        <asp:TextBox id="txtOpportunityDescription" TextMode="MultiLine" columns="50" Rows="10" runat="server" CssClass="form-control rounded-0" placeholder="Provide a description of this work based learning opportunity"></asp:TextBox>
+            </div>
+        <asp:RequiredFieldValidator ID="opportunityDescriptionValidator" runat="server" ControlToValidate="txtOpportunityDescription" Text="Enter a description for this opportunity" CssClass="alert-danger" ValidationGroup="OpportunityPostGroup"></asp:RequiredFieldValidator>
+
+                <asp:Label ID="modallabel" runat="server"><strong>Select the interests you would like associate this opportunity with</strong></asp:Label>
+         <asp:ListBox ID="listBoxInterestChoice" runat="server" DataSourceID="InterestSqlDataSource" DataTextField="InterestName" DataValueField="InterestID" SelectionMode="Multiple" CssClass="table-bordered table-hover" Height="100"></asp:ListBox>
+                            <asp:SqlDataSource ID="InterestSqlDataSource" 
+                            SelectCommand="Select * from interest"
+                            ConnectionString="<%$Connectionstrings:CuedInConnectionString%>"
+                            DataSourceMode="DataReader"
+                            runat="server"></asp:SqlDataSource>
+        <br />
+        <asp:Label id="lblSchoolChoice" runat="server"><strong>Select the schools you would like to post this opportunity to</strong></asp:Label>
+        <asp:ListBox ID="listBoxSchoolChoice" runat="server" DataSourceID="SchoolSqlDataSource" DataTextField="SchoolName" DataValueField="SchoolID" SelectionMode="Multiple" CssClass="table-bordered table-hover" Height="100"></asp:ListBox>
+                            <asp:SqlDataSource ID="SchoolSqlDataSource" 
+                            SelectCommand="Select * from school"
+                            ConnectionString="<%$Connectionstrings:CuedInConnectionString%>"
+                            DataSourceMode="DataReader"
+                            runat="server"></asp:SqlDataSource>
+        <asp:RequiredFieldValidator ID="schoolSelectionValidator" runat="server"          
+        InitialValue=""
+        ControlToValidate="listBoxSchoolChoice" 
+        ErrorMessage="Atleast one school required" 
+        CssClass="alert-danger"  
+        Text="Atleast one school required"
+        ValidationGroup="OpportunityPostGroup">
+        </asp:RequiredFieldValidator> 
+
+                        <asp:DropDownList id="DropDownOpportunityType" runat="server" CssClass="dropdown-item">
+            <asp:ListItem Enabled="true" Text="Opportunity Duration?" Value="-1"></asp:ListItem>
+            <asp:ListItem>Summer</asp:ListItem>
+            <asp:ListItem>Year-round</asp:ListItem>
+            <asp:ListItem>Not Specified</asp:ListItem>
+        </asp:DropDownList>
+        <asp:RequiredFieldValidator ID="opportunitytypevalidator" runat="server" ControlToValidate="DropDownOpportunityType" Text="Select an option" cssclass="alert-danger"
+    InitialValue="-1" ValidationGroup="OpportunityPostGroup">
+</asp:RequiredFieldValidator>
+
+        <asp:DropDownList id="dropdownApprenticeship" runat="server" CssClass="dropdown-item">
+            <asp:ListItem Enabled="true" Text="Paid Apprenticeship?" Value="-1"></asp:ListItem>
+            <asp:ListItem>No</asp:ListItem>
+            <asp:ListItem>Yes</asp:ListItem>
+        </asp:DropDownList>
+        <asp:RequiredFieldValidator ID="apprenticeshipvalidator" runat="server" ControlToValidate="dropdownApprenticeship" Text="Select an option" cssclass="alert-danger"
+    InitialValue="-1" ValidationGroup="OpportunityPostGroup">
+</asp:RequiredFieldValidator>
+
+                <asp:DropDownList id="DropDownFulltime" runat="server" CssClass="dropdown-item">
+            <asp:ListItem Enabled="true" Text="Full or part time?" Value="-1"></asp:ListItem>
+            <asp:ListItem>Part-time</asp:ListItem>
+            <asp:ListItem>Full-time</asp:ListItem>
+        </asp:DropDownList>
+        <asp:RequiredFieldValidator ID="fulltimevalidator" runat="server" ControlToValidate="DropDownFulltime" Text="Select an option" cssclass="alert-danger" ValidationGroup="OpportunityPostGroup"
+    InitialValue="-1">
+</asp:RequiredFieldValidator>
+
+        <br />
+        <div class="col-8">
+        <asp:Label ID="lblDeadlineDate" runat="server"><strong>Please provide a deadline for applications to this opportunity</strong></asp:Label>
+        <asp:TextBox id="txtDeadlineDate" runat="server" textmode="Date"></asp:TextBox></div>
+            <div class="modal-footer" style="color:black">
+        <asp:Button ID="AgreeSubmit" runat="server" Text="Submit New Opportunity" ValidationGroup="OpportunityPostGroup"  OnClick="AgreeSubmit_Click" BorderStyle="Solid" height="25" width="150" CssClass="btn-warning" href="alertbox"/>
+                <asp:Button ID="btnclose" runat="server" Text="Close" BorderStyle="Solid" height="25" width="150" CssClass="btn-dark" OnClick="Close_Click"/>
+    </div>
+    </div>
+
+         </div>
+  </div>
+  
+</div>
                 </div>
 
                 </div>

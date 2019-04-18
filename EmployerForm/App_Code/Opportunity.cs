@@ -20,6 +20,9 @@ public class Opportunity
     private String OpportunityName;
     private String OpportunityType;
     private String isApprenticeship;
+    private String isFulltime;
+    private String OpportunityDescription;
+    private String deadline;
 
     public Opportunity()
     {
@@ -28,11 +31,14 @@ public class Opportunity
         //
     }
 
-    public Opportunity(String OpportunityName, String OpportunityType, String isApprenticeship)
+    public Opportunity(String OpportunityName, String OpportunityDescription, String OpportunityType, String isApprenticeship, String isFulltime, String deadline)
     {
-        this.OpportunityName = OpportunityName;
-        this.OpportunityType = OpportunityType;
-        this.isApprenticeship = isApprenticeship;
+        setOpportunityName(OpportunityName);
+        setOpportunityDesc(OpportunityDescription);
+        setOpportunityType(OpportunityType);
+        setApprenticeship(isApprenticeship);
+        setFulltime(isFulltime);
+        setDeadline(deadline);
     }
 
     public String getOpportunityName()
@@ -63,5 +69,44 @@ public class Opportunity
     public void setApprenticeship(String isApprenticeship)
     {
         this.isApprenticeship = isApprenticeship;
+    }
+
+    public String getFullTime()
+    {
+        return this.isFulltime;
+    }
+
+    public void setFulltime(String isFulltime)
+    {
+		if(isFulltime.ToUpper() == "PART-TIME")
+		{
+			isFulltime = "No";
+		}
+		else
+		{
+			isFulltime = "Yes";
+		}
+
+        this.isFulltime = isFulltime;
+    }
+
+    public String getOpportunityDesc()
+    {
+        return this.OpportunityDescription;
+    }
+
+    public void setOpportunityDesc(String opportunityDescription)
+    {
+        this.OpportunityDescription = opportunityDescription;
+    }
+
+    public String getDeadline()
+    {
+        return this.deadline;
+    }
+
+    public void setDeadline(String deadline)
+    {
+        this.deadline = deadline;
     }
 }

@@ -22,109 +22,110 @@ public partial class RevisedLanding : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        //Display current employer name from database
+  //      //Display current employer name from database
 
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
-        getdbPersonID.Connection = sc;
-        //Gets the personid for the username
-        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+  //      getdbPersonID.Connection = sc;
+		////Gets the personid for the username
+		//getdbPersonID.CommandText = "SELECT PersonID from Account where Username = 'nbarth'";
+		////	'" + (string)(Session)["loginUser"] + "'";
 
-        int accountID = (int)getdbPersonID.ExecuteScalar();
-        sc.Close();
+  //      int accountID = (int)getdbPersonID.ExecuteScalar();
+  //      sc.Close();
 
 
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getFName = new System.Data.SqlClient.SqlCommand();
-        getFName.Connection = sc;
-        //gets the firstname for the user
-        getFName.CommandText = "Select FirstName from Person where PersonID = @AccountPersonID1"; 
-        getFName.Parameters.Add(new SqlParameter("@AccountPersonID1", accountID));
-        string accountFName = (string)getFName.ExecuteScalar();
-        sc.Close();
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getFName = new System.Data.SqlClient.SqlCommand();
+  //      getFName.Connection = sc;
+  //      //gets the firstname for the user
+  //      getFName.CommandText = "Select FirstName from Person where PersonID = @AccountPersonID1"; 
+  //      getFName.Parameters.Add(new SqlParameter("@AccountPersonID1", accountID));
+  //      string accountFName = (string)getFName.ExecuteScalar();
+  //      sc.Close();
 
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getLName = new System.Data.SqlClient.SqlCommand();
-        getLName.Connection = sc;
-        //gets the lastname for the user
-        getLName.CommandText = "Select Person.LastName FROM Person where PersonID = @AccountPersonID";
-        getLName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
-        string accountLName = (string)getLName.ExecuteScalar();
-        sc.Close();
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getLName = new System.Data.SqlClient.SqlCommand();
+  //      getLName.Connection = sc;
+  //      //gets the lastname for the user
+  //      getLName.CommandText = "Select Person.LastName FROM Person where PersonID = @AccountPersonID";
+  //      getLName.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
+  //      string accountLName = (string)getLName.ExecuteScalar();
+  //      sc.Close();
 
-        //Displays the user's name
-        NameResult.Text = accountFName + " " + accountLName;
-        BigNameResult.Text = accountFName + " " + accountLName;
+  //      //Displays the user's name
+  //      NameResult.Text = accountFName + " " + accountLName;
+  //      BigNameResult.Text = accountFName + " " + accountLName;
 
-        //Display current employer's username/email
-        UsernameResult.Text = (string)(Session)["loginUser"];
+  //      //Display current employer's username/email
+  //      UsernameResult.Text = (string)(Session)["loginUser"];
 
-        //Display current employer's company
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getEmpID = new System.Data.SqlClient.SqlCommand();
-        getEmpID.Connection = sc;
-        getEmpID.CommandText = "SELECT EmployerID from Person where Email = @Email";
-        getEmpID.Parameters.Add(new SqlParameter("@Email", (string)(Session)["loginUser"]));
-        Session["employerID"] = getEmpID.ExecuteScalar();
+  //      //Display current employer's company
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getEmpID = new System.Data.SqlClient.SqlCommand();
+  //      getEmpID.Connection = sc;
+  //      getEmpID.CommandText = "SELECT EmployerID from Person where Email = @Email";
+  //      getEmpID.Parameters.Add(new SqlParameter("@Email", (string)(Session)["loginUser"]));
+  //      Session["employerID"] = getEmpID.ExecuteScalar();
 
-        System.Data.SqlClient.SqlCommand getCoName = new System.Data.SqlClient.SqlCommand();
-        getCoName.Connection = sc;
-        getCoName.CommandText = "select Employer.EmployerName FROM Employer INNER JOIN Person ON Person.EmployerID = Employer.EmployerID where Person.EmployerID = @EmployerID";
-        getCoName.Parameters.Add(new SqlParameter("@EmployerID", Session["employerID"]));
-        string coName = (string)getCoName.ExecuteScalar();
-        CompanyResult.Text = coName;
-        sc.Close();
+  //      System.Data.SqlClient.SqlCommand getCoName = new System.Data.SqlClient.SqlCommand();
+  //      getCoName.Connection = sc;
+  //      getCoName.CommandText = "select Employer.EmployerName FROM Employer INNER JOIN Person ON Person.EmployerID = Employer.EmployerID where Person.EmployerID = @EmployerID";
+  //      getCoName.Parameters.Add(new SqlParameter("@EmployerID", Session["employerID"]));
+  //      string coName = (string)getCoName.ExecuteScalar();
+  //      CompanyResult.Text = coName;
+  //      sc.Close();
 
-        //Display current employer's location
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getAddID = new System.Data.SqlClient.SqlCommand();
-        getAddID.Connection = sc;
-        getAddID.CommandText = "select AddressID from person where PersonID = @AccountPersonID"; //gets address id
-        getAddID.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
-        int addID = (int)getAddID.ExecuteScalar();
+  //      //Display current employer's location
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getAddID = new System.Data.SqlClient.SqlCommand();
+  //      getAddID.Connection = sc;
+  //      getAddID.CommandText = "select AddressID from person where PersonID = @AccountPersonID"; //gets address id
+  //      getAddID.Parameters.Add(new SqlParameter("@AccountPersonID", accountID));
+  //      int addID = (int)getAddID.ExecuteScalar();
 
-        System.Data.SqlClient.SqlCommand getLocation = new System.Data.SqlClient.SqlCommand();
-        getLocation.Connection = sc;
-        getLocation.CommandText = "select City from Address where AddressID = @AccountAddressID"; //gets city
-        getLocation.Parameters.Add(new SqlParameter("@AccountAddressID", addID));
-        string citySt = (string)getLocation.ExecuteScalar();
-        LocationResult.Text = citySt;
-        sc.Close();
+  //      System.Data.SqlClient.SqlCommand getLocation = new System.Data.SqlClient.SqlCommand();
+  //      getLocation.Connection = sc;
+  //      getLocation.CommandText = "select City from Address where AddressID = @AccountAddressID"; //gets city
+  //      getLocation.Parameters.Add(new SqlParameter("@AccountAddressID", addID));
+  //      string citySt = (string)getLocation.ExecuteScalar();
+  //      LocationResult.Text = citySt;
+  //      sc.Close();
 
-        //Display the current Employer's job title on their profile
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getEmpAddID = new System.Data.SqlClient.SqlCommand();
-        getEmpAddID.Connection = sc;
-        getEmpAddID.CommandText = "SELECT JobTitle from Person where PersonID = @PersonEmployerID"; //gets EmployerID
-        getEmpAddID.Parameters.Add(new SqlParameter("@PersonEmployerID", accountID));
-        String Occupation = getEmpAddID.ExecuteScalar().ToString();
-        JobResult.Text = Occupation.ToString();
-        sc.Close();
+  //      //Display the current Employer's job title on their profile
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getEmpAddID = new System.Data.SqlClient.SqlCommand();
+  //      getEmpAddID.Connection = sc;
+  //      getEmpAddID.CommandText = "SELECT JobTitle from Person where PersonID = @PersonEmployerID"; //gets EmployerID
+  //      getEmpAddID.Parameters.Add(new SqlParameter("@PersonEmployerID", accountID));
+  //      String Occupation = getEmpAddID.ExecuteScalar().ToString();
+  //      JobResult.Text = Occupation.ToString();
+  //      sc.Close();
 
-        //Display current person's personal phone number
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getPhoneNumber = new System.Data.SqlClient.SqlCommand();
-        getPhoneNumber.Connection = sc;
-        getPhoneNumber.CommandText = "Select PhoneNumber from Person where PersonID = @PhonePersonID";
-        getPhoneNumber.Parameters.Add(new SqlParameter("@PhonePersonID", accountID));
-        String PhoneNum = (String)getPhoneNumber.ExecuteScalar();
-        PhoneResult.Text = PhoneNum;
-        sc.Close();
+  //      //Display current person's personal phone number
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getPhoneNumber = new System.Data.SqlClient.SqlCommand();
+  //      getPhoneNumber.Connection = sc;
+  //      getPhoneNumber.CommandText = "Select PhoneNumber from Person where PersonID = @PhonePersonID";
+  //      getPhoneNumber.Parameters.Add(new SqlParameter("@PhonePersonID", accountID));
+  //      String PhoneNum = (String)getPhoneNumber.ExecuteScalar();
+  //      PhoneResult.Text = PhoneNum;
+  //      sc.Close();
 
-        //Display the current user's uploaded profile photo
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getProfPhoto = new System.Data.SqlClient.SqlCommand();
-        getProfPhoto.Connection = sc;
-        getProfPhoto.CommandText = "Select ProfilePhoto from Person where PersonID = @PhotoPersonID";
-        getProfPhoto.Parameters.Add(new SqlParameter("@PhotoPersonID", accountID));
-        ////String Image = (String)getProfPhoto.ExecuteScalar();
-        ////ProfPic.ImageUrl = String.Format("data:image/jpeg;base64,{0}", Image);
-        //byte[] bytes = (byte[])getProfPhoto.ExecuteScalar();
-        //String str = Convert.ToBase64String(bytes);
-        ////ProfPic.ImageUrl = "LabPatron/This PC/Pictures" + str;
+  //      //Display the current user's uploaded profile photo
+  //      sc.Open();
+  //      System.Data.SqlClient.SqlCommand getProfPhoto = new System.Data.SqlClient.SqlCommand();
+  //      getProfPhoto.Connection = sc;
+  //      getProfPhoto.CommandText = "Select ProfilePhoto from Person where PersonID = @PhotoPersonID";
+  //      getProfPhoto.Parameters.Add(new SqlParameter("@PhotoPersonID", accountID));
+  //      ////String Image = (String)getProfPhoto.ExecuteScalar();
+  //      ////ProfPic.ImageUrl = String.Format("data:image/jpeg;base64,{0}", Image);
+  //      //byte[] bytes = (byte[])getProfPhoto.ExecuteScalar();
+  //      //String str = Convert.ToBase64String(bytes);
+  //      ////ProfPic.ImageUrl = "LabPatron/This PC/Pictures" + str;
 
-        //NEW ATTEMPT --> Have them upload their company's logo from instead of their profile photo
-        sc.Close();
+  //      //NEW ATTEMPT --> Have them upload their company's logo from instead of their profile photo
+  //      sc.Close();
 
     }
 
@@ -133,28 +134,28 @@ public partial class RevisedLanding : System.Web.UI.Page
     {
 
 
-        sc.Open();
-        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
-        getdbPersonID.Connection = sc;
-        //Gets the personid for the username
-        getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
-        int accountID = (int)getdbPersonID.ExecuteScalar();
+        //sc.Open();
+        //System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+        //getdbPersonID.Connection = sc;
+        ////Gets the personid for the username
+        //getdbPersonID.CommandText = "SELECT PersonID from Account where Username = '" + (string)(Session)["loginUser"] + "'";
+        //int accountID = (int)getdbPersonID.ExecuteScalar();
 
 
-        ProfileSummary.Visible = true;
-        lblSummary.Visible = true;
-        btnEditSum.Visible = true;
+        //ProfileSummary.Visible = true;
+        //lblSummary.Visible = true;
+        //btnEditSum.Visible = true;
 
 
-        System.Data.SqlClient.SqlCommand getEmpSummary = new System.Data.SqlClient.SqlCommand();
-        getEmpSummary.Connection = sc;
-        //Fix here, probably have to do a join
-        getEmpSummary.CommandText = "Select PersonalSummary from Person where PersonID  = " + accountID;
-        getEmpSummary.Parameters.Add(new SqlParameter("@SummaryPersonID", accountID));
-        String EmpSum = getEmpSummary.ExecuteScalar().ToString();
-        ProfileSummary.InnerText = EmpSum;
+        //System.Data.SqlClient.SqlCommand getEmpSummary = new System.Data.SqlClient.SqlCommand();
+        //getEmpSummary.Connection = sc;
+        ////Fix here, probably have to do a join
+        //getEmpSummary.CommandText = "Select PersonalSummary from Person where PersonID  = " + accountID;
+        //getEmpSummary.Parameters.Add(new SqlParameter("@SummaryPersonID", accountID));
+        //String EmpSum = getEmpSummary.ExecuteScalar().ToString();
+        //ProfileSummary.InnerText = EmpSum;
 
-        sc.Close();
+        //sc.Close();
 
     }
 
@@ -326,4 +327,93 @@ public partial class RevisedLanding : System.Web.UI.Page
     //{
     //    btnSaveEdits.Visible = true;
     //}
+
+        // Inserts a new opportunity
+    protected void AgreeSubmit_Click(object sender, EventArgs e)
+    {
+
+        Opportunity newOpportunity = new Opportunity(txtOpportunityName.Text, txtOpportunityDescription.Text, DropDownOpportunityType.SelectedItem.Text, dropdownApprenticeship.SelectedItem.Text, DropDownFulltime.Text, txtDeadlineDate.Text );
+        sc.Open();
+        System.Data.SqlClient.SqlCommand getdbPersonID = new System.Data.SqlClient.SqlCommand();
+        getdbPersonID.Connection = sc;
+		//Gets the personid for the username
+		getdbPersonID.CommandText = "SELECT PersonID from Account where Username = 'nbarth'";
+			//"" + (string)(Session)["loginUser"] + "'";
+        int accountID = (int)getdbPersonID.ExecuteScalar();
+        sc.Close();
+
+        //Display current name
+        sc.Open();
+        SqlCommand getEmpID = new SqlCommand();
+        getEmpID.Connection = sc;
+        getEmpID.CommandText = "Select EmployerID from Person where PersonID = " + accountID;
+        Int32 EmpID = Convert.ToInt32(getEmpID.ExecuteScalar());
+        sc.Close();
+
+        sc.Open();
+        SqlCommand cmd = new SqlCommand("Insert into Opportunity(OpportunityName, OpportunityType, isApprenticeship, isFulltime, OpportunityDescription, Deadline) values(@Name,@Type,@isApprenticeship,@isFulltime,@OppDesc,@Deadline)", sc);
+        cmd.Parameters.Add(new SqlParameter("@Name", newOpportunity.getOpportunityName()));
+		cmd.Parameters.Add(new SqlParameter("@Type", newOpportunity.getOpportunityType()));
+        cmd.Parameters.Add(new SqlParameter("@isApprenticeship", newOpportunity.getApprenticeship()));
+        cmd.Parameters.Add(new SqlParameter("@isFulltime", newOpportunity.getFullTime()));
+		cmd.Parameters.Add(new SqlParameter("OppDesc", newOpportunity.getOpportunityDesc()));
+        cmd.Parameters.Add(new SqlParameter("@Deadline", newOpportunity.getDeadline()));
+
+        cmd.ExecuteNonQuery();
+
+        SqlCommand getOppID = new SqlCommand();
+        getOppID.Connection = sc;
+        getOppID.CommandText = "Select TOP 1 OpportunityID from opportunity order by opportunityID desc";
+        Int32 OpportunityID = Convert.ToInt32(getOppID.ExecuteScalar());
+
+
+        SqlCommand comd = new SqlCommand("Insert into EmployerOpportunity(EmployerID, OpportunityID) values (@EmployerID, @OpportunityID)",sc);
+        comd.Parameters.Add(new SqlParameter("@EmployerID", EmpID));
+        comd.Parameters.Add(new SqlParameter("@OpportunityID", OpportunityID));
+        comd.ExecuteNonQuery();
+
+
+
+        // inserts all opportunity interests
+		foreach (var item in listBoxInterestChoice.GetSelectedIndices())
+		{
+			SqlCommand oppIntCmd = new SqlCommand("Insert into OpportunityInterest(InterestID, OpportunityID) values(@InterestID, @OpportunityID)", sc);
+			oppIntCmd.Parameters.Add(new SqlParameter("@InterestID", item + 1));
+			oppIntCmd.Parameters.Add(new SqlParameter("@OpportunityID", OpportunityID));
+			oppIntCmd.ExecuteNonQuery();
+		}
+
+
+        // inserts all school opportunities
+		foreach (var item in listBoxSchoolChoice.GetSelectedIndices())
+		{
+			SqlCommand schoolOppCmd = new SqlCommand("Insert into SchoolOpportunity(SchoolID,OpportunityID) values(@SchoolID,@OpportunityID)", sc);
+			schoolOppCmd.Parameters.Add(new SqlParameter("@SchoolID", item + 1));
+			schoolOppCmd.Parameters.Add(new SqlParameter("OpportunityID", OpportunityID));
+			schoolOppCmd.ExecuteNonQuery();
+		}
+
+		lblSuccess.Visible = true;
+		btnCloseSuccess.Visible = true;
+	}
+
+    // Closes the new opportunity window
+    protected void Close_Click(object sender, EventArgs e)
+    {
+        txtOpportunityName.Text = "";
+        txtOpportunityDescription.Text = "";
+        listBoxInterestChoice.ClearSelection();
+        listBoxSchoolChoice.ClearSelection();
+        txtDeadlineDate.Text = "";
+        dropdownApprenticeship.ClearSelection();
+        DropDownOpportunityType.ClearSelection();
+        DropDownFulltime.ClearSelection();
+    }
+
+    // Closes the success alert from posting opportunity
+    protected void btnCloseSuccess_Click(object sender, EventArgs e)
+	{
+		lblSuccess.Visible = false;
+		btnCloseSuccess.Visible = false;
+	}
 }
